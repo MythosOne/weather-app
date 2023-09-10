@@ -1,4 +1,22 @@
+
+html {
+  background-image: url('./components/img/weather-background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
+  /* background-color: rgb(31, 130, 187); */
+  /* background-image: url('/src/img/weather-background.jpg'); */
+  /* background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; */
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
