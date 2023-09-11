@@ -1,14 +1,14 @@
 import { ImSearch, ImPlus } from 'react-icons/im';
-import {SearchBarForm} from './Searchbar.styled';
+import { SearchBarForm, Container,ButtonSearch, ButtonAdd, Input} from './SearchBar.styled';
 
-export const Searchbar = () => {
+export const SearchBar = () => {
   return (
-    <>
+    <Container>
       <SearchBarForm>
-        <button type="submit">
-          <ImSearch size={14} />
-        </button>
-        <input
+        <ButtonSearch type="submit">
+          <ImSearch size={18} />
+        </ButtonSearch>
+        <Input
           name="inputData"
           //   value={}
           // onChange={}
@@ -17,10 +17,10 @@ export const Searchbar = () => {
           autoComplete="off"
           placeholder="Search for a city"
         />
-        <button type="onClick">
-          <ImPlus size={14} />
-        </button>
+        <ButtonAdd type="onClick">
+          <ImPlus size={18} />
+        </ButtonAdd>
       </SearchBarForm>
-    </>
+    </Container>
   );
 };

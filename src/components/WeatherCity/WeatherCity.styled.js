@@ -4,7 +4,7 @@ export const WeatherForm = styled.div`
   width: 30%;
   height: 100%;
   min-height: calc(90vh - 50px);
-  background-color: #1f82bb;
+  background-color: #337297;
   opacity: 1;
 `;
 

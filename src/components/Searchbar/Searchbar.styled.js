@@ -1,6 +1,51 @@
 import styled from '@emotion/styled';
 
-export const SearchBarForm = styled.form`
-display: flex;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
 
-`
+export const SearchBarForm = styled.form`
+  /* position: relative; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+;
+
+  background-color: #c9dfed;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+`;
+
+export const Input = styled.input`
+  background-color: #c9dfed;
+  border: none;
+  outline: none;
+
+  max-height: 40px;
+  max-width: 188px;
+
+  padding: 5px;
+  font-size: 18px;
+  color: #888;
+`;
+
+export const ButtonSearch = styled.button`
+  /* position: absolute; */
+
+  background-color: #c9dfed;
+  color: gray;
+  border: none;
+`;
+
+export const ButtonAdd = styled.button`
+  /* position: absolute; */
+
+  background-color: #c9dfed;
+  color: green;
+  border: none;
+`;
