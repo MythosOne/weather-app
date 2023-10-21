@@ -18,7 +18,7 @@ export const SearchBarForm = styled.form`
 ;
 
   background-color: #c9dfed;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5);
 `;
 
 export const Input = styled.input`
@@ -26,8 +26,8 @@ export const Input = styled.input`
   border: none;
   outline: none;
 
-  max-height: 40px;
-  max-width: 188px;
+  height: 20px;
+  width: 80%;
 
   padding: 5px;
   font-size: 18px;

@@ -1,0 +1,45 @@
+import styled from '@emotion/styled';
+
+export const Container = styled.div`
+  display: flex;
+
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 10px;
+  width: 85%;
+  height: 100px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(240, 243, 244, 0.8);
+  border-radius: 12px;
+  background-color: #154360;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5);
+`;
+
+export const City = styled.h2`
+  margin: 0;
+  color: rgba(240, 243, 244, 0.9);
+  font-size: 24px;
+  font-weight: 400;
+`;
+
+export const Time = styled.p`
+  margin: 0;
+  color: rgba(240, 243, 244, 0.9);
+  font-size: 12px;
+  font-weight: 400;
+`;
+
+export const Temperature = styled.p`
+  margin: 0;
+  color: rgba(240, 243, 244, 0.9);
+  font-size: 42px;
+  font-weight: 400;
+`;
+
+export const Location = styled.p`
+  margin: 0;
+  color: rgba(240, 243, 244, 0.9);
+  font-size: 12px;
+  font-weight: 400;
+`;

@@ -1,17 +1,37 @@
+import React, { useState } from 'react';
 import { ImSearch, ImPlus } from 'react-icons/im';
-import { SearchBarForm, Container,ButtonSearch, ButtonAdd, Input} from './SearchBar.styled';
+import {
+  SearchBarForm,
+  Container,
+  ButtonSearch,
+  ButtonAdd,
+  Input,
+} from './SearchBar.styled';
 
-export const SearchBar = () => {
+export const SearchBar = ({onAddCity}) => {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onAddCity(value);
+    setValue('');
+  };
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
   return (
     <Container>
-      <SearchBarForm>
+      <SearchBarForm onSubmit={handleSubmit}>
         <ButtonSearch type="submit">
           <ImSearch size={18} />
         </ButtonSearch>
         <Input
           name="inputData"
-          //   value={}
-          // onChange={}
+          value={value}
+          onChange={handleChange}
           type="text"
           autoFocus
           autoComplete="off"
