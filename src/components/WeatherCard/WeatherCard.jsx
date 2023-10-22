@@ -1,15 +1,38 @@
 import React from 'react';
-import { Container, City, Time, Temperature, Location } from './WeatherCard.styled';
+import {
+  Container,
+  City,
+  Time,
+  Temperature,
+  Location,
+} from './WeatherCard.styled';
 
 function WeatherCard({ city }) {
-
   return (
-      <Container>
+    <Container onClick={() => console.log('iCloud')}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'stretch',
+        }}
+      >
         <City>{city.city}</City>
         <Temperature>21</Temperature>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <Time>15:45</Time>
         <Location>H:15 L:7</Location>
-      </Container>
+      </div>
+    </Container>
   );
 }
 

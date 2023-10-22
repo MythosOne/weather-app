@@ -2,12 +2,15 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 
   margin: 0 auto;
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: 10px;
+  padding: 5px;
   width: 85%;
-  height: 100px;
+  height: 90px;
   border-style: solid;
   border-width: 2px;
   border-color: rgba(240, 243, 244, 0.8);

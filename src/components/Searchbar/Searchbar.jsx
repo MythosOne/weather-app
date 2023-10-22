@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ImSearch, ImPlus } from 'react-icons/im';
 import {
   SearchBarForm,
-  Container,
+  // Container,
   ButtonSearch,
   ButtonAdd,
   Input,
@@ -23,7 +23,7 @@ export const SearchBar = ({onAddCity}) => {
   };
 
   return (
-    <Container>
+    // <Container>
       <SearchBarForm onSubmit={handleSubmit}>
         <ButtonSearch type="submit">
           <ImSearch size={18} />
@@ -41,6 +41,6 @@ export const SearchBar = ({onAddCity}) => {
           <ImPlus size={18} />
         </ButtonAdd>
       </SearchBarForm>
-    </Container>
+    // </Container> 
   );
 };
