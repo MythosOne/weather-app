@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { SearchBar } from '../SearchBar/SearchBar';
-import { WeatherList } from '../WeatherList/WeatherList';
 import { WeatherForm, Title } from './WeatherCity.styled';
 import WeatherCard from '../WeatherCard/WeatherCard';
 
@@ -12,10 +11,10 @@ export const WeatherCity = () => {
     if (city.length === 0) {
       alert('Field must be filled');
     } else {
-      setCities([...cities, { id: nanoid(), city: city }]);
+      setCities([...cities, { id: nanoid(), city }]);
     }
 
-    console.log(cities)
+    console.log(cities);
   };
 
   return (
@@ -25,7 +24,6 @@ export const WeatherCity = () => {
       {cities.map(city => (
         <WeatherCard city={city} />
       ))}
-      {/* <WeatherList /> */}
     </WeatherForm>
   );
 };
