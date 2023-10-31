@@ -1,5 +1,7 @@
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
 import { MyLocationWeather } from '../components/MyLocationWeather/MyLocationWeather';
+import { useEffect } from 'react';
+import {getWeatherData} from '../Api/apiService';
 
 const styles = {
   container: {
@@ -12,6 +14,13 @@ const styles = {
 };
 
 const Home = () => {
+  useEffect(() => {
+    getWeatherData()
+    .then()
+    .catch()
+    .finally()
+  },[]);
+
   return (
     <section style={styles.container}>
       <WeatherCity />

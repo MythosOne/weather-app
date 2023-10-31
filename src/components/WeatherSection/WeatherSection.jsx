@@ -13,7 +13,7 @@ function WeatherSection() {
         }}
       >
         <City>My Location</City>
-        <Temperature>21</Temperature>
+        <Temperature>23</Temperature>
       </div>
       <div
         style={{
