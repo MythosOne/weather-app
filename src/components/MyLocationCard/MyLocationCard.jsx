@@ -10,7 +10,7 @@ import {
 function MyLocationCard({weather}) {
   console.log(weather);
   return (
-    <Container onClick={() => console.log('iCloud')}>
+    <Container onClick={() => console.log('myLocationCard')}>
       <div
         style={{
           display: 'flex',
@@ -31,7 +31,7 @@ function MyLocationCard({weather}) {
         }}
       >
         <Time>15:45</Time>
-        <Location>H:15 L:7</Location>
+        <Location>{weather.base}</Location>
       </div>
     </Container>
   );

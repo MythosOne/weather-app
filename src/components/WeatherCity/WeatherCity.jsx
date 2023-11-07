@@ -4,7 +4,7 @@ import { SearchBar } from '../SearchBar/SearchBar';
 import { WeatherForm, Title } from './WeatherCity.styled';
 import WeatherCard from '../WeatherCard/WeatherCard';
 
-export const WeatherCity = () => {
+export const WeatherCity = ({weather}) => {
   const [cities, setCities] = useState([]);
 
   const addCity = city => {
@@ -20,7 +20,7 @@ export const WeatherCity = () => {
   return (
     <WeatherForm>
       <Title>Weather</Title>
-      <SearchBar onAddCity={addCity} />
+      <SearchBar onAddCity={addCity} weather={weather} />
       {cities.map(city => (
         <WeatherCard city={city} />
       ))}

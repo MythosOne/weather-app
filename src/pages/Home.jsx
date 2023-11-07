@@ -46,16 +46,13 @@ const Home = () => {
       .finally(() => setIsLoading(false));
   }, [latitude, longitude]);
 
-  console.log(weather)
+  // console.log(weather)
 
   return (
     <section style={styles.container}>
       <WeatherCity weather = {weather}/>
       <MyLocationWeather weather = {weather}/>
       {isLoading && <Loader />}
-      <p>{latitude}</p>
-      <p>{longitude}</p>
-      <p>{weather.base}</p>
     </section>
   );
 };
