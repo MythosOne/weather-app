@@ -7,10 +7,10 @@ export const Container = styled.div`
   align-items: stretch;
 
   margin: 0 auto;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   padding: 5px;
   width: 95%;
-  height: 800px;
+  height: 400px;
   border-radius: 12px;
   background-color: #154360;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5);

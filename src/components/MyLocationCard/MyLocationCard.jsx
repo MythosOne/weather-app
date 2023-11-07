@@ -7,7 +7,8 @@ import {
   Location,
 } from './MyLocationCard.styled';
 
-function MyLocationCard() {
+function MyLocationCard({weather}) {
+  console.log(weather);
   return (
     <Container onClick={() => console.log('iCloud')}>
       <div
@@ -34,6 +35,6 @@ function MyLocationCard() {
       </div>
     </Container>
   );
-}
+}  
 
 export default MyLocationCard;

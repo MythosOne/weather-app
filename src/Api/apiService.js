@@ -8,3 +8,9 @@ export async function getWeatherData(){
 
     return resp.data
 }
+
+export async function getLocationWeatherData(lat, lon){
+    const resp = await axios.get(`${BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`)
+
+    return resp.data
+}

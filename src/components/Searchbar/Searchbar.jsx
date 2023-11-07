@@ -9,7 +9,7 @@ import {
 } from './SearchBar.styled';
 import MyLocationCard from '../MyLocationCard/MyLocationCard';
 
-export const SearchBar = ({onAddCity}) => {
+export const SearchBar = ({onAddCity, weather}) => {
   const [value, setValue] = useState('');
 
   const handleSubmit = (e) => {
@@ -42,7 +42,7 @@ export const SearchBar = ({onAddCity}) => {
           <ImPlus size={18} />
         </ButtonAdd>
       </SearchBarForm>
-      <MyLocationCard />
+      <MyLocationCard weather = {weather}/>
     </Container> 
   );
 };
