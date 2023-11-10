@@ -2,13 +2,13 @@ import React from 'react';
 import {
   Container,
   City,
-  Time,
+  Description,
   Temperature,
+  MyLocation,
   Location,
 } from './MyLocationCard.styled';
 
-function MyLocationCard({weather}) {
-  console.log(weather);
+function MyLocationCard({ weather }) {
   return (
     <Container onClick={() => console.log('myLocationCard')}>
       <div
@@ -19,8 +19,16 @@ function MyLocationCard({weather}) {
           alignItems: 'stretch',
         }}
       >
-        <City>My Location</City>
-        <Temperature>23</Temperature>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <MyLocation>My Location</MyLocation>
+          <City>{weather.name}</City>
+        </div>
+        <Temperature>{Math.trunc(weather.main.temp)}°</Temperature>
       </div>
       <div
         style={{
@@ -30,11 +38,13 @@ function MyLocationCard({weather}) {
           alignItems: 'center',
         }}
       >
-        <Time>15:45</Time>
-        <Location>{weather.base}</Location>
+        <Description>{weather.weather[0].description}</Description>
+        <Location>
+          H:{Math.trunc(weather.coord.lat)} L:{Math.trunc(weather.coord.lon)}
+        </Location>
       </div>
     </Container>
   );
-}  
+}
 
 export default MyLocationCard;

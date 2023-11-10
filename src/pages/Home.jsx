@@ -1,7 +1,7 @@
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
 import { MyLocationWeather } from '../components/MyLocationWeather/MyLocationWeather';
 import { useEffect, useState } from 'react';
-import { getWeatherData, getLocationWeatherData } from '../Api/apiService';
+import {getLocationWeatherData } from '../Api/apiService';
 import { Loader } from '../components/Loader/Loader';
 
 const styles = {
@@ -15,16 +15,18 @@ const styles = {
 };
 
 const Home = () => {
-  const [weather, setWeather] = useState({})
+  const [weather, setWeather] = useState(JSON.parse(localStorage.getItem('weather')) ?? {});
   const [isLoading, setIsLoading] = useState(false);
   const [location, setLocation] = useState({
     latitude: null,
     longitude: null,
   });
-
-  const {latitude, longitude} = location
+  console.log(location);
+  console.log(weather)
+  const { latitude, longitude } = location;
 
   useEffect(() => {
+    localStorage.setItem('weather', JSON.stringify(weather));
     setIsLoading(true);
 
     if ('geolocation' in navigator) {
@@ -35,23 +37,23 @@ const Home = () => {
         });
       });
     } else {
-      alert("Geolocation is not supported by your browser")
+      alert('Geolocation is not supported by your browser');
     }
 
-    // getLocationWeatherData(50, 36.25);
-    // getWeatherData()
-    getLocationWeatherData(latitude, longitude)
-      .then(weather => setWeather(weather))
-      .catch((error => console.error(error)))
-      .finally(() => setIsLoading(false));
+    if (latitude !== null && longitude !== null) {
+      getLocationWeatherData(latitude, longitude)
+        .then((weather) => setWeather(weather))
+        .catch(error => console.error(error))
+        .finally(() => setIsLoading(false));
+    }
   }, [latitude, longitude]);
 
   // console.log(weather)
 
   return (
     <section style={styles.container}>
-      <WeatherCity weather = {weather}/>
-      <MyLocationWeather weather = {weather}/>
+      <WeatherCity weather={weather} />
+      <MyLocationWeather weather={weather} />
       {isLoading && <Loader />}
     </section>
   );

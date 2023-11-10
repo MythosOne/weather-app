@@ -19,14 +19,14 @@ export const Container = styled.div`
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5);
 `;
 
-export const City = styled.h2`
+export const City = styled.h4`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
-  font-size: 24px;
+  font-size: 14px;
   font-weight: 400;
 `;
 
-export const Time = styled.p`
+export const Description = styled.p`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
   font-size: 12px;
@@ -37,6 +37,13 @@ export const Temperature = styled.p`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
   font-size: 42px;
+  font-weight: 400;
+`;
+
+export const MyLocation = styled.h3`
+  margin: 0;
+  color: rgba(240, 243, 244, 0.9);
+  font-size: 24px;
   font-weight: 400;
 `;
 
