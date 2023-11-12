@@ -34,7 +34,7 @@ export const City = styled.h2`
 export const Temperature = styled.p`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
-  font-size: 42px;
+  font-size: 58px;
   font-weight: 400;
 `;
 
