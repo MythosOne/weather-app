@@ -8,7 +8,7 @@ export const WeatherForm = styled.div`
   opacity: 1;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h1`
   font-size: 34px;
   text-align: center;
   color: #fff;

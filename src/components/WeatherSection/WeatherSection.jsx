@@ -1,20 +1,34 @@
 import React from 'react';
-import { Container, City, Temperature } from './WeatherSection.styled';
+import {
+  Container,
+  MyLocation,
+  City,
+  Temperature,
+  Description,
+  Location,
+} from './WeatherSection.styled';
 
-function WeatherSection() {
+function WeatherSection({ weather }) {
   return (
     <Container>
       <div
         style={{
           display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'stretch',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '10px',
         }}
       >
-        <City>My Location</City>
-        <Temperature>23</Temperature>
+        <MyLocation>My Location</MyLocation>
+        <City>{weather.name}</City>
+        <Temperature>{Math.trunc(weather.main.temp)}°</Temperature>
+        <Description>{weather.weather[0].description}</Description>
+        <Location>
+          H:{Math.trunc(weather.coord.lat)} L:{Math.trunc(weather.coord.lon)}
+        </Location>
       </div>
+
       <div
         style={{
           display: 'flex',

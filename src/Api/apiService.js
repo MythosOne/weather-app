@@ -14,3 +14,4 @@ export async function getLocationWeatherData(lat, lon){
 
     return resp.data
 }
+

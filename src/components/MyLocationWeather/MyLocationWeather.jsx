@@ -1,11 +1,10 @@
 import WeatherSection from '../WeatherSection/WeatherSection';
-import { LocationForm, Title } from './MyLocationWeather.styled';
+import { LocationForm } from './MyLocationWeather.styled';
 
-export const MyLocationWeather = ({ card }) => {
+export const MyLocationWeather = ({ weather }) => {
   return (
     <LocationForm>
-      <Title>My Location</Title>
-      <WeatherSection />
+      <WeatherSection weather={weather}/>
     </LocationForm>
   );
 };
