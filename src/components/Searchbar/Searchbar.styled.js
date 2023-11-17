@@ -18,7 +18,7 @@ export const SearchBarForm = styled.form`
 
   border-style: solid;
   border-width: 2px;
-  border-radius: 4px;
+  border-radius: 8px;
   border-color: rgba(21,	67,	96, 0.8);
 
   background-color: #c9dfed;

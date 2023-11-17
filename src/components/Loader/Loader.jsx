@@ -6,7 +6,13 @@ export const Loader = () => {
 
     return (
         <LoaderSpinner>
-            <TailSpin color="#9ebce1" radius="9" height={50} width={50} />
+            <TailSpin
+  height="50"
+  width="50"
+  color="#bddafd"
+  ariaLabel="tail-spin-loading"
+  radius="1"
+/>
         </LoaderSpinner>
     );
 };

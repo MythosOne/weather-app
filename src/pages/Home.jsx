@@ -1,61 +1,75 @@
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
 import { MyLocationWeather } from '../components/MyLocationWeather/MyLocationWeather';
 import { useEffect, useState } from 'react';
-import {getLocationWeatherData } from '../Api/apiService';
+import {
+  apiServiceWeatherData,
+  apiServiceForecastData,
+} from '../Api/apiService';
 import { Loader } from '../components/Loader/Loader';
 
-const styles = {
-  container: {
-    minHeight: 'calc(80vh - 50px)',
-    display: 'flex',
-    gap: '10px',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-};
-
 const Home = () => {
-  const [weather, setWeather] = useState(JSON.parse(localStorage.getItem('weather')) ?? {});
-  const [isLoading, setIsLoading] = useState(false);
+  // const [weather, setWeather] = useState(
+  //   JSON.parse(localStorage.getItem('weather')) ?? {}
+  // );
   const [location, setLocation] = useState({
     latitude: null,
     longitude: null,
   });
+  const [weather, setWeather] = useState({});
+  // const [forecast, setForecast] = useState(
+  //   JSON.parse(localStorage.getItem('weather')) ?? {}
+  // );
+  const [forecast, setForecast] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
   console.log(location);
-  console.log(weather)
+  console.log(weather);
+  console.log(forecast);
   const { latitude, longitude } = location;
+
+  const handleSuccess = position => {
+    const { latitude, longitude } = position.coords;
+    setLocation({ latitude, longitude });
+  };
+
+  const handleError = error => {
+    console.log(error);
+  };
 
   useEffect(() => {
     localStorage.setItem('weather', JSON.stringify(weather));
     setIsLoading(true);
 
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(position => {
-        setLocation({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-      });
+      navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
     } else {
       alert('Geolocation is not supported by your browser');
     }
 
     if (latitude !== null && longitude !== null) {
-      getLocationWeatherData(latitude, longitude)
-        .then((weather) => setWeather(weather))
-        .catch(error => console.error(error))
-        .finally(() => setIsLoading(false));
+    apiServiceWeatherData(latitude, longitude)
+      .then(weather => setWeather(weather))
+      .catch(error => console.error(error))
+      .finally(() => setIsLoading(false));
+
+    apiServiceForecastData(latitude, longitude)
+      .then(forecast => setForecast(forecast))
+      .catch(error => console.error(error))
+      .finally(() => setIsLoading(false));
     }
   }, [latitude, longitude]);
 
-  // console.log(weather)
-
+  console.log(latitude, longitude);
+  
   return (
-    <section style={styles.container}>
-      <WeatherCity weather={weather} />
-      <MyLocationWeather weather={weather} />
+    <>
+      {Object.keys(weather).length && <WeatherCity weather={weather} />}
+      {Object.keys(weather).length && <MyLocationWeather weather={weather} forecast={forecast}/>}
+
+      {/* <WeatherCity weather={weather} /> */}
+      {/* <MyLocationWeather weather={weather} forecast={forecast} /> */}
       {isLoading && <Loader />}
-    </section>
+    </>
   );
 };
 

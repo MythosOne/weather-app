@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
-import { ImSearch, ImPlus } from 'react-icons/im';
+import React, { useEffect, useState } from 'react';
+import { ImSearch, /*ImPlus*/ } from 'react-icons/im';
 import {
   SearchBarForm,
   Container,
   ButtonSearch,
-  ButtonAdd,
+  // ButtonAdd,
   Input,
 } from './SearchBar.styled';
 import MyLocationCard from '../MyLocationCard/MyLocationCard';
 
-export const SearchBar = ({onAddCity, weather}) => {
+export const SearchBar = ({ onAddCity, weather }) => {
   const [value, setValue] = useState('');
-
-  const handleSubmit = (e) => {
+console.log(value);
+  const handleSubmit = e => {
     e.preventDefault();
 
     onAddCity(value);
     setValue('');
   };
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setValue(e.target.value);
   };
+
+  useEffect(() => {}, []);
 
   return (
     <Container>
@@ -38,11 +40,11 @@ export const SearchBar = ({onAddCity, weather}) => {
           autoComplete="off"
           placeholder="Search for a city"
         />
-        <ButtonAdd type="onClick">
+        {/* <ButtonAdd type="onClick">
           <ImPlus size={18} />
-        </ButtonAdd>
+        </ButtonAdd> */}
       </SearchBarForm>
-      <MyLocationCard weather = {weather}/>
-    </Container> 
+      <MyLocationCard weather={weather} />
+    </Container>
   );
 };
