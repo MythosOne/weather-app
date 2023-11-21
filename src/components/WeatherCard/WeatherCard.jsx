@@ -2,14 +2,15 @@ import React from 'react';
 import {
   Container,
   City,
-  Time,
+  Description,
   Temperature,
   Location,
 } from './WeatherCard.styled';
 
-function WeatherCard({ city }) {
+function WeatherCard({ weatherCity }) {
+  console.log(weatherCity);
   return (
-    <Container onClick={() => console.log('iCloud')}>
+    <Container onClick={() => console.log('myLocationCard')}>
       <div
         style={{
           display: 'flex',
@@ -18,8 +19,16 @@ function WeatherCard({ city }) {
           alignItems: 'stretch',
         }}
       >
-        <City>{city.city}</City>
-        <Temperature>21</Temperature>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Location>{weatherCity.name}</Location>
+          <City>{weatherCity.name}</City>
+        </div>
+        <Temperature>{Math.trunc(weatherCity.main.temp)}°</Temperature>
       </div>
       <div
         style={{
@@ -29,8 +38,11 @@ function WeatherCard({ city }) {
           alignItems: 'center',
         }}
       >
-        <Time>15:45</Time>
-        <Location>H:15 L:7</Location>
+        <Description>{weatherCity.weather[0].description}</Description>
+        <Location>
+          H:{Math.trunc(weatherCity.coord.lat)} L:
+          {Math.trunc(weatherCity.coord.lon)}
+        </Location>
       </div>
     </Container>
   );

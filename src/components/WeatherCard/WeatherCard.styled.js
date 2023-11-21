@@ -45,3 +45,10 @@ export const Location = styled.p`
   font-size: 12px;
   font-weight: 400;
 `;
+
+export const Description = styled.p`
+  margin: 0;
+  color: rgba(240, 243, 244, 0.9);
+  font-size: 12px;
+  font-weight: 400;
+`;
