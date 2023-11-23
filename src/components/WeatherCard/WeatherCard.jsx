@@ -8,9 +8,9 @@ import {
 } from './WeatherCard.styled';
 
 function WeatherCard({ weatherCity }) {
-  console.log(weatherCity);
+  // console.log(weatherCity);
   return (
-    <Container onClick={() => console.log('myLocationCard')}>
+    <Container onClick={() => console.log(`myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`)}>
       <div
         style={{
           display: 'flex',

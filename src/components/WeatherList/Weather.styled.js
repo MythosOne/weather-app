@@ -6,4 +6,5 @@ export const Container = styled.ul`
   flex-direction: column;
   justify-content: center;
   gap: 16px;
+  padding: 0;
 `;

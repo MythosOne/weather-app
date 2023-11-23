@@ -16,7 +16,7 @@ export const SearchBar = ({ onAddCity, weather, onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // onAddCity(value);
+    onAddCity(value);
     onSubmit(value);
     setValue('');
   };

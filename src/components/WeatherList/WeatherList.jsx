@@ -2,13 +2,13 @@ import React from 'react';
 import { Container } from './Weather.styled';
 import WeatherCard from '../WeatherCard/WeatherCard';
 
-export const WeatherList = ({ cities, weatherCity }) => {
+export const WeatherList = ({ cities }) => {
 
   return (
     <Container>
-      {cities.map(card => (
-        <li key={card.id}>
-          <WeatherCard weatherCity={weatherCity} />
+      {cities.map(city => (
+        <li key={city.id}>
+          <WeatherCard weatherCity={city} />
         </li>
       ))}
     </Container>
