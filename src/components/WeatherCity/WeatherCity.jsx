@@ -6,33 +6,27 @@ import { WeatherList } from '../WeatherList/WeatherList';
 import { apiServiceSearchData } from '../../Api/apiService';
 import { Loader } from '../Loader/Loader';
 
-export const WeatherCity = ({ weather }) => {
-  const [cities, setCities] = useState(
-    JSON.parse(localStorage.getItem('cities')) ?? []
-  );
+export const WeatherCity = ({ weather, weatherCity, setWeatherCity }) => {
+  // const [weatherCity, setWeatherCity] = useState(
+  //   JSON.parse(localStorage.getItem('weatherCity')) ?? []
+  // );
   const [value, setValue] = useState('');
-  // const [weatherCity, setWeatherCity] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  console.log(cities);
-  // console.log(`value:${value}`);
-  // console.log(weatherCity);
+  console.log('weatherCity:', weatherCity);
 
+  // !!!!!!!!!!!!!!!!
   const handleSubmit = value => {
-    setValue(value);
-    // setCities([]);
+    setValue(value.toLowerCase());
   };
-  // !!!!!!!!!!!!!!!!!
+
   const addCity = city => {
     if (city.length === 0) {
       alert('Field must be filled');
-    } /*else {
-      setCities([...cities, { id: nanoid(), weatherCity }]);
-    }*/
+    }
   };
-  //!!!!!!!!!!!!!!!!!
+
   useEffect(() => {
-    //!!!!!!!!!!!!!!
-    localStorage.setItem('cities', JSON.stringify(cities));
+    localStorage.setItem('weatherCity', JSON.stringify(weatherCity));
 
     if (value.trim() === '') {
       return;
@@ -41,8 +35,8 @@ export const WeatherCity = ({ weather }) => {
     setIsLoading(true);
 
     apiServiceSearchData(value)
-      .then(weatherCity => setCities([...cities, { ...weatherCity }]))
-      // .then(weatherCity => setWeatherCity(weatherCity))
+      .then(data => setWeatherCity([...weatherCity, { ...data }]))
+
       .catch(error => console.error(error))
       .finally(() => setIsLoading(false));
   }, [value]);
@@ -55,10 +49,8 @@ export const WeatherCity = ({ weather }) => {
         onAddCity={addCity}
         weather={weather}
       />
-      {/* {cities.map(city => (
-        <WeatherCard weather={weather} />
-      ))} */}
-      <WeatherList cities={cities}  />
+
+      <WeatherList cities={weatherCity} />
       {isLoading && <Loader />}
     </WeatherForm>
   );

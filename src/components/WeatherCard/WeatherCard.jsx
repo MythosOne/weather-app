@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Container,
   City,
+  Time,
   Description,
   Temperature,
   Location,
@@ -9,6 +10,7 @@ import {
 
 function WeatherCard({ weatherCity }) {
   // console.log(weatherCity);
+  // console.log((new Date(weatherCity.dt * 1000)).getTimezoneOffset() / 60)
   return (
     <Container onClick={() => console.log(`myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`)}>
       <div
@@ -25,8 +27,8 @@ function WeatherCard({ weatherCity }) {
             flexDirection: 'column',
           }}
         >
-          <Location>{weatherCity.name}</Location>
           <City>{weatherCity.name}</City>
+          <Time>{(new Date(weatherCity.dt * 1000)).toGMTString()}</Time>
         </div>
         <Temperature>{Math.trunc(weatherCity.main.temp)}°</Temperature>
       </div>

@@ -1,5 +1,5 @@
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
-import { MyLocationWeather } from '../components/MyLocationWeather/MyLocationWeather';
+import { WeatherSection } from '../components/WeatherSection/WeatherSection';
 import { useEffect, useState } from 'react';
 import {
   apiServiceWeatherData,
@@ -9,11 +9,14 @@ import {
 import { Loader } from '../components/Loader/Loader';
 
 const Home = () => {
-  const [weather, setWeather] = useState(
-    JSON.parse(localStorage.getItem('weather')) ?? {}
+  const [weatherCity, setWeatherCity] = useState(
+    JSON.parse(localStorage.getItem('weatherCity')) ?? []
+  );
+  const [locationWeather, setLocationWeather] = useState(
+    JSON.parse(localStorage.getItem('weather')) ?? []
   );
   const [forecast, setForecast] = useState(
-    JSON.parse(localStorage.getItem('weather')) ?? {}
+    JSON.parse(localStorage.getItem('forecast')) ?? []
   );
   const [location, setLocation] = useState({
     latitude: null,
@@ -21,9 +24,8 @@ const Home = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  // console.log(location);
-  // console.log(weather);
-  // console.log(forecast);
+  console.log('locationWeather:', locationWeather);
+  console.log('forecast:', forecast);
   const { latitude, longitude } = location;
 
   const handleSuccess = position => {
@@ -36,7 +38,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('weather', JSON.stringify(weather));
+    localStorage.setItem('locationWeather', JSON.stringify(locationWeather));
     setIsLoading(true);
 
     if ('geolocation' in navigator) {
@@ -47,7 +49,7 @@ const Home = () => {
 
     if (latitude !== null && longitude !== null) {
       apiServiceWeatherData(latitude, longitude)
-        .then(weather => setWeather(weather))
+        .then(weather => setLocationWeather(weather))
         .catch(error => console.error(error))
         .finally(() => setIsLoading(false));
 
@@ -60,13 +62,10 @@ const Home = () => {
 
   return (
     <>
-      {Object.keys(weather).length && <WeatherCity weather={weather} />}
-      {Object.keys(weather).length && (
-        <MyLocationWeather weather={weather} forecast={forecast} />
+      {Object.keys(locationWeather).length && <WeatherCity weather={locationWeather} weatherCity={weatherCity} setWeatherCity={setWeatherCity}/>}
+      {(Object.keys(locationWeather).length || Object.keys(forecast).length) && (
+        <WeatherSection weather={locationWeather} />
       )}
-
-      {/* <WeatherCity weather={weather} /> */}
-      {/* <MyLocationWeather weather={weather} forecast={forecast} /> */}
       {isLoading && <Loader />}
     </>
   );
