@@ -8,7 +8,14 @@ import {
   Humidity,
 } from './WeatherWidgets.styled';
 
+import { WiSunrise, WiSunset } from 'react-icons/wi';
+
 export const WeatherWidgets = ({ weather, forecast }) => {
+  const UTCTime = unixTime => {
+    let time = new Date(unixTime * 1000);
+    return `${time.getUTCHours()}:${time.getUTCMinutes()}`;
+  };
+
   return (
     <Container>
       <WeatherForecast>{forecast}</WeatherForecast>
@@ -23,7 +30,7 @@ export const WeatherWidgets = ({ weather, forecast }) => {
         }}
       >
         <Precipitation>Precipitation</Precipitation>
-        <div
+        <ul
           style={{
             display: 'flex',
             flexDirection: 'row',
@@ -31,15 +38,23 @@ export const WeatherWidgets = ({ weather, forecast }) => {
             alignItems: 'center',
             gap: '10px',
             width: '310px',
+            listStyle: 'none',
+            padding: 0,
+            margin: 0,
           }}
         >
           <Sunrise>
-            Sunrise {weather.sys.sunrise} Sunset {weather.sys.sunset}
+            <WiSunrise style={{ width: '24px', height: '24px' }} />
+            Sunrise {UTCTime(weather.sys.sunrise)}
+            {/* {new Date(weather.sys.sunrise * 1000).toUTCString()} */}
+            <WiSunset style={{ width: '24px', height: '24px' }} />
+            Sunset {UTCTime(weather.sys.sunset)}
+            {/* Sunset {new Date(weather.sys.sunset * 1000).toUTCString()} */}
           </Sunrise>
           <Wind>Wind {weather.wind.speed} m/s</Wind>
           <Visibility>Visibility {weather.visibility}</Visibility>
           <Humidity>Humdity {weather.main.humidity}</Humidity>
-        </div>
+        </ul>
       </div>
     </Container>
   );

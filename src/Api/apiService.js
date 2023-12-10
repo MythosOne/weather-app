@@ -21,7 +21,7 @@ export async function apiServiceWeatherData(lat, lon) {
 
 export async function apiServiceForecastData(lat, lon) {
   const resp = await axios.get(
-    `${BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+    `${BASE_URL}/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
   );
 
   return resp.data;

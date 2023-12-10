@@ -11,8 +11,19 @@ import {
 function WeatherCard({ weatherCity }) {
   // console.log(weatherCity);
   // console.log((new Date(weatherCity.dt * 1000)).getTimezoneOffset() / 60)
+ const UTCTime = () => {
+  let time = new Date(weatherCity.dt*1000);
+  return `${time.getUTCHours()}:${time.getUTCMinutes()}`;
+ };
+
   return (
-    <Container onClick={() => console.log(`myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`)}>
+    <Container
+      onClick={() =>
+        console.log(
+          `myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`
+        )
+      }
+    >
       <div
         style={{
           display: 'flex',
@@ -28,7 +39,10 @@ function WeatherCard({ weatherCity }) {
           }}
         >
           <City>{weatherCity.name}</City>
-          <Time>{(new Date(weatherCity.dt * 1000)).toGMTString()}</Time>
+          <Time>
+            {/* {(new Date(weatherCity.dt * 1000)).toUTCString()} */}
+            {UTCTime()}
+          </Time>
         </div>
         <Temperature>{Math.trunc(weatherCity.main.temp)}°</Temperature>
       </div>
