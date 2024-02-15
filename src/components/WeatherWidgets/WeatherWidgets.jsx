@@ -13,12 +13,15 @@ import { WiSunrise, WiSunset } from 'react-icons/wi';
 export const WeatherWidgets = ({ weather, forecast }) => {
   const UTCTime = unixTime => {
     let time = new Date(unixTime * 1000);
-    return `${time.getUTCHours()}:${time.getUTCMinutes()}`;
+    return `${time.getUTCHours().toString().padStart(2, '0')}:${time
+      .getUTCMinutes()
+      .toString()
+      .padStart(2, '0')}`;
   };
 
   return (
     <Container>
-      <WeatherForecast>{forecast}</WeatherForecast>
+      <WeatherForecast>{forecast} Weekly forecast</WeatherForecast>
       <div
         style={{
           display: 'flex',

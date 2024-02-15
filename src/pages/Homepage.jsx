@@ -7,8 +7,9 @@ import {
   // apiServiceSearchData,
 } from '../Api/apiService';
 import { Loader } from '../components/Loader/Loader';
+import {Main} from './Homepage.styled'
 
-const Home = () => {
+export const Homepage = () => {
   const [weatherCity, setWeatherCity] = useState(
     JSON.parse(localStorage.getItem('weatherCity')) ?? []
   );
@@ -61,14 +62,12 @@ const Home = () => {
   }, [latitude, longitude]);
 
   return (
-    <>
-      {Object.keys(locationWeather).length && <WeatherCity weather={locationWeather} weatherCity={weatherCity} setWeatherCity={setWeatherCity}/>}
+    <Main>
+      {/* {Object.keys(locationWeather).length && <WeatherCity weather={locationWeather} weatherCity={weatherCity} setWeatherCity={setWeatherCity}/>} */}
       {(Object.keys(locationWeather).length || Object.keys(forecast).length) && (
         <WeatherSection weather={locationWeather} />
       )}
       {isLoading && <Loader />}
-    </>
+    </Main>
   );
 };
-
-export default Home;

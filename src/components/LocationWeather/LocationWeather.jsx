@@ -7,7 +7,7 @@ import {
   Location,
 } from './LocationWeather.styled';
 
-export const LocationWeather = ({ weather }) => {
+function LocationWeather({ weather }) {
   return (
     <Container>
       <MyLocation>My Location</MyLocation>
@@ -19,4 +19,6 @@ export const LocationWeather = ({ weather }) => {
       </Location>
     </Container>
   );
-};
+}
+
+export default LocationWeather;

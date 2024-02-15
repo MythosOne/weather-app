@@ -1,5 +1,5 @@
 import React from 'react';
-import { LocationWeather } from '../LocationWeather/LocationWeather';
+import  LocationWeather  from '../LocationWeather/LocationWeather';
 import { WeatherWidgets } from '../WeatherWidgets/WeatherWidgets';
 import { Container } from './WeatherSection.styled';
 

@@ -12,6 +12,7 @@ export const WeatherCity = ({ weather, weatherCity, setWeatherCity }) => {
   // );
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  console.log("first value: " + JSON.stringify(value))
   console.log('weatherCity:', weatherCity);
 
   // !!!!!!!!!!!!!!!!
