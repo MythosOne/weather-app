@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 export const LogoWrapper = styled.a`
   display: flex;
   align-items: baseline;
+
+  text-decoration: none;
 `;
 
 export const LogoImg = styled.img`

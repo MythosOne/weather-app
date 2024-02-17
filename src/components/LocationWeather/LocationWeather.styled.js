@@ -5,13 +5,16 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  gap: 10px;
 `;
 
-export const MyLocation = styled.h2`
-  margin: 0;
+export const MyLocation = styled.h1`
   color: rgba(240, 243, 244, 0.9);
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 600;
+
+  margin: 0;
 `;
 
 export const City = styled.h2`

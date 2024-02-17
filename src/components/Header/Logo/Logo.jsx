@@ -5,7 +5,7 @@ import Image from '../../img/logo-image.png';
 
 export const Logo = () => {
   return (
-    <LogoWrapper>
+    <LogoWrapper href=''>
       <LogoImg src={Image} width="20" height="20" alt="Logo" />
       <TitleWeather>Weather</TitleWeather>
       <TitleApp>App</TitleApp>

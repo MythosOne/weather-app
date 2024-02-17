@@ -14,4 +14,6 @@ export const Container = styled.div`
   width: 90%;
   font-size: 16px;
   color: white;
+
+  gap: 40px;
 `;

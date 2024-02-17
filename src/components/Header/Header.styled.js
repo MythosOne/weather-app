@@ -9,7 +9,7 @@ export const Section = styled.header`
   justify-content: space-between;
   margin: 0 auto;
 
-  padding: 0 10px 0;
+  padding: 0 20px 0;
 
   top: 0;
   left: 0;
@@ -20,6 +20,7 @@ export const Section = styled.header`
 `;
 
 export const MenuBtn = styled.button`
+  padding: 0;
   background-color: transparent;
   border: 0;
 

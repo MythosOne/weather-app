@@ -22,43 +22,33 @@ export const WeatherWidgets = ({ weather, forecast }) => {
   return (
     <Container>
       <WeatherForecast>{forecast} Weekly forecast</WeatherForecast>
-      <div
+      {/* <ul
         style={{
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          justifyContent: 'space-between',
+          alignItems: 'center',
           gap: '10px',
-          width: '95%',
+          width: '310px',
+          listStyle: 'none',
+          padding: 0,
+          margin: 0,
         }}
-      >
+      > */}
         <Precipitation>Precipitation</Precipitation>
-        <ul
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '10px',
-            width: '310px',
-            listStyle: 'none',
-            padding: 0,
-            margin: 0,
-          }}
-        >
-          <Sunrise>
-            <WiSunrise style={{ width: '24px', height: '24px' }} />
-            Sunrise {UTCTime(weather.sys.sunrise)}
-            {/* {new Date(weather.sys.sunrise * 1000).toUTCString()} */}
-            <WiSunset style={{ width: '24px', height: '24px' }} />
-            Sunset {UTCTime(weather.sys.sunset)}
-            {/* Sunset {new Date(weather.sys.sunset * 1000).toUTCString()} */}
-          </Sunrise>
-          <Wind>Wind {weather.wind.speed} m/s</Wind>
-          <Visibility>Visibility {weather.visibility}</Visibility>
-          <Humidity>Humdity {weather.main.humidity}</Humidity>
-        </ul>
-      </div>
+
+        <Sunrise>
+          <WiSunrise style={{ width: '24px', height: '24px' }} />
+          Sunrise {UTCTime(weather.sys.sunrise)}
+          {/* {new Date(weather.sys.sunrise * 1000).toUTCString()} */}
+          <WiSunset style={{ width: '24px', height: '24px' }} />
+          Sunset {UTCTime(weather.sys.sunset)}
+          {/* Sunset {new Date(weather.sys.sunset * 1000).toUTCString()} */}
+        </Sunrise>
+        <Wind>Wind {weather.wind.speed} m/s</Wind>
+        <Visibility>Visibility {weather.visibility}</Visibility>
+        <Humidity>Humdity {weather.main.humidity}</Humidity>
+      {/* </ul> */}
     </Container>
   );
 };
