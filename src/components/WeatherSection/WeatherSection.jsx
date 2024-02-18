@@ -1,13 +1,13 @@
 import React from 'react';
 import  LocationWeather  from '../LocationWeather/LocationWeather';
 import { WeatherWidgets } from '../WeatherWidgets/WeatherWidgets';
-import { Container } from './WeatherSection.styled';
+import { Section } from './WeatherSection.styled';
 
 export const WeatherSection = ({ weather, forecast }) => {
   return (
-    <Container>
+    <Section>
       <LocationWeather weather={weather} />
       <WeatherWidgets weather={weather} forecast={forecast} />
-    </Container>
+    </Section>
   );
 };

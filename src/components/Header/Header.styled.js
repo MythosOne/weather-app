@@ -14,9 +14,12 @@ export const Section = styled.header`
   top: 0;
   left: 0;
   position: sticky;
-  z-index: 1100;
+  z-index: 100;
 
   backdrop-filter: blur(50px);
+
+  border-bottom: 2px solid transparent;
+  border-image: radial-gradient( circle, #a3d4ff, transparent ) 1 0%;
 `;
 
 export const MenuBtn = styled.button`

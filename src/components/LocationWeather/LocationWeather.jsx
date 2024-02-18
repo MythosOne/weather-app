@@ -9,7 +9,7 @@ import {
 
 function LocationWeather({ weather }) {
   return (
-    <Container>
+    <Container id="LocationWeather">
       <MyLocation>My Location</MyLocation>
       <City>{weather.name}</City>
       <Temperature>{Math.trunc(weather.main.temp)}°</Temperature>

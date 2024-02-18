@@ -7,7 +7,7 @@ import {
   // apiServiceSearchData,
 } from '../Api/apiService';
 import { Loader } from '../components/Loader/Loader';
-import {Main} from './Homepage.styled'
+import { Main } from './Homepage.styled';
 
 export const Homepage = () => {
   const [weatherCity, setWeatherCity] = useState(
@@ -63,8 +63,15 @@ export const Homepage = () => {
 
   return (
     <Main>
-      {/* {Object.keys(locationWeather).length && <WeatherCity weather={locationWeather} weatherCity={weatherCity} setWeatherCity={setWeatherCity}/>} */}
-      {(Object.keys(locationWeather).length || Object.keys(forecast).length) && (
+      {Object.keys(locationWeather).length && (
+        <WeatherCity
+          weather={locationWeather}
+          weatherCity={weatherCity}
+          setWeatherCity={setWeatherCity}
+        />
+      )}
+      {(Object.keys(locationWeather).length ||
+        Object.keys(forecast).length) && (
         <WeatherSection weather={locationWeather} />
       )}
       {isLoading && <Loader />}

@@ -52,3 +52,7 @@ img {
 html {
   scroll-behavior: smooth;
 }
+
+div {
+  scroll-margin-top: 60px;
+}

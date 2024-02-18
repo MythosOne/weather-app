@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+export const Section = styled.section`
   max-width: 460px;
 
   display: flex;
@@ -8,9 +8,8 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: stretch;
 
-  margin: 0 auto;
-  margin-top: 10px;
-  /* padding: 5px; */
+  margin: 10px auto 40px;
+  
   width: 90%;
   font-size: 16px;
   color: white;

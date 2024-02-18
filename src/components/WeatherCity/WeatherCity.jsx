@@ -6,14 +6,16 @@ import { WeatherList } from '../WeatherList/WeatherList';
 import { apiServiceSearchData } from '../../Api/apiService';
 import { Loader } from '../Loader/Loader';
 
-export const WeatherCity = ({ weather, weatherCity, setWeatherCity }) => {
+export const WeatherCity = ({ weather, weatherCity, setWeatherCity, isOpen }) => {
   // const [weatherCity, setWeatherCity] = useState(
   //   JSON.parse(localStorage.getItem('weatherCity')) ?? []
   // );
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [offset, setOffset]= useState(-100);
   console.log("first value: " + JSON.stringify(value))
   console.log('weatherCity:', weatherCity);
+  console.log("isOpen:", isOpen);
 
   // !!!!!!!!!!!!!!!!
   const handleSubmit = value => {
@@ -25,6 +27,8 @@ export const WeatherCity = ({ weather, weatherCity, setWeatherCity }) => {
       alert('Field must be filled');
     }
   };
+
+  const handleClose = () => setOffset(-100);
 
   useEffect(() => {
     localStorage.setItem('weatherCity', JSON.stringify(weatherCity));
@@ -40,10 +44,14 @@ export const WeatherCity = ({ weather, weatherCity, setWeatherCity }) => {
 
       .catch(error => console.error(error))
       .finally(() => setIsLoading(false));
-  }, [value]);
+
+      if(isOpen){
+        setOffset(100);
+      }
+  }, [value, isOpen]);
 
   return (
-    <WeatherForm>
+    <WeatherForm dataOffset={offset} handleClose={handleClose}>
       <Title>Weather</Title>
       <SearchBar
         onSubmit={handleSubmit}

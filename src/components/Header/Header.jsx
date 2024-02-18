@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Logo } from './Logo/Logo';
 import { Section, MenuBtn } from './Header.styled';
 import { MenuBurgerImg } from 'icons/IconComponent.jsx';
 
 export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  console.log('isOpen', isOpen);
+
   return (
     <Section>
       <MenuBtn
@@ -11,7 +14,7 @@ export const Header = () => {
         aria-label="burger-menu"
         title="Menu"
         onClick={() => {
-          console.log('Menu open');
+          setIsOpen(!isOpen);
         }}
       >
         <MenuBurgerImg />

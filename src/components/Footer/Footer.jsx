@@ -4,8 +4,8 @@ import { Logo } from '../Header/Logo/Logo';
 
 export const Footer = () => {
   return (
-    <Section style={{display:"none"}}>
-      <Contact>Contact</Contact>
+    <Section >
+      <Contact>© 2024 All Rights Reserved Developed with by Mythos</Contact>
       <Logo/>
     </Section>
   );

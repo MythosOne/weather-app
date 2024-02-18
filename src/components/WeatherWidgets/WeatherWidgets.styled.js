@@ -2,18 +2,18 @@ import styled from '@emotion/styled';
 
 export const Container = styled.ul`
   display: grid;
-  grid-template-areas: 
-    "forecast forecast"
-    "precipitation precipitation"
-    "sunrise wind"
-    "visibility humidity" 
-  ;
+  justify-content: space-around;
+  grid-template-areas:
+    'forecast forecast'
+    'precipitation precipitation'
+    'sunrise wind'
+    'visibility humidity';
   /* flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-top: 40px;
   margin-bottom: 10px; */
-  gap: 20px;
+  gap: 30px;
   list-style: none;
 `;
 
