@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const LogoWrapper = styled.a`
+  grid-area: logo;
   display: flex;
   align-items: baseline;
 
