@@ -19,7 +19,16 @@ export const Section = styled.header`
   backdrop-filter: blur(50px);
 
   border-bottom: 2px solid transparent;
-  border-image: radial-gradient( circle, #a3d4ff, transparent ) 1 0%;
+  border-image: radial-gradient(circle, #a3d4ff, transparent) 1 0%;
+
+  @media screen and (min-width: 767px) {
+    max-width: none;
+
+    width: 708px;
+    margin: 0 auto;
+    backdrop-filter: none;
+    z-index: 1100;
+  }
 `;
 
 export const MenuBtn = styled.button`
@@ -28,5 +37,33 @@ export const MenuBtn = styled.button`
   border: 0;
 
   cursor: pointer;
+
+  fill: #a3d4ff;
+
+  &:hover {
+    fill: #2977bd;
+
+    transition: all 0.2s ease-in-out;
+  }
+
+  @media screen and (min-width: 767px) {
+    display: none;
+  }
 `;
 
+export const Clock = styled.p`
+  display: none;
+
+  @media screen and (min-width: 767px) {
+    display: block;
+
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.15px;
+
+    color: #fff;
+  }
+`;

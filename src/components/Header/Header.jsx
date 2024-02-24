@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Logo } from './Logo/Logo';
-import { Section, MenuBtn } from './Header.styled';
+import { Section, MenuBtn, Clock } from './Header.styled';
 import { MenuBurgerImg } from 'icons/IconComponent.jsx';
 
 export const Header = () => {
@@ -19,6 +19,7 @@ export const Header = () => {
       >
         <MenuBurgerImg />
       </MenuBtn>
+      <Clock>Clock and Date</Clock>
       <Logo />
     </Section>
   );

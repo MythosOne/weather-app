@@ -2,22 +2,19 @@ import styled from '@emotion/styled';
 
 export const Section = styled.footer`
   max-width: 460px;
-  /* height: 50px; */
 
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between; */
   display: grid;
   grid-template-areas:
-    'logo git arrowUp'
+    'logo arrowUp arrowUp '
+    'linkList linkList linkList'
     'copyright copyright copyright';
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   gap: 10px;
 
   margin: 0 auto;
 
-  padding: 10px ;
+  padding: 10px 20px;
 
   border-top: 2px solid transparent;
   border-image: radial-gradient(circle, #a3d4ff, transparent) 1 0%;
@@ -30,23 +27,24 @@ export const Section = styled.footer`
   z-index: 1100; */
 
   backdrop-filter: blur(50px);
-`;
 
-export const Copyright = styled.span`
-  grid-area: copyright;
-   text-align: center;
+  @media screen and (min-width: 767px) {
+    max-width: none;
+    width: 708px;
+    margin: 0 auto;
+    backdrop-filter: none;
 
-  /* width: 100px; */
+    bottom: 0;
+    left: 0;
+    position: sticky;
+    z-index: 1100;
 
-  /* font-family: 'Fira Sans'; */
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.15;
+    grid-template-areas:
+      'logo linkList arrowUp '
+      'logo copyright arrowUp';
 
-  color: #f0f3f4;
-
-  margin: 0;
+    gap: 10px;
+  }
 `;
 
 export const ArrowUpBtn = styled.a`
@@ -57,8 +55,8 @@ export const ArrowUpBtn = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 100px;
   background: #a3d4ff;
   border: 0;
@@ -73,9 +71,43 @@ export const ArrowUpBtn = styled.a`
   }
 
   @media screen and (min-width: 767px) {
+    width: 32px;
+    height: 32px;
   }
 `;
 
-export const GitLink = styled.a`
-  grid-area: git;
+export const LinkList = styled.ul`
+  grid-area: linkList;
+
+  list-style: none;
+  display: flex;
+  gap: 10px;
+
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Item = styled.li``;
+
+export const GitLink = styled.a``;
+
+export const LinkedinLink = styled.a``;
+
+export const TelegramLink = styled.a``;
+
+export const Copyright = styled.span`
+  grid-area: copyright;
+  text-align: center;
+
+  /* width: 100px; */
+
+  /* font-family: 'Fira Sans'; */
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.15;
+
+  color: #f0f3f4;
+
+  margin: 0;
 `;

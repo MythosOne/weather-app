@@ -8,7 +8,7 @@ Frontend:
 4. Axios.
 5. Redux.
 
-![Alt text](./src/components/img/readme-image.jpg)
+![Alt text](./src/public/images/readme-image.jpg)
 
 Backend:
 

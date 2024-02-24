@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import { nanoid } from 'nanoid';
 import { SearchBar } from '../SearchBar/SearchBar';
-import { WeatherForm, Title } from './WeatherCity.styled';
+import { WeatherBar, Title } from './WeatherCity.styled';
 import { WeatherList } from '../WeatherList/WeatherList';
 import { apiServiceSearchData } from '../../Api/apiService';
 import { Loader } from '../Loader/Loader';
@@ -51,16 +51,15 @@ export const WeatherCity = ({ weather, weatherCity, setWeatherCity, isOpen }) =>
   }, [value, isOpen]);
 
   return (
-    <WeatherForm dataOffset={offset} handleClose={handleClose}>
+    <WeatherBar dataOffset={offset} handleClose={handleClose}>
       <Title>Weather</Title>
       <SearchBar
         onSubmit={handleSubmit}
         onAddCity={addCity}
         weather={weather}
       />
-
       <WeatherList cities={weatherCity} />
       {isLoading && <Loader />}
-    </WeatherForm>
+    </WeatherBar>
   );
 };

@@ -13,7 +13,7 @@ html {
 
 body {
   background-color: rgb(31, 130, 187);
-  background-image: url('./components/img/weather-background.jpg');
+  background-image: url('./images/weather-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
