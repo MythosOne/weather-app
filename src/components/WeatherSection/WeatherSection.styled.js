@@ -10,7 +10,7 @@ export const Section = styled.section`
   justify-content: flex-start;
   align-items: stretch;
 
-  margin: 10px auto 40px;
+  margin: 10px auto;
 
   width: 90%;
   font-size: 16px;

@@ -9,19 +9,23 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 5px;
   width: 85%;
-  height: 90px;
+  height: 80px;
   border-style: solid;
   border-width: 2px;
-  border-color: rgba(240, 243, 244, 0.8);
+  border-color: rgba(240, 243, 244, 0);
   border-radius: 12px;
-  background-color: #154360;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5);
+  background-color: rgba(21, 67, 96, 0.5);
+  /* box-shadow: 3px 4px 8px rgba(136, 198, 253, 0.5); */
+
+  &:hover {
+    border-color: rgba(240, 243, 244, 0.5);
+  }
 `;
 
 export const City = styled.h2`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
 `;
 
@@ -35,7 +39,7 @@ export const Time = styled.p`
 export const Temperature = styled.p`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 400;
 `;
 

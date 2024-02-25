@@ -1,6 +1,7 @@
 import {
   Container,
-  WeatherForecast,
+  HourlyForecast,
+  WeeklyForecast,
   Precipitation,
   Sunrise,
   Wind,
@@ -21,7 +22,8 @@ export const WeatherWidgets = ({ weather, forecast }) => {
 
   return (
     <Container>
-      <WeatherForecast>{forecast} Weekly forecast</WeatherForecast>
+      <HourlyForecast>Hourly forecast</HourlyForecast>
+      <WeeklyForecast>{forecast} Weekly forecast</WeeklyForecast>
       {/* <ul
         style={{
           display: 'flex',

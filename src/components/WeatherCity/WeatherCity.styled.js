@@ -11,7 +11,7 @@ export const WeatherBar = styled.section`
   width: 70%;
   /* height: 100%; */
   /* min-height: calc(90vh - 50px); */
-  background-color: #1f618d;
+  /* background-color: rgb(32, 97, 144); */
   /* backdrop-filter: blur(5px); */
   transform: translateX(${props => props.dataOffset}%);
   /* transform: translateX(-100%); */
@@ -29,7 +29,12 @@ export const WeatherBar = styled.section`
 `;
 
 export const Title = styled.h1`
-  font-size: 34px;
-  text-align: center;
-  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+
+  margin-bottom: 12px;
+  margin-left: 10px;
+
+  text-align: left;
+  color: rgba(240, 243, 244, 0.9);;
 `;

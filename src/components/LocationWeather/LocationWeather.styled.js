@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  gap: 10px;
+  gap: 5px;
 `;
 
 export const MyLocation = styled.h1`
@@ -18,7 +18,7 @@ export const MyLocation = styled.h1`
 `;
 
 export const City = styled.h2`
-  margin: 0;
+  margin-top: 5px;
   color: rgba(240, 243, 244, 0.9);
   font-size: 16px;
   font-weight: 400;
@@ -27,7 +27,7 @@ export const City = styled.h2`
 export const Temperature = styled.p`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
-  font-size: 58px;
+  font-size: 42px;
   font-weight: 400;
 `;
 
