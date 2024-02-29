@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.header`
+  width: 90%;
   max-width: 460px;
   height: 50px;
 
@@ -10,7 +11,7 @@ export const Section = styled.header`
   margin: 0 auto;
 
   padding: 0 20px 0;
-
+  
   top: 0;
   left: 0;
   position: sticky;
@@ -25,9 +26,16 @@ export const Section = styled.header`
     max-width: none;
 
     width: 708px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     backdrop-filter: none;
     z-index: 1100;
+
+    backdrop-filter: blur(10px);
+  }
+
+  @media screen and (min-width: 1279px) {
+    width: 1040px;
+
   }
 `;
 

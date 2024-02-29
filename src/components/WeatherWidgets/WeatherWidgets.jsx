@@ -2,11 +2,13 @@ import {
   Container,
   HourlyForecast,
   WeeklyForecast,
-  Precipitation,
+  PrecipitationMap,
   Sunrise,
   Wind,
   Visibility,
   Humidity,
+  Precipitation,
+  Pressure,
 } from './WeatherWidgets.styled';
 
 import { WiSunrise, WiSunset } from 'react-icons/wi';
@@ -24,20 +26,7 @@ export const WeatherWidgets = ({ weather, forecast }) => {
     <Container>
       <HourlyForecast>Hourly forecast</HourlyForecast>
       <WeeklyForecast>{forecast} Weekly forecast</WeeklyForecast>
-      {/* <ul
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          gap: '10px',
-          width: '310px',
-          listStyle: 'none',
-          padding: 0,
-          margin: 0,
-        }}
-      > */}
-        <Precipitation>Precipitation</Precipitation>
+        <PrecipitationMap>Precipitation Map</PrecipitationMap>
 
         <Sunrise>
           <WiSunrise style={{ width: '24px', height: '24px' }} />
@@ -50,7 +39,8 @@ export const WeatherWidgets = ({ weather, forecast }) => {
         <Wind>Wind {weather.wind.speed} m/s</Wind>
         <Visibility>Visibility {weather.visibility}</Visibility>
         <Humidity>Humdity {weather.main.humidity}</Humidity>
-      {/* </ul> */}
+        <Precipitation>Precipitation</Precipitation>
+        <Pressure>Pressure</Pressure>
     </Container>
   );
 };

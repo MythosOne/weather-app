@@ -10,7 +10,7 @@ export const Section = styled.section`
   justify-content: flex-start;
   align-items: stretch;
 
-  margin: 10px auto;
+  /* margin: 10px auto; */
 
   width: 90%;
   font-size: 16px;
@@ -20,5 +20,11 @@ export const Section = styled.section`
 
   @media screen and (min-width: 767px) {
     margin: 0;
+  }
+
+  @media screen and (min-width: 1279px) {
+    max-width: none;
+    
+    width: 740px;
   }
 `;

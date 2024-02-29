@@ -11,6 +11,7 @@ import {
 function WeatherCard({ weatherCity }) {
   // console.log(weatherCity);
   // console.log((new Date(weatherCity.dt * 1000)).getTimezoneOffset() / 60)
+  // Неправильно показывает время, исправить.
  const UTCTime = () => {
   let time = new Date(weatherCity.dt*1000);
   return `${time.getUTCHours()}:${time.getUTCMinutes()}`;

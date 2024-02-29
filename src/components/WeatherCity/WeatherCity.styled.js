@@ -20,11 +20,18 @@ export const WeatherBar = styled.section`
     transform: none;
     /* z-index: none;*/
 
-    position: static;
+    position: sticky;
+    top: 70px;
 
     width: 260px;
 
     border-radius: 12px;
+  }
+
+  @media screen and (min-width: 1279px) {
+    width: 280px;
+
+    /* background-color: rgba(21, 67, 96, 0.5); */
   }
 `;
 

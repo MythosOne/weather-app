@@ -19,7 +19,7 @@ export const Header = () => {
       >
         <MenuBurgerImg />
       </MenuBtn>
-      <Clock>Clock and Date</Clock>
+      <Clock>Date and Time</Clock>
       <Logo />
     </Section>
   );

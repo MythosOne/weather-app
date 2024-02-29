@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.footer`
+  width: 90%;
   max-width: 460px;
 
   display: grid;
@@ -31,11 +32,11 @@ export const Section = styled.footer`
   @media screen and (min-width: 767px) {
     max-width: none;
     width: 708px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     backdrop-filter: none;
 
-    bottom: 0;
-    left: 0;
+    /* bottom: 0;
+    left: 0; */
     position: sticky;
     z-index: 1100;
 
@@ -44,6 +45,12 @@ export const Section = styled.footer`
       'logo copyright arrowUp';
 
     gap: 10px;
+
+    backdrop-filter: blur(10px);
+  }
+
+  @media screen and (min-width: 1279px) {
+    width: 1040px;
   }
 `;
 

@@ -25,6 +25,16 @@ export const Container = styled.ul`
       'weeklyForecast sunrise wind'
       'weeklyForecast visibility humidity';
   }
+
+  @media screen and (min-width: 1279px) {
+    grid-template-areas:
+      'hourlyForecast hourlyForecast  hourlyForecast hourlyForecast'
+      'weeklyForecast weeklyForecast  weeklyForecast weeklyForecast'
+      'precipitationMap precipitation sunrise wind'
+      'precipitationMap pressure visibility humidity';
+
+    gap: 20px;
+  }
 `;
 
 export const HourlyForecast = styled.li`
@@ -51,6 +61,11 @@ export const WeeklyForecast = styled.li`
     width: 180px;
   }
 
+  @media screen and (min-width: 1279px) {
+    width: 100%;
+    height: 120px;
+  }
+
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
   /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
@@ -58,8 +73,8 @@ export const WeeklyForecast = styled.li`
 
   backdrop-filter: blur(5px);
 `;
-export const Precipitation = styled.li`
-  grid-area: precipitation;
+export const PrecipitationMap = styled.li`
+  grid-area: precipitationMap;
 
   width: 210px;
   height: 200px;
@@ -72,6 +87,11 @@ export const Precipitation = styled.li`
   @media screen and (min-width: 767px) {
     width: 270px;
     height: 270px;
+  }
+
+  @media screen and (min-width: 1279px) {
+    width: 280px;
+    height: 280px;
   }
 `;
 
@@ -178,4 +198,30 @@ export const Humidity = styled.li`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
+`;
+
+export const Precipitation = styled.li`
+  grid-area: precipitation;
+  
+  border-radius: 12px;
+  background-color: rgba(21, 67, 96, 0.5);
+  backdrop-filter: blur(5px);
+
+  @media screen and (min-width: 1279px) {
+    width: 130px;
+    height: 130px;
+  }
+`;
+
+export const Pressure = styled.li`
+  grid-area: pressure;
+
+  border-radius: 12px;
+  background-color: rgba(21, 67, 96, 0.5);
+  backdrop-filter: blur(5px);
+
+  @media screen and (min-width: 1279px) {
+    width: 130px;
+    height: 130px;
+  }
 `;
