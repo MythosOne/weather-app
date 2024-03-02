@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from 'react';
 // import { nanoid } from 'nanoid';
 import { SearchBar } from '../SearchBar/SearchBar';
-import { WeatherBar, Title } from './WeatherCity.styled';
+import { WeatherBar, WeatherHead, Title, CloseBtn } from './WeatherCity.styled';
 import { WeatherList } from '../WeatherList/WeatherList';
 import { apiServiceSearchData } from '../../Api/apiService';
 import { Loader } from '../Loader/Loader';
 
-export const WeatherCity = ({ weather, weatherCity, setWeatherCity, isOpen }) => {
+import { WeatherCityClose } from '../../icons/IconComponent';
+
+export const WeatherCity = ({
+  weather,
+  weatherCity,
+  setWeatherCity,
+  isOpen,
+  setIsOpen,
+}) => {
   // const [weatherCity, setWeatherCity] = useState(
   //   JSON.parse(localStorage.getItem('weatherCity')) ?? []
   // );
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [offset, setOffset]= useState(-100);
-  console.log("first value: " + JSON.stringify(value))
-  console.log('weatherCity:', weatherCity);
-  console.log("isOpen:", isOpen);
+  const [offset, setOffset] = useState(-100);
+  // console.log("first value: " + JSON.stringify(value))
+  // console.log('weatherCity:', weatherCity);
+  console.log('WeatherCity- isOpen:', isOpen);
+  console.log('offset:', offset);
 
   // !!!!!!!!!!!!!!!!
   const handleSubmit = value => {
@@ -28,7 +37,15 @@ export const WeatherCity = ({ weather, weatherCity, setWeatherCity, isOpen }) =>
     }
   };
 
-  const handleClose = () => setOffset(-100);
+  // const handleClose = () => setOffset(-100);
+
+  useEffect(() => {
+    if (isOpen) {
+      console.log('WeatherCity-useEffect-isOpen:', isOpen);
+      return setOffset(0);
+    }
+      // return setOffset(0)
+  }, [isOpen]);
 
   useEffect(() => {
     localStorage.setItem('weatherCity', JSON.stringify(weatherCity));
@@ -45,14 +62,25 @@ export const WeatherCity = ({ weather, weatherCity, setWeatherCity, isOpen }) =>
       .catch(error => console.error(error))
       .finally(() => setIsLoading(false));
 
-      if(isOpen){
-        setOffset(100);
-      }
-  }, [value, isOpen]);
+  }, [value, /* setWeatherCity, weatherCity*/]);
 
   return (
-    <WeatherBar dataOffset={offset} handleClose={handleClose}>
-      <Title>Weather</Title>
+    <WeatherBar dataOffset={offset} /*handleClose={handleClose}*/>
+      <WeatherHead>
+        <Title>Weather</Title>
+        <CloseBtn
+          type="button"
+          aria-label="close"
+          title="Close"
+          onClick={() => {
+            setOffset(-100);
+            setIsOpen(!isOpen)
+          }}
+        >
+          <WeatherCityClose />
+        </CloseBtn>
+      </WeatherHead>
+
       <SearchBar
         onSubmit={handleSubmit}
         onAddCity={addCity}

@@ -46,7 +46,7 @@ export const Section = styled.footer`
 
     gap: 10px;
 
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
   }
 
   @media screen and (min-width: 1279px) {

@@ -3,9 +3,9 @@ import { Logo } from './Logo/Logo';
 import { Section, MenuBtn, Clock } from './Header.styled';
 import { MenuBurgerImg } from 'icons/IconComponent.jsx';
 
-export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  console.log('isOpen', isOpen);
+export const Header = ({isOpen, setIsOpen}) => {
+  // const [isOpen, setIsOpen] = useState(false);
+  // console.log('isOpen', isOpen);
 
   return (
     <Section>
@@ -14,6 +14,7 @@ export const Header = () => {
         aria-label="burger-menu"
         title="Menu"
         onClick={() => {
+          console.log('Header-isOpen', isOpen);
           setIsOpen(!isOpen);
         }}
       >

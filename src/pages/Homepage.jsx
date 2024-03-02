@@ -9,7 +9,7 @@ import {
 import { Loader } from '../components/Loader/Loader';
 import { Main } from './Homepage.styled';
 
-export const Homepage = () => {
+export const Homepage = ({isOpen, setIsOpen}) => {
   const [weatherCity, setWeatherCity] = useState(
     JSON.parse(localStorage.getItem('weatherCity')) ?? []
   );
@@ -25,8 +25,10 @@ export const Homepage = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log('locationWeather:', locationWeather);
-  console.log('forecast:', forecast);
+  // const [isOpen, setIsOpen] = useState(false);
+
+  // console.log('locationWeather:', locationWeather);
+  // console.log('forecast:', forecast);
   const { latitude, longitude } = location;
 
   const handleSuccess = position => {
@@ -68,6 +70,8 @@ export const Homepage = () => {
           weather={locationWeather}
           weatherCity={weatherCity}
           setWeatherCity={setWeatherCity}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
         />
       )}
       {(Object.keys(locationWeather).length ||
