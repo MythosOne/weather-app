@@ -13,7 +13,7 @@ export const Main = styled.main`
     width: 708px;
 
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
     
     margin: 20px auto;
 
@@ -22,6 +22,7 @@ export const Main = styled.main`
 
   @media screen and (min-width: 1279px) {
     width: 1040px;
+    /* align-items: stretch; */
 
     gap: 30px;
   }

@@ -9,12 +9,12 @@ export const WeatherBar = styled.section`
   z-index: 1001;
 
   width: 250px;
-  height: 100vh;
+  height: 100%;
   /* min-height: calc(90vh - 50px); */
-  background-color: #154895;
+  background-color: rgb(21, 72, 149, 0.9);
   /* backdrop-filter: blur(5px); */
   transform: translateX(${props => props.dataOffset}%);
-  transition: 0.5s ease;
+  transition: 0.2s ease;
   /* transform: translateX(-100%); */
 
   @media screen and (min-width: 767px) {
@@ -25,27 +25,28 @@ export const WeatherBar = styled.section`
     top: 70px;
 
     width: 260px;
-    height: 90vh;
+    height: inherit;
 
     border-radius: 12px;
   }
 
   @media screen and (min-width: 1279px) {
     width: 280px;
-    height: 90vh;
-
+    align-self: stretch;
+    /* grid-template-columns: 1fr; */
+    /* height: calc(100% - 120px); */
     /* background-color: rgba(21, 67, 96, 0.5); */
   }
 `;
 
 export const WeatherHead = styled.div`
-display: flex;
-align-items: baseline;
-justify-content: center;
-gap: 90px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 90px;
 
-margin-top: 12px;
-margin-bottom: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 `;
 
 export const Title = styled.h1`
