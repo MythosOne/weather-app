@@ -1,21 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Logo } from './Logo/Logo';
-import { Section, MenuBtn, Clock } from './Header.styled';
+import {
+  Section,
+  MenuBtn,
+  BlockClock,
+  CurrentTime,
+  CurrentDate,
+} from './Header.styled';
 import { MenuBurgerImg } from 'icons/IconComponent.jsx';
 
 export const Header = ({ isOpen, setIsOpen }) => {
   // const [isOpen, setIsOpen] = useState(false);
   // console.log('isOpen', isOpen);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const currentDate = new Date();
-  const hh = currentDate.getHours();
-  const min = currentDate.getMinutes();
-  const day = currentDate.getDate();
-  const dayOfWeek = currentDate.getDay();
-  const year = currentDate.getFullYear();
 
-  const daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-  const dayName = daysOfWeek[dayOfWeek];
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  const formattedDate = currentDate.toLocaleDateString(undefined, options);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+/*clearInterval() гарантирует, что интервал будет остановлен, когда компонент больше не используется. Это важно для предотвращения утечек памяти и избегания ненужных вызовов функции, когда компонент больше не отображается на странице.
+
+Вкоде clearInterval(intervalId) выполняется при размонтировании компонента, чтобы корректно очистить ресурсы, связанные с интервалом. 😊*/
 
   return (
     <Section>
@@ -30,7 +51,10 @@ export const Header = ({ isOpen, setIsOpen }) => {
       >
         <MenuBurgerImg />
       </MenuBtn>
-      <Clock>{`${hh}:${min} ${day} ${dayName}  ${year}`}</Clock>
+      <BlockClock>
+        <CurrentTime>{`${currentTime.toLocaleTimeString('en-US')}`}</CurrentTime>
+        <CurrentDate>{`${formattedDate}`}</CurrentDate>
+      </BlockClock>
       <Logo />
     </Section>
   );

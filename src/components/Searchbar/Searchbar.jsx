@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ImSearch /*ImPlus*/ } from 'react-icons/im';
+import { Search } from '../../icons/IconComponent';
 import {
   SearchBarForm,
   Container,
@@ -28,8 +29,8 @@ export const SearchBar = ({ onAddCity, weather, onSubmit }) => {
   return (
     <Container>
       <SearchBarForm onSubmit={handleSubmit}>
-        <ButtonSearch type="submit">
-          <ImSearch size={18} />
+        <ButtonSearch type="submit" aria-label="search" title="Search">
+          <Search/>
         </ButtonSearch>
         <Input
           name="inputData"

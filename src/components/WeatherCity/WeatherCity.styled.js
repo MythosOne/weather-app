@@ -11,7 +11,7 @@ export const WeatherBar = styled.section`
   width: 250px;
   height: 100%;
   /* min-height: calc(90vh - 50px); */
-  background-color: rgb(21, 72, 149, 0.9);
+  background-color: rgb(21, 72, 149);
   /* backdrop-filter: blur(5px); */
   transform: translateX(${props => props.dataOffset}%);
   transition: 0.2s ease;
@@ -28,6 +28,8 @@ export const WeatherBar = styled.section`
     height: inherit;
 
     border-radius: 12px;
+
+    background-color: rgb(21, 72, 149, 0.9);
   }
 
   @media screen and (min-width: 1279px) {

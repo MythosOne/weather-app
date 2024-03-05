@@ -23,8 +23,8 @@ export const WeatherCity = ({
   const [offset, setOffset] = useState(-100);
   // console.log("first value: " + JSON.stringify(value))
   // console.log('weatherCity:', weatherCity);
-  console.log('WeatherCity- isOpen:', isOpen);
-  console.log('offset:', offset);
+  // console.log('WeatherCity- isOpen:', isOpen);
+  // console.log('offset:', offset);
 
   // !!!!!!!!!!!!!!!!
   const handleSubmit = value => {

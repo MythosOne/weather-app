@@ -32,7 +32,7 @@ export const SearchBarForm = styled.form`
 `;
 
 export const Input = styled.input`
-  background-color: #c9dfed;
+  background-color: inherit;
   border: none;
   outline: none;
 
@@ -40,16 +40,34 @@ export const Input = styled.input`
   width: 75%;
 
   padding: 5px;
-  font-size: 18px;
+  font-size: 16px;
   color: #888;
+
+  margin-left: 10px;
+  /* text-align: center; */
 `;
 
 export const ButtonSearch = styled.button`
   /* position: absolute; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  background-color: #c9dfed;
-  color: gray;
+  background-color: inherit;
+  /* color: gray; */
   border: none;
+  padding: 0;
+  margin-left: 10px;
+
+  cursor: pointer;
+
+    fill: #888;
+
+  &:hover {
+    fill: #2977bd;
+
+    transition: all 0.2s ease-in-out;
+  }
 `;
 
 // export const ButtonAdd = styled.button`

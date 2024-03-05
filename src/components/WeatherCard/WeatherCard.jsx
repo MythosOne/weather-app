@@ -14,7 +14,7 @@ function WeatherCard({ weatherCity }) {
   // Неправильно показывает время, исправить.
  const UTCTime = () => {
   let time = new Date(weatherCity.dt*1000);
-  return `${time.getUTCHours()}:${time.getUTCMinutes()}`;
+  return time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
  };
 
   return (

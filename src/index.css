@@ -64,3 +64,9 @@ html {
 div {
   scroll-margin-top: 60px;
 }
+
+div::-webkit-full-page-media,
+div:future,
+div:root .safari-only {
+  padding-top: 60px;
+}
