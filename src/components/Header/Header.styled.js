@@ -14,8 +14,9 @@ export const Section = styled.header`
   
   top: 0;
   left: 0;
-  position: sticky;
-  z-index: 100;
+  right: 0;
+  position: fixed;
+  z-index: 1000;
 
   backdrop-filter: blur(50px);
 
@@ -28,7 +29,7 @@ export const Section = styled.header`
     width: 708px;
     /* margin: 0 auto; */
     backdrop-filter: none;
-    z-index: 1100;
+    /* z-index: 1100; */
 
     backdrop-filter: blur(10px);
   }

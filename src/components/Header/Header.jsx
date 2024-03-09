@@ -52,7 +52,7 @@ export const Header = ({ isOpen, setIsOpen }) => {
         <MenuBurgerImg />
       </MenuBtn>
       <BlockClock>
-        <CurrentTime>{`${currentTime.toLocaleTimeString('en-US')}`}</CurrentTime>
+        <CurrentTime>{`${currentTime.toLocaleTimeString('en-US')}` /*or  toLocaleTimeString([], currentTime.{ hour: "2-digit", minute: "2-digit" })*/}</CurrentTime>
         <CurrentDate>{`${formattedDate}`}</CurrentDate>
       </BlockClock>
       <Logo />

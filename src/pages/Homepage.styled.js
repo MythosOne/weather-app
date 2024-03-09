@@ -7,7 +7,7 @@ export const Main = styled.main`
   /* justify-content: center; */
 
   position: relative;
-  margin: 20px 0;
+  margin: 70px 0 20px;
 
   @media screen and (min-width: 767px) {
     width: 708px;
@@ -15,7 +15,7 @@ export const Main = styled.main`
     flex-direction: row;
     align-items: stretch;
     
-    margin: 20px auto;
+    margin: 70px auto 20px;
 
     gap: 10px;
   }

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+export const Container = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,6 +20,18 @@ export const Container = styled.div`
   &:hover {
     border-color: rgba(240, 243, 244, 0.5);
   }
+`;
+
+export const Block = styled.li`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: stretch; */
+`;
+
+export const BlockItem = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const City = styled.h2`
@@ -43,7 +55,7 @@ export const Temperature = styled.p`
   font-weight: 400;
 `;
 
-export const Location = styled.p`
+export const Location = styled.span`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
   font-size: 12px;

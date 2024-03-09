@@ -15,11 +15,12 @@ export const WeatherBar = styled.section`
   /* backdrop-filter: blur(5px); */
   transform: translateX(${props => props.dataOffset}%);
   transition: 0.2s ease;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 10px 0px;
   /* transform: translateX(-100%); */
 
   @media screen and (min-width: 767px) {
     transform: none;
-    /* z-index: none;*/
+    z-index: 101;
 
     position: sticky;
     top: 70px;

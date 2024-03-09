@@ -10,10 +10,11 @@ import { WeatherCityClose } from '../../icons/IconComponent';
 
 export const WeatherCity = ({
   weather,
-  weatherCity,
-  setWeatherCity,
+  weatherCities,
+  setWeatherCities,
   isOpen,
   setIsOpen,
+  onSelectWeatherCity,
 }) => {
   // const [weatherCity, setWeatherCity] = useState(
   //   JSON.parse(localStorage.getItem('weatherCity')) ?? []
@@ -44,11 +45,11 @@ export const WeatherCity = ({
       console.log('WeatherCity-useEffect-isOpen:', isOpen);
       return setOffset(0);
     }
-      // return setOffset(0)
+    // return setOffset(0)
   }, [isOpen]);
 
   useEffect(() => {
-    localStorage.setItem('weatherCity', JSON.stringify(weatherCity));
+    localStorage.setItem('weatherCity', JSON.stringify(weatherCities));
 
     if (value.trim() === '') {
       return;
@@ -57,12 +58,13 @@ export const WeatherCity = ({
     setIsLoading(true);
 
     apiServiceSearchData(value)
-      .then(data => setWeatherCity([...weatherCity, { ...data }]))
+      .then(data => setWeatherCities([...weatherCities, { ...data }]))
 
       .catch(error => console.error(error))
       .finally(() => setIsLoading(false));
+  }, [value]);
 
-  }, [value, /* setWeatherCity, weatherCity*/]);
+  // const handlerSelectWeatherCity = id => console.log("weatherCityId: " + id);
 
   return (
     <WeatherBar dataOffset={offset} /*handleClose={handleClose}*/>
@@ -74,19 +76,21 @@ export const WeatherCity = ({
           title="Close"
           onClick={() => {
             setOffset(-100);
-            setIsOpen(!isOpen)
+            setIsOpen(!isOpen);
           }}
         >
           <WeatherCityClose />
         </CloseBtn>
       </WeatherHead>
-
       <SearchBar
         onSubmit={handleSubmit}
         onAddCity={addCity}
         weather={weather}
       />
-      <WeatherList cities={weatherCity} />
+      <WeatherList
+        cities={weatherCities}
+        onSelectWeatherCity={onSelectWeatherCity}
+      />
       {isLoading && <Loader />}
     </WeatherBar>
   );

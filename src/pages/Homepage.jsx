@@ -9,13 +9,14 @@ import {
 import { Loader } from '../components/Loader/Loader';
 import { Main } from './Homepage.styled';
 
-export const Homepage = ({isOpen, setIsOpen}) => {
-  const [weatherCity, setWeatherCity] = useState(
+export const Homepage = ({ isOpen, setIsOpen /*onSelectWeatherCity*/ }) => {
+  const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCity')) ?? []
   );
   const [locationWeather, setLocationWeather] = useState(
     JSON.parse(localStorage.getItem('weather')) ?? []
   );
+  const [weatherSection, setWeatherSection] = useState({});
   const [forecast, setForecast] = useState(
     JSON.parse(localStorage.getItem('forecast')) ?? []
   );
@@ -24,11 +25,14 @@ export const Homepage = ({isOpen, setIsOpen}) => {
     longitude: null,
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [currentWeatherCityId, setCurrentWeatherCityId] = useState(0);
+  console.log('currentWeatherCityId:', currentWeatherCityId);
 
   // const [isOpen, setIsOpen] = useState(false);
-
-  // console.log('locationWeather:', locationWeather);
+  console.log("weatherSection:", weatherSection);
+  // console.log('locationWeatherId:', locationWeather.id);
   // console.log('forecast:', forecast);
+  // console.log('weatherCities:', weatherCities);
   const { latitude, longitude } = location;
 
   const handleSuccess = position => {
@@ -63,20 +67,42 @@ export const Homepage = ({isOpen, setIsOpen}) => {
     }
   }, [latitude, longitude]);
 
+  useEffect(() => {
+    const handleChangeCity = () => {
+      weatherCities.map(city => {
+        if (currentWeatherCityId === city.id) {
+          setWeatherSection(city);
+        }
+        // return console.log('weatherSection:', weatherSection);
+      });
+    };
+
+    handleChangeCity();
+
+  }, [currentWeatherCityId]);
+
+  const handlerSelectWeatherCity = cityId =>
+    setCurrentWeatherCityId(cityId); /*console.log('weatherCityId: ' + id)*/
+
   return (
     <Main>
       {Object.keys(locationWeather).length && (
         <WeatherCity
           weather={locationWeather}
-          weatherCity={weatherCity}
-          setWeatherCity={setWeatherCity}
+          weatherCities={weatherCities}
+          setWeatherCities={setWeatherCities}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
+          onSelectWeatherCity={handlerSelectWeatherCity}
         />
       )}
       {(Object.keys(locationWeather).length ||
         Object.keys(forecast).length) && (
-        <WeatherSection weather={locationWeather} />
+        <WeatherSection
+          weather={locationWeather}
+          weatherCity={weatherSection}
+          weatherSection={weatherSection}
+        />
       )}
       {isLoading && <Loader />}
     </Main>

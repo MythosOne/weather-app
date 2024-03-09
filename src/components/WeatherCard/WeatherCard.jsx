@@ -1,6 +1,8 @@
 import React from 'react';
 import {
   Container,
+  Block,
+  BlockItem,
   City,
   Time,
   Description,
@@ -12,55 +14,36 @@ function WeatherCard({ weatherCity }) {
   // console.log(weatherCity);
   // console.log((new Date(weatherCity.dt * 1000)).getTimezoneOffset() / 60)
   // Неправильно показывает время, исправить.
- const UTCTime = () => {
-  let time = new Date(weatherCity.dt*1000);
-  return time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
- };
+  const UTCTime = () => {
+    let time = new Date(weatherCity.dt * 1000);
+    return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
 
   return (
     <Container
-      onClick={() =>
-        console.log(
-          `myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`
-        )
-      }
+      // onClick={() =>
+      //   console.log(
+      //     `myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`
+      //   )
+      // }
     >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'stretch',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+      <Block>
+        <BlockItem>
           <City>{weatherCity.name}</City>
           <Time>
             {/* {(new Date(weatherCity.dt * 1000)).toUTCString()} */}
             {UTCTime()}
           </Time>
-        </div>
+        </BlockItem>
         <Temperature>{Math.trunc(weatherCity.main.temp)}°</Temperature>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
+      </Block>
+      <Block>
         <Description>{weatherCity.weather[0].description}</Description>
         <Location>
           H:{Math.trunc(weatherCity.coord.lat)} L:
           {Math.trunc(weatherCity.coord.lon)}
         </Location>
-      </div>
+      </Block>
     </Container>
   );
 }
