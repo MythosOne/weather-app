@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.ul`
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
 
   margin: 0 auto;
-  padding: 5px;
+  padding: 8px;
   width: 85%;
   height: 80px;
   border-style: solid;
@@ -19,6 +21,7 @@ export const Container = styled.ul`
 
   &:hover {
     border-color: rgba(240, 243, 244, 0.5);
+    transition: all 0.2s ease-in-out;
   }
 `;
 
@@ -55,6 +58,13 @@ export const Temperature = styled.p`
   font-weight: 400;
 `;
 
+export const Description = styled.p`
+  margin: 0;
+  color: rgba(240, 243, 244, 0.9);
+  font-size: 12px;
+  font-weight: 400;
+`;
+
 export const Location = styled.span`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);
@@ -62,9 +72,29 @@ export const Location = styled.span`
   font-weight: 400;
 `;
 
-export const Description = styled.p`
-  margin: 0;
-  color: rgba(240, 243, 244, 0.9);
-  font-size: 12px;
-  font-weight: 400;
+export const CloseBtn = styled.button`
+  /* display: none; */
+
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background-color: inherit;
+  border-radius: 50%;
+  border: 0;
+
+  /* stroke: inherit; */
+
+  cursor: pointer;
+
+  &:hover {
+    stroke: rgba(240, 243, 244, 0.5);
+    transition: all 0.2s ease-in-out;
+  }
 `;

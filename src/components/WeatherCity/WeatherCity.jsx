@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
 // import { nanoid } from 'nanoid';
 import { SearchBar } from '../SearchBar/SearchBar';
-import { WeatherBar, WeatherHead, Title, CloseBtn } from './WeatherCity.styled';
+import {
+  WeatherBar,
+  BlockBtn,
+  Title,
+  ListBtn,
+  CloseBtn,
+} from './WeatherCity.styled';
 import { WeatherList } from '../WeatherList/WeatherList';
-import { apiServiceSearchData } from '../../Api/apiService';
+import {
+  apiServiceSearchData,
+  apiServiceForecastData,
+} from '../../Api/apiService';
 import { Loader } from '../Loader/Loader';
 
-import { WeatherCityClose } from '../../icons/IconComponent';
+import { WeatherCityClose, CorrectListImg } from 'icons/IconComponent';
 
 export const WeatherCity = ({
   weather,
   weatherCities,
   setWeatherCities,
+  forecastCities,
+  setForecastCities,
   isOpen,
   setIsOpen,
   onSelectWeatherCity,
+  setOnLocationWeather,
 }) => {
   // const [weatherCity, setWeatherCity] = useState(
   //   JSON.parse(localStorage.getItem('weatherCity')) ?? []
@@ -23,9 +35,13 @@ export const WeatherCity = ({
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(-100);
   // console.log("first value: " + JSON.stringify(value))
-  // console.log('weatherCity:', weatherCity);
+  // console.log('weatherCities:', weatherCities[0].coord.lon);
   // console.log('WeatherCity- isOpen:', isOpen);
   // console.log('offset:', offset);
+
+  const [onCloseBtn, setOnCloseBtn] = useState(false);
+  const [cityId, setCityId] = useState(0);
+  // console.log('State CityId:', cityId);
 
   // !!!!!!!!!!!!!!!!
   const handleSubmit = value => {
@@ -42,34 +58,62 @@ export const WeatherCity = ({
 
   useEffect(() => {
     if (isOpen) {
-      console.log('WeatherCity-useEffect-isOpen:', isOpen);
+      // console.log('WeatherCity-useEffect-isOpen:', isOpen);
       return setOffset(0);
     }
     // return setOffset(0)
   }, [isOpen]);
 
   useEffect(() => {
-    localStorage.setItem('weatherCity', JSON.stringify(weatherCities));
-
     if (value.trim() === '') {
       return;
     }
 
     setIsLoading(true);
 
-    apiServiceSearchData(value)
-      .then(data => setWeatherCities([...weatherCities, { ...data }]))
+    let lat;
+    let lon;
 
+    apiServiceSearchData(value)
+      .then(data => {
+        setWeatherCities([...weatherCities, { ...data }]);
+
+        lat = data.coord.lat;
+        lon = data.coord.lon;
+
+        apiServiceForecastData(lat, lon)
+          .then(forecast =>
+            setForecastCities([...forecastCities, { ...forecast }])
+          )
+          .catch(error => console.error(error))
+          .finally(() => setIsLoading(false));
+      })
       .catch(error => console.error(error))
       .finally(() => setIsLoading(false));
   }, [value]);
 
-  // const handlerSelectWeatherCity = id => console.log("weatherCityId: " + id);
+  localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
+  localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
+
+  const onDeleteCard = cityId => {
+    setCityId(cityId);
+    setWeatherCities(weatherCities.filter(({id}) => id !== cityId));
+    // console.log('WeatherCity weatherCities:', weatherCities);
+  };
 
   return (
     <WeatherBar dataOffset={offset} /*handleClose={handleClose}*/>
-      <WeatherHead>
-        <Title>Weather</Title>
+      <BlockBtn>
+        <ListBtn
+          type="button"
+          aria-label="list"
+          title="List"
+          onClick={() => {
+            setOnCloseBtn(!onCloseBtn);
+          }}
+        >
+          <CorrectListImg />
+        </ListBtn>
         <CloseBtn
           type="button"
           aria-label="close"
@@ -81,15 +125,19 @@ export const WeatherCity = ({
         >
           <WeatherCityClose />
         </CloseBtn>
-      </WeatherHead>
+      </BlockBtn>
+      <Title>Weather</Title>
       <SearchBar
         onSubmit={handleSubmit}
         onAddCity={addCity}
         weather={weather}
+        setOnLocationWeather={setOnLocationWeather}
       />
       <WeatherList
         cities={weatherCities}
         onSelectWeatherCity={onSelectWeatherCity}
+        onCloseBtn={onCloseBtn}
+        onDeleteCard={onDeleteCard}
       />
       {isLoading && <Loader />}
     </WeatherBar>

@@ -42,14 +42,15 @@ export const WeatherBar = styled.section`
   }
 `;
 
-export const WeatherHead = styled.div`
+export const BlockBtn = styled.div`
   display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 90px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  /* gap: 90px; */
 
-  margin-top: 12px;
-  margin-bottom: 12px;
+  /* margin-top: 12px;
+  margin-bottom: 12px; */
 `;
 
 export const Title = styled.h1`
@@ -57,8 +58,9 @@ export const Title = styled.h1`
   font-weight: 600;
 
   /* margin-top: 12px;
-  margin-bottom: 12px;
-  margin-left: 10px; */
+  margin-bottom: 12px;*/
+  margin-left: 10px;
+  margin-bottom: 5px;
 
   text-align: left;
   color: rgba(240, 243, 244, 0.9);
@@ -68,9 +70,25 @@ export const Title = styled.h1`
   } */
 `;
 
+export const ListBtn = styled.button`
+  padding: 0;
+  background-color: inherit;
+  border: 0;
+
+  cursor: pointer;
+
+  fill: #a3d4ff;
+
+  &:hover {
+    fill: #2977bd;
+
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
 export const CloseBtn = styled.button`
   padding: 0;
-  background-color: transparent;
+  background-color: inherit;
   border: 0;
 
   cursor: pointer;

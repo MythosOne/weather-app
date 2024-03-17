@@ -10,29 +10,49 @@ import { Loader } from '../components/Loader/Loader';
 import { Main } from './Homepage.styled';
 
 export const Homepage = ({ isOpen, setIsOpen /*onSelectWeatherCity*/ }) => {
+  //State weather cities
   const [weatherCities, setWeatherCities] = useState(
-    JSON.parse(localStorage.getItem('weatherCity')) ?? []
+    JSON.parse(localStorage.getItem('weatherCities')) ?? []
   );
+  const [forecastCities, setForecastCities] = useState(
+    JSON.parse(localStorage.getItem('forecastCities')) ?? []
+  );
+  // state location weather
   const [locationWeather, setLocationWeather] = useState(
-    JSON.parse(localStorage.getItem('weather')) ?? []
+    JSON.parse(localStorage.getItem('locationWeather')) ?? {}
   );
-  const [weatherSection, setWeatherSection] = useState({});
-  const [forecast, setForecast] = useState(
-    JSON.parse(localStorage.getItem('forecast')) ?? []
+  const [locationForecast, setLocationForecast] = useState(
+    JSON.parse(localStorage.getItem('locationForecast')) ?? {}
   );
+  const [ onLocationWeather, setOnLocationWeather] = useState(false);
+  // console.log(onLocationWeather)
+  // state weather section
+  const [weatherSection, setWeatherSection] = useState(
+    JSON.parse(localStorage.getItem('weatherSection')) ?? {}
+  );
+  const [forecastSection, setForecastSection] = useState(
+    JSON.parse(localStorage.getItem('forecastSection')) ?? {}
+  );
+
+  // state location
   const [location, setLocation] = useState({
     latitude: null,
     longitude: null,
   });
+
   const [isLoading, setIsLoading] = useState(false);
+
   const [currentWeatherCityId, setCurrentWeatherCityId] = useState(0);
-  console.log('currentWeatherCityId:', currentWeatherCityId);
+  // console.log('currentWeatherCityId:', currentWeatherCityId);
 
   // const [isOpen, setIsOpen] = useState(false);
-  console.log("weatherSection:", weatherSection);
+  // console.log('weatherSection:', weatherSection);
   // console.log('locationWeatherId:', locationWeather.id);
-  // console.log('forecast:', forecast);
-  // console.log('weatherCities:', weatherCities);
+  // console.log('locationWeather:', locationWeather);
+  // console.log('locationForecast:', locationForecast);
+  // console.log('forecastSection:', forecastSection);
+  // console.log('forecastCities:', forecastCities);
+  // console.log('Homepage weatherCities:', weatherCities);
   const { latitude, longitude } = location;
 
   const handleSuccess = position => {
@@ -45,7 +65,6 @@ export const Homepage = ({ isOpen, setIsOpen /*onSelectWeatherCity*/ }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem('locationWeather', JSON.stringify(locationWeather));
     setIsLoading(true);
 
     if ('geolocation' in navigator) {
@@ -61,25 +80,31 @@ export const Homepage = ({ isOpen, setIsOpen /*onSelectWeatherCity*/ }) => {
         .finally(() => setIsLoading(false));
 
       apiServiceForecastData(latitude, longitude)
-        .then(forecast => setForecast(forecast))
+        .then(forecast => setLocationForecast(forecast))
         .catch(error => console.error(error))
         .finally(() => setIsLoading(false));
     }
   }, [latitude, longitude]);
 
+  localStorage.setItem('locationWeather', JSON.stringify(locationWeather));
+  localStorage.setItem('locationForecast', JSON.stringify(locationForecast));
+
   useEffect(() => {
     const handleChangeCity = () => {
-      weatherCities.map(city => {
-        if (currentWeatherCityId === city.id) {
-          setWeatherSection(city);
+      weatherCities.forEach(weatherCity => {
+        if (currentWeatherCityId === weatherCity.id) {
+          setWeatherSection(weatherCity);
         }
-        // return console.log('weatherSection:', weatherSection);
+      });
+      forecastCities.forEach(forecastCity => {
+        if (currentWeatherCityId === forecastCity.city.id) {
+          setForecastSection(forecastCity);
+        }
       });
     };
 
     handleChangeCity();
-
-  }, [currentWeatherCityId]);
+  }, [currentWeatherCityId, forecastCities, weatherCities, locationForecast]);
 
   const handlerSelectWeatherCity = cityId =>
     setCurrentWeatherCityId(cityId); /*console.log('weatherCityId: ' + id)*/
@@ -94,16 +119,21 @@ export const Homepage = ({ isOpen, setIsOpen /*onSelectWeatherCity*/ }) => {
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           onSelectWeatherCity={handlerSelectWeatherCity}
+          forecastCities={forecastCities}
+          setForecastCities={setForecastCities}
+          setOnLocationWeather={setOnLocationWeather}
         />
       )}
-      {(Object.keys(locationWeather).length ||
-        Object.keys(forecast).length) && (
-        <WeatherSection
-          weather={locationWeather}
-          weatherCity={weatherSection}
-          weatherSection={weatherSection}
-        />
-      )}
+      {Object.keys(locationWeather).length &&
+        Object.keys(locationForecast).length && (
+          <WeatherSection
+            weather={locationWeather}
+            // weatherCities={weatherCities}
+            weatherSection={weatherSection}
+            forecast={locationForecast}
+            forecastSection={forecastSection}
+          />
+        )}
       {isLoading && <Loader />}
     </Main>
   );

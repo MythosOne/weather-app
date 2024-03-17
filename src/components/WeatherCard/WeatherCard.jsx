@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Block,
@@ -8,9 +8,14 @@ import {
   Description,
   Temperature,
   Location,
+  CloseBtn,
 } from './WeatherCard.styled';
 
-function WeatherCard({ weatherCity }) {
+import { CloseCardImg } from 'icons/IconComponent';
+
+function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
+  // const [onCloseBtn, setOnCloseBtn] = useState(false);
+  // console.log("onCloseBtn:", onCloseBtn)
   // console.log(weatherCity);
   // console.log((new Date(weatherCity.dt * 1000)).getTimezoneOffset() / 60)
   // Неправильно показывает время, исправить.
@@ -21,11 +26,11 @@ function WeatherCard({ weatherCity }) {
 
   return (
     <Container
-      // onClick={() =>
-      //   console.log(
-      //     `myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`
-      //   )
-      // }
+    // onClick={() =>
+    //   console.log(
+    //     `myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`
+    //   )
+    // }
     >
       <Block>
         <BlockItem>
@@ -44,6 +49,18 @@ function WeatherCard({ weatherCity }) {
           {Math.trunc(weatherCity.coord.lon)}
         </Location>
       </Block>
+      {onCloseBtn && (
+        <CloseBtn
+          type="button"
+          aria-label="close"
+          title="Close"
+          onClick={() => {
+            onDeleteCard(weatherCity.id);
+          }}
+        >
+          <CloseCardImg />
+        </CloseBtn>
+      )}
     </Container>
   );
 }

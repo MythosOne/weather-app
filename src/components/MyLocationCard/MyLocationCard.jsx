@@ -10,9 +10,13 @@ import {
   Location,
 } from './MyLocationCard.styled';
 
-function MyLocationCard({ weather }) {
+function MyLocationCard({ weather, setOnLocationWeather }) {
   return (
-    <Container onClick={() => console.log('myLocationWeatherId:' + weather.id)}>
+    <Container
+      onClick={() =>
+        setOnLocationWeather(true)
+      }
+    >
       <Block>
         <BlockItem>
           <MyLocation>My Location</MyLocation>

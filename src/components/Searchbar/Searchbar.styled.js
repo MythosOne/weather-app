@@ -28,6 +28,7 @@ export const SearchBarForm = styled.form`
 
   &:hover {
     border-color: rgba(21, 67, 96, 0.5);
+    transition: all 0.2s ease-in-out;
   }
 `;
 

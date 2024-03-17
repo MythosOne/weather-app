@@ -137,6 +137,12 @@ export const Wind = styled.li`
   background-color: rgba(21, 67, 96, 0.5);
   /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
   @media screen and (min-width: 767px) {
     width: 130px;
     height: 130px;
@@ -160,6 +166,12 @@ export const Visibility = styled.li`
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
   /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 
   @media screen and (min-width: 767px) {
     width: 130px;
@@ -185,6 +197,12 @@ export const Humidity = styled.li`
   background-color: rgba(21, 67, 96, 0.5);
   /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+
   @media screen and (min-width: 767px) {
     width: 130px;
     height: 130px;
@@ -206,13 +224,17 @@ export const Precipitation = styled.li`
 
   @media screen and (min-width: 1279px) {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
 
     width: 130px;
     height: 130px;
 
     border-radius: 12px;
-  background-color: rgba(21, 67, 96, 0.5);
-  backdrop-filter: blur(5px);
+    background-color: rgba(21, 67, 96, 0.5);
+    backdrop-filter: blur(5px);
   }
 `;
 
@@ -222,6 +244,10 @@ export const Pressure = styled.li`
 
   @media screen and (min-width: 1279px) {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
 
     width: 130px;
     height: 130px;

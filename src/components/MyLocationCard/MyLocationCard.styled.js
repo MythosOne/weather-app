@@ -20,6 +20,7 @@ export const Container = styled.ul`
 
   &:hover {
     border-color: rgba(240, 243, 244, 0.5);
+    transition: all 0.2s ease-in-out;
   }
 `;
 
