@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   Container,
   Block,
@@ -9,8 +9,12 @@ import {
   MyLocation,
   Location,
 } from './MyLocationCard.styled';
+import { HomePageContext } from 'pages/Homepage';
 
-function MyLocationCard({ weather, setOnLocationWeather }) {
+function MyLocationCard({ weather}) {
+
+  const { setOnLocationWeather } = useContext(HomePageContext);
+
   return (
     <Container
       onClick={() =>

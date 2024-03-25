@@ -1,15 +1,16 @@
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
 import { WeatherSection } from '../components/WeatherSection/WeatherSection';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import {
   apiServiceWeatherData,
   apiServiceForecastData,
-  // apiServiceSearchData,
 } from '../Api/apiService';
 import { Loader } from '../components/Loader/Loader';
 import { Main } from './Homepage.styled';
 
-export const Homepage = ({ isOpen, setIsOpen /*onSelectWeatherCity*/ }) => {
+export const HomePageContext = createContext();
+
+export const Homepage = ({ isOpen, setIsOpen }) => {
   //State weather cities
   const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCities')) ?? []
@@ -24,7 +25,7 @@ export const Homepage = ({ isOpen, setIsOpen /*onSelectWeatherCity*/ }) => {
   const [locationForecast, setLocationForecast] = useState(
     JSON.parse(localStorage.getItem('locationForecast')) ?? {}
   );
-  const [ onLocationWeather, setOnLocationWeather] = useState(false);
+  const [onLocationWeather, setOnLocationWeather] = useState(false);
   // console.log(onLocationWeather)
   // state weather section
   const [weatherSection, setWeatherSection] = useState(
@@ -106,35 +107,35 @@ export const Homepage = ({ isOpen, setIsOpen /*onSelectWeatherCity*/ }) => {
     handleChangeCity();
   }, [currentWeatherCityId, forecastCities, weatherCities, locationForecast]);
 
-  const handlerSelectWeatherCity = cityId =>
-    setCurrentWeatherCityId(cityId); /*console.log('weatherCityId: ' + id)*/
+  const handlerSelectWeatherCity = cityId => setCurrentWeatherCityId(cityId);
 
   return (
     <Main>
-      {Object.keys(locationWeather).length && (
-        <WeatherCity
-          weather={locationWeather}
-          weatherCities={weatherCities}
-          setWeatherCities={setWeatherCities}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          onSelectWeatherCity={handlerSelectWeatherCity}
-          forecastCities={forecastCities}
-          setForecastCities={setForecastCities}
-          setOnLocationWeather={setOnLocationWeather}
-        />
-      )}
-      {Object.keys(locationWeather).length &&
-        Object.keys(locationForecast).length && (
-          <WeatherSection
+      <HomePageContext.Provider
+        value={{
+          weatherCities,
+          setWeatherCities,
+          handlerSelectWeatherCity,
+          setOnLocationWeather,
+          locationForecast,
+          forecastSection,
+          locationWeather,
+          weatherSection,
+        }}
+      >
+        {Object.keys(locationWeather).length && (
+          <WeatherCity
             weather={locationWeather}
-            // weatherCities={weatherCities}
-            weatherSection={weatherSection}
-            forecast={locationForecast}
-            forecastSection={forecastSection}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            forecastCities={forecastCities}
+            setForecastCities={setForecastCities}
           />
         )}
-      {isLoading && <Loader />}
+        {Object.keys(locationWeather).length &&
+          Object.keys(locationForecast).length && <WeatherSection />}
+        {isLoading && <Loader />}
+      </HomePageContext.Provider>
     </Main>
   );
 };

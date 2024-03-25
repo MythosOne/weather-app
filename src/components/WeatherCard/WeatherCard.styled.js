@@ -1,6 +1,21 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.ul`
+  opacity: 0;
+  transform: scale(0.9);
+
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+/* !!!!!! No work */
+  &.exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
+  }
+
   position: relative;
 
   display: flex;
@@ -73,7 +88,20 @@ export const Location = styled.span`
 `;
 
 export const CloseBtn = styled.button`
-  /* display: none; */
+  opacity: 0;
+  transform: scale(0.9);
+
+  &.active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+/* !!!!!! No work*/
+  &.exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
+  }
 
   display: flex;
   padding: 0;

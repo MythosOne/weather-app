@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container } from './Weather.styled';
 import WeatherCard from '../WeatherCard/WeatherCard';
+import { HomePageContext } from 'pages/Homepage';
 
-export const WeatherList = ({ cities, onSelectWeatherCity, onCloseBtn, onDeleteCard }) => {
+export const WeatherList = ({ onCloseBtn, onDeleteCard }) => {
+  const { weatherCities, handlerSelectWeatherCity } = useContext(HomePageContext);
+
   return (
     <Container>
-      {cities.map(city => (
-        <li key={city.id} onClick={() => onSelectWeatherCity(city.id)}>
+      {weatherCities.map(city => (
+        <li key={city.id} onClick={() => handlerSelectWeatherCity(city.id)}>
           <WeatherCard
             weatherCity={city}
             onCloseBtn={onCloseBtn}

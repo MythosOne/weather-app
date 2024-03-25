@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Container,
   HourlyForecast,
@@ -23,6 +24,7 @@ import {
 } from 'icons/IconComponent';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
+
   const UTCTime = unixTime => {
     let time = new Date(unixTime * 1000);
     return `${time.getUTCHours().toString().padStart(2, '0')}:${time
@@ -36,36 +38,45 @@ export const WeatherWidgets = ({ weather, forecast }) => {
     <Container>
       <HourlyForecast>Hourly forecast ({forecast.city.name})</HourlyForecast>
       <WeeklyForecast>Weekly forecast ({forecast.city.name})</WeeklyForecast>
-      <PrecipitationMap>Precipitation Map ({forecast.city.name})</PrecipitationMap>
+      <PrecipitationMap>
+        Precipitation Map ({forecast.city.name})
+      </PrecipitationMap>
       <Sunrise>
         {/* <WiSunrise style={{ width: '24px', height: '24px' }} /> */}
+        Sunrise
         <SunriseImg />
-        Sunrise {UTCTime(weather.sys.sunrise)}
+        {UTCTime(weather.sys.sunrise)}
         {/* {new Date(weather.sys.sunrise * 1000).toUTCString()} */}
         {/* <WiSunset style={{ width: '24px', height: '24px' }} /> */}
+        <br />
+        Sunset
         <SunsetImg />
-        Sunset {UTCTime(weather.sys.sunset)}
+        {UTCTime(weather.sys.sunset)}
         {/* Sunset {new Date(weather.sys.sunset * 1000).toUTCString()} */}
       </Sunrise>
       <Wind>
+        Wind
         <WindImg />
-        Wind {weather.wind.speed} m/s
+        {weather.wind.speed} m/s
       </Wind>
       <Visibility>
+        Visibility
         <VisibilityImg />
-        Visibility {weather.visibility}
+        {weather.visibility / 1000} km
       </Visibility>
       <Humidity>
+        Humdity
         <HumidityImg />
-        Humdity {weather.main.humidity}
+        {weather.main.humidity}%
       </Humidity>
       <Precipitation>
-        <PrecipitationImg />
         Precipitation
+        <PrecipitationImg />
       </Precipitation>
       <Pressure>
-        <PressureImg />
         Pressure
+        <PressureImg />
+        {weather.main.pressure} hPa
       </Pressure>
     </Container>
   );

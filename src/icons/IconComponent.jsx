@@ -119,10 +119,10 @@ export const CloseCardImg = ({ stroke }) => {
 
 export const SunriseImg = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
       <image
-        width="36"
-        height="36"
+        width="24"
+        height="24"
         href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEpElEQVR4nO2X21OUZRzHnwURwUFBkAQEDNMsy2NRoIL7Yk39BXVjXXnZNHnTRRdpTVPTYNM0TVPNNI28m40VmQsa6MLuorscPXISEBJPFy2wu+IJ9vBpnvfBLpxJEIVdmv3O/OZ99/TO5/t7nuf3+60QMf2PpeneTWUHvBvFXFSZxfeGVjESMOvDQXPFyFtiLsJruhfNMoIyMTQ3TGgVvje1Cq+CnzCgTAwFy/Sht0X0w/sCmu7jfgOaZRizxROKWhPm/f6d5gpfUNP9/JcBzTKEWfcEzRbPThFtMus3BhX8gw0Yof99SUS7tPsMiLkmLWYgwoqtQKQVW4FIy6x7T/w7C1mGGyLNE1NMMU1DWMUHMkS0C6vQsYrd2MUC4/WHIo7apL0cS8aI2sQ98j3jM7tYYHzXKnQRDaJKFFKbBHWLwZnh5eQyG+7s6zTmQlOeCnnvyrrGicw6HOk+bClQk4j8bWTh/0zOwpHRgXs5tBbA6TVw7jloXw8dG6Bzowp5374Ozq2FU6uh5UlwZYMjvR178rLZA64Su7CKLo4tPETD0sM05vk5/bQC7n4Bel+G/q3wVylcMsOgWV0vbYeBEri4BXpegq7NcP55OLUK3Dk+7EsOU5t4yHh2ldg1cwaOJuzDngaNyzHAZWYlkIQbLCXct55QRy7BtlQCrvmMO+MYt8cx5pjP+IlUAi25hDrWKYPS6IUX1cq0PQUns8C2CKpN+2bOgHNpq7H8Mns9hRPgWwl35RJsiSfYKAi4BIEGwbhDMF4vGLMJxo4J7tYI7h4V3KmWEc+YO5dwb7EyIlfv7LPqvNhTm2cG3pH5rpEpmfWLxTCoEe4pINRmItgspg5vFdz+Q3CrUkYcY64CGChV208mpnkF2Je88/j2/NGEcpyZrbStgs5N0L8NLm8jdD6FUKuYPvyvgpsHBTd/FtyuTiMsn9tXrM6TNFGf1kK1qfyRzgRH4rtwpEPrSlVNBiT8FkJnEh8b/OhPglFdMHowiVB30YSJddCUr0pzleicvgHbokqa81VW5F69XDIj8Df2C278KBg9kET44sR2kiXXlQO1yZXTN3By2e+cXQu9RXBlB6Hzi2cM3v+DwP+9XIlUwgPbVYWSPcOR8dv04J0ZWbQW+OnebNTzcO/KGYf3fWvC942JO3WrVYWTBaMx14tt4RMPB1+TVIgru8OoCrL5XCl5tGrzEPDer+U1gVB/qeoxsrs3ZLRTNW9qYwdWYaF+sRoNjOxrhLvzZg3e+5WJkS9N3KpeMbEK69UsJYdCq7BMbuBI3G4aMuHMM9BXBFd3PFyTegzwI1/I6zzCA2Z1FmT/qU+TBt6b3IAcd905XqPyDJQQ7t846/DD5SaGPzcx5t6gyqrs0g2Z3nvj+uQmmvKdxsA1WEaoMz8i8EOfmrhZma+2kewLrmz71OB/EfG0rbzOhUK4+irBU2kRgR/6xIT3uyVqopVNtCnv6r0/RZNsofS9xqQpm8m11wi4EyMC7/lYvl4Al3eoYU8OkcdT9jwYvlq8jzMDzqxRB/j662okjgC8Z68Jz0fxcOUVdZDlOFO3SB7kz6a0lWKKKaaYxGzoH7eEr/rSF/chAAAAAElFTkSuQmCC"
       />
     </svg>
@@ -131,10 +131,10 @@ export const SunriseImg = () => {
 
 export const SunsetImg = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
       <image
-        width="36"
-        height="36"
+        width="24"
+        height="24"
         href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEoklEQVR4nO2X21OUdRjHfwsqB0cFQRIQMEyzLJAsCg/gLtbUX+BV3XnZNHnTRRdpTVPTaNM0TVPNNE29m40VmQuaKLC76C5HTxwVgTjpTOzCcvIAe/g0v/cHheUEosDutN+ZZ97Dvu87n+/v8DzPChFWWMEpkzbiMGkjyDBqw2dFqMmkDTM9RKjJFPoGhpgeItRkCn0DHqaHCDWZQt6AeZDpIYJdRm2w55/Qd8fA36G5u0SwyWh2vWrU3L67QO8R8hn5rAhGFZoH9po0t/ff4G49jJrLZ/zO/ZoIZhXqJlzeKeiQgr+3CRdGrT904KdUaO7fa9L6vSEJP6XCI/05BeY/tv51I6yw/mfCIt6WIYJdWISGRezHKqL163dEBKUxBzkdix6lUQfkPf03q4jWn7UITQSDKBa5lMZA+SqwJ3o4t7YMZ8oNqtKgOl2FPHckX+dsUjm2hCHKVsCpKOS7iwv/W2wytsQmnOugLhMubIbLT0FjNjRtheYcFfK8MQsub4Hzm6D2UXCkgC2hEWvs2oUDLhb7sIgWTi8/RuWa41SlD3PhcQXc+iy0vQAdO+H3AugyQrdRHbt2Q2c+tO+Aq89DyzZoeBrObwRn6hDW1ccpjTqmf7tY7Js/AyeXHsYaD1Xr0MHlyEogCdddQOBaNv6mNHz1cXgdy5iwRzBhjWDctoyJs3F4a9PwN2Upg9LolefUzNQ/BueSoWwllBgOz58B+5o6ffrl6F3NnQTfSaAlDV9tJL4qgdch8FYKJmyCiQrBeJlg/LTgzinBnZOC2yUyIhl3phFo266MyNm79KTaL9a4mvmBtyW9oY+UHPX27dBtInA1E3+9AV+NmD28RXDrV8HNIhkRjDsyobNALT85MDXrwbr69Ye35k8uPYQ9qY76jdD8DHTsgp5d+BtW4K8Tc4f/STB2VDD2g+BWSTwB+d1r29V+kiYq4mspMRx6oD3BicgWbAlQt0Flk04JvwP/xaiHBj/6vWBUE4wejcHfmjdpIguqM1RqLhbNczdQtrKImgw1KnKt9uTPC/zIt4KRbwSjR2IItE8uJ5lyHalQGls0dwPn1v7CpS3Qlge9e/A3rJo3+OGvBcNfyZmII9C5W2UoWTNsiT/PDd6emExd5jCt2/R8HmjbMO/wQ18YGPrcwO3yTSrDyYRRleahbPkj9wd/KiYXR0qTnhVk8enNf7Bscx/wns/kcSn+jgJVY2R1r0xspHjJ7NoOLMJMxSrVGuijbyLQmr5g8J5PDQx+YuBmyfrJWchWvZRsCi3CPLOBExH7qUyCi0/AtTzo23N/ReohwA9+LI9LCHQa1V6Q9aciXhp4c2YDst11pnr0zNOZT6AjZ8HhBw4ZGPjIwLhzq0qrskpXJnmm2vWZTVRn2PWGq7sQf3PGosC7PzAwVpShlpGsC44U6+zgfxSR1G+4wZVc6HsJ3/n4RYF3v2/A8+Vq1dHKIlqd3jf1p2iGJZRwUO80ZTG5/jJeZ9SiwLvek9fR0LNHNXuyiTyz4sB/w5eIt7AnwsXNagPfeEW1xIsA7zpowPVuJPS+qDaybGfKV8qN/OGsllJYYYUVllgI/Ql63q/E0UYj0AAAAABJRU5ErkJggg=="
       />
     </svg>

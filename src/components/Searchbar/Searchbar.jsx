@@ -10,7 +10,7 @@ import {
 } from './SearchBar.styled';
 import MyLocationCard from '../MyLocationCard/MyLocationCard';
 
-export const SearchBar = ({ onAddCity, weather, onSubmit, setOnLocationWeather }) => {
+export const SearchBar = ({ onAddCity, weather, onSubmit,/* setOnLocationWeather*/ }) => {
   const [value, setValue] = useState('');
   // console.log(weatherCity)
 
@@ -47,7 +47,7 @@ export const SearchBar = ({ onAddCity, weather, onSubmit, setOnLocationWeather }
       </SearchBarForm>
       <MyLocationCard
         weather={weather}
-        setOnLocationWeather={setOnLocationWeather}
+        // setOnLocationWeather={setOnLocationWeather}
       />
     </Container>
   );

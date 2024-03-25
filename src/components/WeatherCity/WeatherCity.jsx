@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-// import { nanoid } from 'nanoid';
+import { useEffect, useState, useContext } from 'react';
 import { SearchBar } from '../SearchBar/SearchBar';
 import {
   WeatherBar,
@@ -16,21 +15,15 @@ import {
 import { Loader } from '../Loader/Loader';
 
 import { WeatherCityClose, CorrectListImg } from 'icons/IconComponent';
+import { HomePageContext } from 'pages/Homepage';
 
 export const WeatherCity = ({
   weather,
-  weatherCities,
-  setWeatherCities,
   forecastCities,
   setForecastCities,
   isOpen,
   setIsOpen,
-  onSelectWeatherCity,
-  setOnLocationWeather,
 }) => {
-  // const [weatherCity, setWeatherCity] = useState(
-  //   JSON.parse(localStorage.getItem('weatherCity')) ?? []
-  // );
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(-100);
@@ -43,6 +36,9 @@ export const WeatherCity = ({
   const [cityId, setCityId] = useState(0);
   // console.log('State CityId:', cityId);
 
+  const { weatherCities, setWeatherCities } = useContext(HomePageContext);
+  // console.log("weatherCities:", weatherCities)
+
   // !!!!!!!!!!!!!!!!
   const handleSubmit = value => {
     setValue(value.toLowerCase());
@@ -54,14 +50,12 @@ export const WeatherCity = ({
     }
   };
 
-  // const handleClose = () => setOffset(-100);
 
   useEffect(() => {
     if (isOpen) {
       // console.log('WeatherCity-useEffect-isOpen:', isOpen);
       return setOffset(0);
     }
-    // return setOffset(0)
   }, [isOpen]);
 
   useEffect(() => {
@@ -97,7 +91,7 @@ export const WeatherCity = ({
 
   const onDeleteCard = cityId => {
     setCityId(cityId);
-    setWeatherCities(weatherCities.filter(({id}) => id !== cityId));
+    setWeatherCities(weatherCities.filter(({ id }) => id !== cityId));
     // console.log('WeatherCity weatherCities:', weatherCities);
   };
 
@@ -131,11 +125,8 @@ export const WeatherCity = ({
         onSubmit={handleSubmit}
         onAddCity={addCity}
         weather={weather}
-        setOnLocationWeather={setOnLocationWeather}
       />
       <WeatherList
-        cities={weatherCities}
-        onSelectWeatherCity={onSelectWeatherCity}
         onCloseBtn={onCloseBtn}
         onDeleteCard={onDeleteCard}
       />

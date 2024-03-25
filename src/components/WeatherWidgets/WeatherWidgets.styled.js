@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+
 export const Container = styled.ul`
   display: grid;
   gap: 10px;
@@ -40,6 +41,9 @@ export const Container = styled.ul`
 export const HourlyForecast = styled.li`
   grid-area: hourlyForecast;
 
+  box-sizing: border-box;
+  padding: 8px;
+
   width: 100%;
   height: 100px;
 
@@ -54,6 +58,9 @@ export const HourlyForecast = styled.li`
 
 export const WeeklyForecast = styled.li`
   grid-area: weeklyForecast;
+
+  box-sizing: border-box;
+  padding: 8px;
 
   width: 100%;
 
@@ -75,6 +82,9 @@ export const WeeklyForecast = styled.li`
 `;
 export const PrecipitationMap = styled.li`
   grid-area: precipitationMap;
+
+  box-sizing: border-box;
+  padding: 8px;
 
   width: 210px;
   height: 200px;
@@ -98,6 +108,9 @@ export const PrecipitationMap = styled.li`
 export const Sunrise = styled.li`
   grid-area: sunrise;
 
+  box-sizing: border-box;
+  padding: 8px;
+
   width: 100px;
   height: 100px;
   border-radius: 12px;
@@ -114,9 +127,7 @@ export const Sunrise = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  box-sizing: border-box;
-  padding: 10px;
+  justify-content: center;
 
   color: #e7ecee;
   text-align: center;
@@ -130,6 +141,9 @@ export const Sunrise = styled.li`
 
 export const Wind = styled.li`
   grid-area: wind;
+
+  box-sizing: border-box;
+  padding: 8px;
 
   width: 100px;
   height: 100px;
@@ -161,6 +175,9 @@ export const Wind = styled.li`
 export const Visibility = styled.li`
   grid-area: visibility;
 
+  box-sizing: border-box;
+  padding: 8px;
+
   width: 100px;
   height: 100px;
   border-radius: 12px;
@@ -191,6 +208,9 @@ export const Visibility = styled.li`
 export const Humidity = styled.li`
   grid-area: humidity;
 
+  box-sizing: border-box;
+  padding: 8px;
+
   width: 100px;
   height: 100px;
   border-radius: 12px;
@@ -199,7 +219,7 @@ export const Humidity = styled.li`
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   gap: 16px;
 
@@ -222,6 +242,9 @@ export const Precipitation = styled.li`
   display: none;
   grid-area: precipitation;
 
+  box-sizing: border-box;
+  padding: 8px;
+
   @media screen and (min-width: 1279px) {
     display: flex;
     flex-direction: column;
@@ -241,6 +264,9 @@ export const Precipitation = styled.li`
 export const Pressure = styled.li`
   display: none;
   grid-area: pressure;
+
+  box-sizing: border-box;
+  padding: 8px;
 
   @media screen and (min-width: 1279px) {
     display: flex;

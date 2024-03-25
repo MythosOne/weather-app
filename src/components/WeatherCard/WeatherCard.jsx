@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Block,
@@ -9,11 +9,14 @@ import {
   Temperature,
   Location,
   CloseBtn,
+  // FadeInComponent,
 } from './WeatherCard.styled';
 
 import { CloseCardImg } from 'icons/IconComponent';
 
-function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
+// import { CSSTransition } from 'react-transition-group';
+
+function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard, }) {
   // const [onCloseBtn, setOnCloseBtn] = useState(false);
   // console.log("onCloseBtn:", onCloseBtn)
   // console.log(weatherCity);
@@ -23,15 +26,15 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
     let time = new Date(weatherCity.dt * 1000);
     return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
+  const [showComponent, setShowComponent] = useState(false);
+  // console.log('showComponent:', showComponent);
+
+  useEffect(() => {
+    setShowComponent(!showComponent);
+  }, []);
 
   return (
-    <Container
-    // onClick={() =>
-    //   console.log(
-    //     `myWeatherCityCard Name: ${weatherCity.name} lat: ${weatherCity.coord.lat} lon ${weatherCity.coord.lon}`
-    //   )
-    // }
-    >
+    <Container className={showComponent ? 'active' : ''}>
       <Block>
         <BlockItem>
           <City>{weatherCity.name}</City>
@@ -57,6 +60,7 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
           onClick={() => {
             onDeleteCard(weatherCity.id);
           }}
+          className={onCloseBtn ? 'active' : ''}
         >
           <CloseCardImg />
         </CloseBtn>
