@@ -24,13 +24,15 @@ export const WeatherCity = ({
   isOpen,
   setIsOpen,
 }) => {
-  const [value, setValue] = useState('');
+  // const [value, setValue] = useState('');
+  const [searchCity, setSearchCity] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(-100);
-  // console.log("first value: " + JSON.stringify(value))
+  // console.log('first value: ' + JSON.stringify(value));
   // console.log('weatherCities:', weatherCities[0].coord.lon);
   // console.log('WeatherCity- isOpen:', isOpen);
   // console.log('offset:', offset);
+  // console.log('searchCity:', searchCity);
 
   const [onCloseBtn, setOnCloseBtn] = useState(false);
   const [cityId, setCityId] = useState(0);
@@ -38,18 +40,6 @@ export const WeatherCity = ({
 
   const { weatherCities, setWeatherCities } = useContext(HomePageContext);
   // console.log("weatherCities:", weatherCities)
-
-  // !!!!!!!!!!!!!!!!
-  const handleSubmit = value => {
-    setValue(value.toLowerCase());
-  };
-
-  const addCity = city => {
-    if (city.length === 0) {
-      alert('Field must be filled');
-    }
-  };
-
 
   useEffect(() => {
     if (isOpen) {
@@ -59,7 +49,16 @@ export const WeatherCity = ({
   }, [isOpen]);
 
   useEffect(() => {
-    if (value.trim() === '') {
+    if (searchCity.trim() === '') {
+      return;
+    }
+    const LoweredCase = searchCity.toLowerCase().trim();
+    const weatherCity = weatherCities.some(
+      city => city.name.toLowerCase().trim() === LoweredCase
+    );
+
+    if (weatherCity) {
+      alert(`${searchCity} is already in contacts`);
       return;
     }
 
@@ -68,7 +67,7 @@ export const WeatherCity = ({
     let lat;
     let lon;
 
-    apiServiceSearchData(value)
+    apiServiceSearchData(searchCity)
       .then(data => {
         setWeatherCities([...weatherCities, { ...data }]);
 
@@ -82,9 +81,12 @@ export const WeatherCity = ({
           .catch(error => console.error(error))
           .finally(() => setIsLoading(false));
       })
-      .catch(error => console.error(error))
+      .catch(
+        // error => console.error(error)
+        () => alert("City not found")
+      )
       .finally(() => setIsLoading(false));
-  }, [value]);
+  }, [searchCity]);
 
   localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
   localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
@@ -96,7 +98,7 @@ export const WeatherCity = ({
   };
 
   return (
-    <WeatherBar dataOffset={offset} /*handleClose={handleClose}*/>
+    <WeatherBar dataOffset={offset}>
       <BlockBtn>
         <ListBtn
           type="button"
@@ -121,15 +123,8 @@ export const WeatherCity = ({
         </CloseBtn>
       </BlockBtn>
       <Title>Weather</Title>
-      <SearchBar
-        onSubmit={handleSubmit}
-        onAddCity={addCity}
-        weather={weather}
-      />
-      <WeatherList
-        onCloseBtn={onCloseBtn}
-        onDeleteCard={onDeleteCard}
-      />
+      <SearchBar setSearchCity={setSearchCity} weather={weather} />
+      <WeatherList onCloseBtn={onCloseBtn} onDeleteCard={onDeleteCard} />
       {isLoading && <Loader />}
     </WeatherBar>
   );

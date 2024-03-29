@@ -21,7 +21,7 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard, }) {
   // console.log("onCloseBtn:", onCloseBtn)
   // console.log(weatherCity);
   // console.log((new Date(weatherCity.dt * 1000)).getTimezoneOffset() / 60)
-  // Неправильно показывает время, исправить.
+  // !!!!! The time is shown incorrectly, correct it...
   const UTCTime = () => {
     let time = new Date(weatherCity.dt * 1000);
     return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -31,10 +31,11 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard, }) {
 
   useEffect(() => {
     setShowComponent(!showComponent);
+    // console.log(showComponent)
   }, []);
 
   return (
-    <Container className={showComponent ? 'active' : ''}>
+    <Container className={showComponent ? 'active' : 'exit-active'}>
       <Block>
         <BlockItem>
           <City>{weatherCity.name}</City>

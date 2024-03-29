@@ -18,10 +18,10 @@ export const MyLocation = styled.h1`
 `;
 
 export const City = styled.h2`
-  margin-top: 5px;
+  /* margin-top: 5px; */
   color: rgba(240, 243, 244, 0.9);
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 28px;
+  font-weight: 600;
 `;
 
 export const Temperature = styled.p`

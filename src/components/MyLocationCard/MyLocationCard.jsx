@@ -13,12 +13,12 @@ import { HomePageContext } from 'pages/Homepage';
 
 function MyLocationCard({ weather}) {
 
-  const { setOnLocationWeather } = useContext(HomePageContext);
+  const { setWeatherSection} = useContext(HomePageContext);
 
   return (
     <Container
       onClick={() =>
-        setOnLocationWeather(true)
+        setWeatherSection({})
       }
     >
       <Block>

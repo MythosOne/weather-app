@@ -9,7 +9,7 @@ export const Container = styled.ul`
     transform: translateX(0);
     transition: opacity 300ms, transform 300ms;
   }
-/* !!!!!! No work */
+  /* !!!!!! No work */
   &.exit-active {
     opacity: 0;
     transform: scale(0.9);
@@ -96,7 +96,7 @@ export const CloseBtn = styled.button`
     transform: translateX(0);
     transition: opacity 300ms, transform 300ms;
   }
-/* !!!!!! No work*/
+  /* !!!!!! No work*/
   &.exit-active {
     opacity: 0;
     transform: scale(0.9);

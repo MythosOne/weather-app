@@ -25,8 +25,7 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
   const [locationForecast, setLocationForecast] = useState(
     JSON.parse(localStorage.getItem('locationForecast')) ?? {}
   );
-  const [onLocationWeather, setOnLocationWeather] = useState(false);
-  // console.log(onLocationWeather)
+
   // state weather section
   const [weatherSection, setWeatherSection] = useState(
     JSON.parse(localStorage.getItem('weatherSection')) ?? {}
@@ -47,7 +46,7 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
   // console.log('currentWeatherCityId:', currentWeatherCityId);
 
   // const [isOpen, setIsOpen] = useState(false);
-  // console.log('weatherSection:', weatherSection);
+  console.log('weatherSection:', weatherSection);
   // console.log('locationWeatherId:', locationWeather.id);
   // console.log('locationWeather:', locationWeather);
   // console.log('locationForecast:', locationForecast);
@@ -76,7 +75,7 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
 
     if (latitude !== null && longitude !== null) {
       apiServiceWeatherData(latitude, longitude)
-        .then(weather => setLocationWeather(weather))
+        .then(weather => setLocationWeather({ ...weather, myLocation: true }))
         .catch(error => console.error(error))
         .finally(() => setIsLoading(false));
 
@@ -116,7 +115,7 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
           weatherCities,
           setWeatherCities,
           handlerSelectWeatherCity,
-          setOnLocationWeather,
+          setWeatherSection,
           locationForecast,
           forecastSection,
           locationWeather,

@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-// import { ImSearch /*ImPlus*/ } from 'react-icons/im';
 import { Search } from '../../icons/IconComponent';
 import {
   SearchBarForm,
   Container,
   ButtonSearch,
-  // ButtonAdd,
   Input,
 } from './SearchBar.styled';
 import MyLocationCard from '../MyLocationCard/MyLocationCard';
 
-export const SearchBar = ({ onAddCity, weather, onSubmit,/* setOnLocationWeather*/ }) => {
+export const SearchBar = ({ weather, setSearchCity }) => {
   const [value, setValue] = useState('');
-  // console.log(weatherCity)
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    onAddCity(value);
-    onSubmit(value);
+    if (value.trim().length === 0) {
+      alert('Field must be filled');
+      return;
+    }
+
+    setSearchCity(value);
     setValue('');
   };
 
@@ -41,14 +42,8 @@ export const SearchBar = ({ onAddCity, weather, onSubmit,/* setOnLocationWeather
           autoComplete="on"
           placeholder="Search for a city"
         />
-        {/* <ButtonAdd type="onClick">
-          <ImPlus size={18} />
-        </ButtonAdd> */}
       </SearchBarForm>
-      <MyLocationCard
-        weather={weather}
-        // setOnLocationWeather={setOnLocationWeather}
-      />
+      <MyLocationCard weather={weather} />
     </Container>
   );
 };
