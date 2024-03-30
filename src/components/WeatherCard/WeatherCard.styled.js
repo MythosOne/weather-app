@@ -23,7 +23,7 @@ export const Container = styled.ul`
   justify-content: space-between;
   align-items: stretch;
 
-  margin: 0 auto;
+  margin: 0 auto 10px;
   padding: 8px;
   width: 85%;
   height: 80px;

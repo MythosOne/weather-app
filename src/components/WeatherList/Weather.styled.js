@@ -5,6 +5,6 @@ export const Container = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  /* gap: 10px; */
   padding: 0;
 `;

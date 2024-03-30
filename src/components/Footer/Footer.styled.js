@@ -24,10 +24,10 @@ export const Section = styled.footer`
 
   /* bottom: 0;
   left: 0;
-  position: sticky;
-  z-index: 1100; */
+  position: fixed;
+  z-index: 1000; */
 
-  backdrop-filter: blur(50px);
+  /* backdrop-filter: blur(50px); */
 
   @media screen and (min-width: 767px) {
     max-width: none;
@@ -37,8 +37,8 @@ export const Section = styled.footer`
 
     /* bottom: 0;
     left: 0; */
-    position: sticky;
-    z-index: 1100;
+    /* position: fixed;
+    z-index: 1000; */
 
     grid-template-areas:
       'logo linkList arrowUp '
@@ -46,11 +46,13 @@ export const Section = styled.footer`
 
     gap: 10px;
 
-    /* backdrop-filter: blur(10px); */
+    backdrop-filter: blur(10px);
   }
 
   @media screen and (min-width: 1279px) {
     width: 1040px;
+
+    /* position: static; */
   }
 `;
 

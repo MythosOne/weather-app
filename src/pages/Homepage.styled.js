@@ -24,6 +24,8 @@ export const Main = styled.main`
     width: 1040px;
     /* align-items: stretch; */
 
+    margin: 20px auto;
+
     gap: 30px;
   }
 `;

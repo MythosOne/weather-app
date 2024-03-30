@@ -11,7 +11,7 @@ export const Section = styled.header`
   margin: 0 auto;
 
   padding: 0 20px 0;
-  
+
   top: 0;
   left: 0;
   right: 0;
@@ -37,6 +37,7 @@ export const Section = styled.header`
   @media screen and (min-width: 1279px) {
     width: 1040px;
 
+    position: static;
   }
 `;
 
@@ -60,10 +61,10 @@ export const MenuBtn = styled.button`
   }
 `;
 
-export const BlockClock= styled.div`
-display: flex;
-flex-direction: column;
-`
+export const BlockClock = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const CurrentTime = styled.p`
   display: none;
