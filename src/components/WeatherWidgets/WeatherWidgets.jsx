@@ -2,7 +2,10 @@ import React from 'react';
 import {
   Container,
   HourlyForecast,
+  BlockHeader,
+  BlockHourlyWater,
   WeeklyForecast,
+  BlockWeeklyWater,
   PrecipitationMap,
   Sunrise,
   Wind,
@@ -12,7 +15,7 @@ import {
   Pressure,
 } from './WeatherWidgets.styled';
 
-import { WiSunrise, WiSunset } from 'react-icons/wi';
+// import { WiSunrise, WiSunset } from 'react-icons/wi';
 import {
   WindImg,
   SunriseImg,
@@ -24,7 +27,6 @@ import {
 } from 'icons/IconComponent';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
-
   const UTCTime = unixTime => {
     let time = new Date(unixTime * 1000);
     return `${time.getUTCHours().toString().padStart(2, '0')}:${time
@@ -36,10 +38,16 @@ export const WeatherWidgets = ({ weather, forecast }) => {
   // console.log('forecast:', forecast);
   return (
     <Container>
-      <HourlyForecast>Hourly forecast ({forecast.city.name})</HourlyForecast>
-      <WeeklyForecast>Weekly forecast ({forecast.city.name})</WeeklyForecast>
+      <HourlyForecast>
+        <BlockHeader>Hourly forecast ({forecast.city.name})</BlockHeader>
+        <BlockHourlyWater></BlockHourlyWater>
+      </HourlyForecast>
+      <WeeklyForecast>
+        <BlockHeader>5-DAY forecast ({forecast.city.name})</BlockHeader>
+        <BlockWeeklyWater></BlockWeeklyWater>
+      </WeeklyForecast>
       <PrecipitationMap>
-        Precipitation Map ({forecast.city.name})
+      <BlockHeader>Precipitation Map ({forecast.city.name})</BlockHeader>
       </PrecipitationMap>
       <Sunrise>
         {/* <WiSunrise style={{ width: '24px', height: '24px' }} /> */}

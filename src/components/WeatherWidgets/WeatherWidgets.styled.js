@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-
 export const Container = styled.ul`
   display: grid;
   gap: 10px;
@@ -56,6 +55,19 @@ export const HourlyForecast = styled.li`
   background-color: rgba(21, 67, 96, 0.5);
 `;
 
+export const BlockHeader = styled.div`
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #6382af;
+  padding-bottom: 5px;
+
+  border-bottom: 1px solid transparent;
+  border-color: #6382af;
+`;
+
+export const BlockHourlyWater = styled.div``;
+
 export const WeeklyForecast = styled.li`
   grid-area: weeklyForecast;
 
@@ -80,6 +92,9 @@ export const WeeklyForecast = styled.li`
 
   backdrop-filter: blur(5px);
 `;
+
+export const BlockWeeklyWater = styled.div``;
+
 export const PrecipitationMap = styled.li`
   grid-area: precipitationMap;
 

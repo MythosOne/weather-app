@@ -13,8 +13,9 @@ export const Header = ({ isOpen, setIsOpen }) => {
   // const [isOpen, setIsOpen] = useState(false);
   // console.log('isOpen', isOpen);
   const [currentTime, setCurrentTime] = useState(new Date());
-
+  // console.log("currentTime:", currentTime)
   const currentDate = new Date();
+  // console.log(currentDate)
 
   const options = {
     weekday: 'long',
@@ -25,12 +26,12 @@ export const Header = ({ isOpen, setIsOpen }) => {
   const formattedDate = currentDate.toLocaleDateString(undefined, options);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    const interval = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
 
     return () => {
-      clearInterval(intervalId);
+      clearInterval(interval);
     };
   }, []);
 

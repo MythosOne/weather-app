@@ -20,11 +20,12 @@ export const Container = styled.ul`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: stretch;
+  gap: 15px;
 
   margin: 0 auto 10px;
-  padding: 8px;
+  padding: 5px;
   width: 85%;
   height: 80px;
   border-style: solid;
@@ -44,12 +45,18 @@ export const Block = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* align-items: stretch; */
+  align-items: center;
 `;
 
 export const BlockItem = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const Blockweather = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
 
 export const City = styled.h2`
@@ -72,6 +79,8 @@ export const Temperature = styled.p`
   font-size: 32px;
   font-weight: 400;
 `;
+
+export const WeatherIcon = styled.img``;
 
 export const Description = styled.p`
   margin: 0;
