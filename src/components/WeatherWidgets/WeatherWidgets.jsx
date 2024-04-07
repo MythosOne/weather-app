@@ -39,15 +39,58 @@ export const WeatherWidgets = ({ weather, forecast }) => {
   return (
     <Container>
       <HourlyForecast>
-        <BlockHeader>Hourly forecast ({forecast.city.name})</BlockHeader>
-        <BlockHourlyWater></BlockHourlyWater>
+        <BlockHeader>Hourly forecast for 24 hours</BlockHeader>
+        <div
+          style={{
+            overflow: 'auto',
+            scrollbarWidth: 'none',
+          }}
+        >
+          <BlockHourlyWater>
+            {forecast.list.map((element, index) => {
+              if (index <= 7) {
+                return (
+                  <li key={index}>
+                    <ul
+                      style={{
+                        listStyle: 'none',
+                        fontSize: '14px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '5px',
+                        alignItems: 'center',
+                      }}
+                    >
+                      {/* <li>{index}</li> */}
+                      <li>
+                        {new Date(element.dt * 1000).toLocaleTimeString([], {
+                          hour: '2-digit',
+                          // minute: '2-digit',
+                        })}
+                      </li>
+                      <li>
+                        <img
+                          src={`http://openweathermap.org/img/w/${element.weather[0].icon}.png`}
+                          width="30"
+                          alt="Weather icon"
+                        />
+                      </li>
+                      <li>{Math.round(element.main.temp)}°</li>
+                    </ul>
+                  </li>
+                );
+              }
+              return null;
+            })}
+          </BlockHourlyWater>
+        </div>
       </HourlyForecast>
       <WeeklyForecast>
-        <BlockHeader>5-DAY forecast ({forecast.city.name})</BlockHeader>
+        <BlockHeader>5-DAY forecast</BlockHeader>
         <BlockWeeklyWater></BlockWeeklyWater>
       </WeeklyForecast>
       <PrecipitationMap>
-      <BlockHeader>Precipitation Map ({forecast.city.name})</BlockHeader>
+        <BlockHeader>Precipitation Map</BlockHeader>
       </PrecipitationMap>
       <Sunrise>
         {/* <WiSunrise style={{ width: '24px', height: '24px' }} /> */}

@@ -39,12 +39,13 @@ export const Container = styled.ul`
 
 export const HourlyForecast = styled.li`
   grid-area: hourlyForecast;
+  /* overflow: auto; */
 
   box-sizing: border-box;
   padding: 8px;
 
   width: 100%;
-  height: 100px;
+  height: 115px;
 
   @media screen and (min-width: 767px) {
     width: 100%;
@@ -66,7 +67,18 @@ export const BlockHeader = styled.div`
   border-color: #6382af;
 `;
 
-export const BlockHourlyWater = styled.div``;
+export const BlockHourlyWater = styled.ul`
+  margin: 10px auto;
+  width: max-content;
+  list-style: none;
+  display: flex;
+  gap: 15px;
+
+  @media screen and (min-width: 767px) {
+    width: auto;
+    justify-content: space-around;
+  }
+`;
 
 export const WeeklyForecast = styled.li`
   grid-area: weeklyForecast;
