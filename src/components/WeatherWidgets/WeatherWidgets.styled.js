@@ -57,6 +57,9 @@ export const HourlyForecast = styled.li`
 `;
 
 export const BlockHeader = styled.div`
+  width: 100%;
+  text-align: start;
+  font-size: 10px;
   font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
@@ -275,7 +278,7 @@ export const Precipitation = styled.li`
   @media screen and (min-width: 1279px) {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     gap: 16px;
 

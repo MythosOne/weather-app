@@ -3,7 +3,7 @@ import {
   Container,
   HourlyForecast,
   BlockHeader,
-  BlockHourlyWater,
+  // BlockHourlyWater,
   WeeklyForecast,
   BlockWeeklyWater,
   PrecipitationMap,
@@ -26,6 +26,8 @@ import {
   VisibilityImg,
 } from 'icons/IconComponent';
 
+import { HourlyForecastList } from './HourlyForecastList/HourlyForecastList';
+
 export const WeatherWidgets = ({ weather, forecast }) => {
   const UTCTime = unixTime => {
     let time = new Date(unixTime * 1000);
@@ -36,54 +38,12 @@ export const WeatherWidgets = ({ weather, forecast }) => {
   };
   // console.log('weather:', weather);
   // console.log('forecast:', forecast);
+  
   return (
     <Container>
       <HourlyForecast>
         <BlockHeader>Hourly forecast for 24 hours</BlockHeader>
-        <div
-          style={{
-            overflow: 'auto',
-            scrollbarWidth: 'none',
-          }}
-        >
-          <BlockHourlyWater>
-            {forecast.list.map((element, index) => {
-              if (index <= 7) {
-                return (
-                  <li key={index}>
-                    <ul
-                      style={{
-                        listStyle: 'none',
-                        fontSize: '14px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '5px',
-                        alignItems: 'center',
-                      }}
-                    >
-                      {/* <li>{index}</li> */}
-                      <li>
-                        {new Date(element.dt * 1000).toLocaleTimeString([], {
-                          hour: '2-digit',
-                          // minute: '2-digit',
-                        })}
-                      </li>
-                      <li>
-                        <img
-                          src={`http://openweathermap.org/img/w/${element.weather[0].icon}.png`}
-                          width="30"
-                          alt="Weather icon"
-                        />
-                      </li>
-                      <li>{Math.round(element.main.temp)}°</li>
-                    </ul>
-                  </li>
-                );
-              }
-              return null;
-            })}
-          </BlockHourlyWater>
-        </div>
+        <HourlyForecastList forecast={forecast} />
       </HourlyForecast>
       <WeeklyForecast>
         <BlockHeader>5-DAY forecast</BlockHeader>
@@ -93,8 +53,8 @@ export const WeatherWidgets = ({ weather, forecast }) => {
         <BlockHeader>Precipitation Map</BlockHeader>
       </PrecipitationMap>
       <Sunrise>
+        <BlockHeader>Sunrise</BlockHeader>
         {/* <WiSunrise style={{ width: '24px', height: '24px' }} /> */}
-        Sunrise
         <SunriseImg />
         {UTCTime(weather.sys.sunrise)}
         {/* {new Date(weather.sys.sunrise * 1000).toUTCString()} */}
@@ -106,26 +66,26 @@ export const WeatherWidgets = ({ weather, forecast }) => {
         {/* Sunset {new Date(weather.sys.sunset * 1000).toUTCString()} */}
       </Sunrise>
       <Wind>
-        Wind
+        <BlockHeader>Wind</BlockHeader>
         <WindImg />
         {weather.wind.speed} m/s
       </Wind>
       <Visibility>
-        Visibility
+        <BlockHeader>Visibility</BlockHeader>
         <VisibilityImg />
         {weather.visibility / 1000} km
       </Visibility>
       <Humidity>
-        Humdity
+        <BlockHeader>Humdity</BlockHeader>
         <HumidityImg />
         {weather.main.humidity}%
       </Humidity>
       <Precipitation>
-        Precipitation
+        <BlockHeader>Precipitation</BlockHeader>
         <PrecipitationImg />
       </Precipitation>
       <Pressure>
-        Pressure
+        <BlockHeader>Pressure</BlockHeader>
         <PressureImg />
         {weather.main.pressure} hPa
       </Pressure>
