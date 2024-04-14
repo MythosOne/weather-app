@@ -26,7 +26,8 @@ import {
   VisibilityImg,
 } from 'icons/IconComponent';
 
-import { HourlyForecastList } from './HourlyForecastList/HourlyForecastList';
+import { HourlyForecastList } from './ForecastList/HourlyForecastList/HourlyForecastList';
+import { WeeklyForecastList } from './ForecastList/WeeklyForecastList/WeeklyForecastList';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
   const UTCTime = unixTime => {
@@ -47,7 +48,7 @@ export const WeatherWidgets = ({ weather, forecast }) => {
       </HourlyForecast>
       <WeeklyForecast>
         <BlockHeader>5-DAY forecast</BlockHeader>
-        <BlockWeeklyWater></BlockWeeklyWater>
+        <WeeklyForecastList forecast={forecast}/>
       </WeeklyForecast>
       <PrecipitationMap>
         <BlockHeader>Precipitation Map</BlockHeader>

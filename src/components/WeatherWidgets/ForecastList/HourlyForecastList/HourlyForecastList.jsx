@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, ForecastList } from './HourlyForecastList.styled';
 
-import { HourlyForecastCard } from '../HourlyForecastCard/HourlyForecastCard';
+import { HourlyForecastCard } from '../../ForecastCard/HourlyForecastCard/HourlyForecastCard';
 
 export const HourlyForecastList = ({ forecast }) => {
   return (

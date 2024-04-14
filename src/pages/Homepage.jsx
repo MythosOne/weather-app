@@ -46,7 +46,8 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
   // console.log('currentWeatherCityId:', currentWeatherCityId);
 
   // const [isOpen, setIsOpen] = useState(false);
-  console.log('weatherSection:', weatherSection);
+  // console.log("weatherCities:", weatherCities);
+  // console.log('weatherSection:', weatherSection);
   // console.log('locationWeatherId:', locationWeather.id);
   // console.log('locationWeather:', locationWeather);
   // console.log('locationForecast:', locationForecast);

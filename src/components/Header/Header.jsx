@@ -46,7 +46,7 @@ export const Header = ({ isOpen, setIsOpen }) => {
         aria-label="burger-menu"
         title="Menu"
         onClick={() => {
-          console.log('Header-isOpen', isOpen);
+          // console.log('Header-isOpen', isOpen);
           setIsOpen(!isOpen);
         }}
       >

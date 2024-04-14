@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Block, BlockItem, ImgDate } from './HourlyForecastCard.styled';
+import { Container, Block, BlockItem, ImgDate, BlockTemp } from './HourlyForecastCard.styled';
 
 export const HourlyForecastCard = ({ element }) => {
   return (
@@ -14,11 +14,11 @@ export const HourlyForecastCard = ({ element }) => {
         <BlockItem>
           <ImgDate
             src={`http://openweathermap.org/img/w/${element.weather[0].icon}.png`}
-            width="30"
+            width="38"
             alt="Weather icon"
           />
         </BlockItem>
-        <BlockItem>{Math.round(element.main.temp)}°</BlockItem>
+        <BlockTemp>{Math.round(element.main.temp)}°</BlockTemp>
       </Block>
     </Container>
   );

@@ -56,7 +56,7 @@ export const HourlyForecast = styled.li`
   background-color: rgba(21, 67, 96, 0.5);
 `;
 
-export const BlockHeader = styled.div`
+export const BlockHeader = styled.h3`
   width: 100%;
   text-align: start;
   font-size: 10px;
@@ -253,19 +253,25 @@ export const Humidity = styled.li`
   align-items: center;
   gap: 16px;
 
-  @media screen and (min-width: 767px) {
-    width: 130px;
-    height: 130px;
-  }
-
   backdrop-filter: blur(5px);
 
   color: #e7ecee;
-  text-align: center;
+  /* text-align: center; */
   /* font-family: Oswald; */
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
+
+  @media screen and (min-width: 767px) {
+    width: 130px;
+    height: 130px;
+
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1279px) {
+    font-size: 24px;
+  }
 `;
 
 export const Precipitation = styled.li`

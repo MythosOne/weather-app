@@ -11,6 +11,7 @@ import { WeatherList } from '../WeatherList/WeatherList';
 import {
   apiServiceSearchData,
   apiServiceForecastData,
+  apiServiceWeatherMaps,
 } from '../../Api/apiService';
 import { Loader } from '../Loader/Loader';
 
@@ -67,24 +68,26 @@ export const WeatherCity = ({
     let lat;
     let lon;
 
-    apiServiceSearchData(searchCity)
-      .then(data => {
-        setWeatherCities([...weatherCities, { ...data }]);
+    apiServiceSearchData(searchCity).then(data => {
+      setWeatherCities([...weatherCities, { ...data }]);
 
-        lat = data.coord.lat;
-        lon = data.coord.lon;
+      lat = data.coord.lat;
+      lon = data.coord.lon;
 
-        apiServiceForecastData(lat, lon)
-          .then(forecast =>
-            setForecastCities([...forecastCities, { ...forecast }])
-          )
-          .catch(error => console.error(error))
-          .finally(() => setIsLoading(false));
-      })
-      .catch(
-        // error => console.error(error)
-        () => alert("City not found")
-      )
+      apiServiceForecastData(lat, lon)
+        .then(forecast =>
+          setForecastCities([...forecastCities, { ...forecast }])
+        )
+        .catch(error => console.error(error))
+        .finally(() => setIsLoading(false));
+    });
+    // !!!! WeatherMap
+    apiServiceWeatherMaps(lat, lon)
+      .then(console.log('first'))
+      .catch(error => console.error(error))
+      .finally(() => setIsLoading(false))
+    // !!!! WeatherMap
+      .catch(() => alert('City not found'))
       .finally(() => setIsLoading(false));
   }, [searchCity]);
 
