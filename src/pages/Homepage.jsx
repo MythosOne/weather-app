@@ -37,7 +37,7 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
   // state location
   const [location, setLocation] = useState({
     latitude: null,
-    longitude:null,
+    longitude: null,
   });
 
   const [isLoading, setIsLoading] = useState(false);

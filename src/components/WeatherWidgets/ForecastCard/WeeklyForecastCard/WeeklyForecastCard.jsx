@@ -3,33 +3,57 @@ import React from 'react';
 import {
   Container,
   Block,
-  BlockItem,
+  ItemWeekDay,
+  ItemWeatherImg,
   ImgDate,
   BlockTemp,
   MaxTemp,
   MinTemp,
+  Text,
 } from './WeeklyForecastCard.styled';
 
-export const WeeklyForecastCard = ({ element }) => {
+export const WeeklyForecastCard = ({ weatherDay }) => {
+  console.log('weatherDay:', weatherDay);
+
+  const tempMin = weatherDay.reduce(
+    (minTemp, element) =>
+      minTemp < element.main.temp_min ? minTemp : element.main.temp_min,
+    weatherDay[0]
+  );
+
+  // const tempMin = sumTempMin / weatherDay.length;
+  console.log('tempMin: ', tempMin);
+
+  const tempMax = weatherDay.reduce(
+    (maxTemp, element) =>
+      maxTemp > element.main.temp_max ? maxTemp : element.main.temp_max,
+    weatherDay[0]
+  );
+  // const tempMax = sumTempMax / weatherDay.length;
+  console.log('tempMax: ', tempMax);
+
   return (
     <Container>
       <Block>
-        <BlockItem>
-          {new Date(element.dt * 1000).toLocaleDateString('en-US', {
+        <ItemWeekDay>
+          {new Date(weatherDay[0].dt * 1000).toLocaleDateString('en-US', {
             weekday: 'short',
           })}
           {/* {new Date(element.dt * 1000).getUTCDay()} */}
-        </BlockItem>
-        <BlockItem>
+        </ItemWeekDay>
+        <ItemWeatherImg>
           <ImgDate
-            src={`http://openweathermap.org/img/w/${element.weather[0].icon}.png`}
+            src={`http://openweathermap.org/img/w/${weatherDay[0].weather[0].icon}.png`}
             width="42"
             alt="Weather icon"
           />
-        </BlockItem>
+        </ItemWeatherImg>
         <BlockTemp>
-          <MaxTemp>"Max:" {Math.round(element.main.temp)}°</MaxTemp>
-          <MinTemp>"Min:" {Math.round(element.main.temp)}°</MinTemp>
+          <MaxTemp>
+            <Text>Max:</Text>{Math.round(tempMax)}°
+          </MaxTemp>
+          <MinTemp>
+            <Text>Min:</Text>{Math.round(tempMin)}°</MinTemp>
         </BlockTemp>
       </Block>
     </Container>

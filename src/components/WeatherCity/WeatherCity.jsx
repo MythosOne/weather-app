@@ -89,7 +89,7 @@ export const WeatherCity = ({
     // !!!! WeatherMap
       .catch(() => alert('City not found'))
       .finally(() => setIsLoading(false));
-  }, [searchCity]);
+  }, [searchCity, forecastCities]);
 
   localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
   localStorage.setItem('forecastCities', JSON.stringify(forecastCities));

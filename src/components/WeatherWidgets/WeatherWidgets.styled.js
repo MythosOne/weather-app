@@ -136,6 +136,7 @@ export const PrecipitationMap = styled.li`
 `;
 
 export const Sunrise = styled.li`
+  /* position: relative; */
   grid-area: sunrise;
 
   box-sizing: border-box;
@@ -156,8 +157,8 @@ export const Sunrise = styled.li`
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 
   color: #e7ecee;
   text-align: center;
@@ -169,7 +170,45 @@ export const Sunrise = styled.li`
   /* text-transform: uppercase; */
 `;
 
+export const Block = styled.div`
+  display: grid;
+  place-items: center;
+  grid-template-areas:
+    'pictureSunrise textSunrise'
+    'pictureSunset textSunset';
+
+    width: 100%;
+    height: 100%;
+`;
+
+export const PictureSunrise = styled.picture`
+  grid-area: pictureSunrise;
+`;
+
+export const PictureSunset = styled.picture`
+  grid-area: pictureSunset;
+`;
+
+export const TextSunrise = styled.p`
+  /* position: absolute; */
+  grid-area: textSunrise;
+
+  bottom: 8px;
+  right: 8px;
+  font-size: 12px;
+`;
+
+export const TextSunset = styled.p`
+  /* position: absolute; */
+  grid-area: textSunset;
+
+  top: 8px;
+  right: 8px;
+  font-size: 12px;
+`;
+
 export const Wind = styled.li`
+  position: relative;
   grid-area: wind;
 
   box-sizing: border-box;
@@ -183,13 +222,15 @@ export const Wind = styled.li`
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 16px;
+  gap: 4px;
 
   @media screen and (min-width: 767px) {
     width: 130px;
     height: 130px;
+
+    gap: 16px;
   }
 
   backdrop-filter: blur(5px);
@@ -203,6 +244,7 @@ export const Wind = styled.li`
 `;
 
 export const Visibility = styled.li`
+  position: relative;
   grid-area: visibility;
 
   box-sizing: border-box;
@@ -216,13 +258,15 @@ export const Visibility = styled.li`
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 16px;
+  gap: 4px;
 
   @media screen and (min-width: 767px) {
     width: 130px;
     height: 130px;
+
+    gap: 16px;
   }
 
   backdrop-filter: blur(5px);
@@ -236,6 +280,7 @@ export const Visibility = styled.li`
 `;
 
 export const Humidity = styled.li`
+  position: relative;
   grid-area: humidity;
 
   box-sizing: border-box;
@@ -251,7 +296,7 @@ export const Humidity = styled.li`
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  gap: 16px;
+  gap: 4px;
 
   backdrop-filter: blur(5px);
 
@@ -267,6 +312,7 @@ export const Humidity = styled.li`
     height: 130px;
 
     font-size: 20px;
+    gap: 16px;
   }
 
   @media screen and (min-width: 1279px) {
@@ -298,6 +344,7 @@ export const Precipitation = styled.li`
 `;
 
 export const Pressure = styled.li`
+  position: relative;
   display: none;
   grid-area: pressure;
 
@@ -307,7 +354,7 @@ export const Pressure = styled.li`
   @media screen and (min-width: 1279px) {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 16px;
 
@@ -317,5 +364,17 @@ export const Pressure = styled.li`
     border-radius: 12px;
     background-color: rgba(21, 67, 96, 0.5);
     backdrop-filter: blur(5px);
+  }
+`;
+
+export const Text = styled.p`
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  font-size: 14px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 20px;
+    bottom: 8px;
   }
 `;

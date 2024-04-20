@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Block, BlockItem, ImgDate, BlockTemp } from './HourlyForecastCard.styled';
 
 export const HourlyForecastCard = ({ element }) => {
+  console.log("element:", element);
   return (
     <Container>
       <Block>
