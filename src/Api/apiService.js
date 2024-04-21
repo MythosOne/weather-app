@@ -28,9 +28,10 @@ export async function apiServiceForecastData(lat, lon) {
   return resp.data;
 }
 
-export async function apiServiceWeatherMaps(lat, lon) {
+export async function apiServiceWeatherMaps() {
+  const layer = 'precipitation_new';
   const resp = await axios.get(
-    `${BASE_URL_MAPS}/{precipitation_new}/{0}/${lat}/${lon}.png?appid=${API_KEY}`
+    `${BASE_URL_MAPS}/${layer}/{z}/{x}/{y}.png?appid=${API_KEY}`
   );
 
   return resp.data;

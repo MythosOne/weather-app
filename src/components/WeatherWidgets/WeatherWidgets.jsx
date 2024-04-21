@@ -8,6 +8,7 @@ import {
   WeeklyForecast,
   // BlockWeeklyWater,
   PrecipitationMap,
+  BlockMap,
   Sunrise,
   PictureSunrise,
   PictureSunset,
@@ -34,6 +35,7 @@ import {
 
 import { HourlyForecastList } from './ForecastList/HourlyForecastList/HourlyForecastList';
 import { WeeklyForecastList } from './ForecastList/WeeklyForecastList/WeeklyForecastList';
+import { WeatherMap } from '../WeatherWidgets/WeatherMap';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
   const UTCTime = unixTime => {
@@ -45,6 +47,8 @@ export const WeatherWidgets = ({ weather, forecast }) => {
   };
   // console.log('weather:', weather);
   // console.log('forecast:', forecast);
+  // console.log("weather.coord.lon:", weather.coord.lon)
+  const { lat, lon } = weather.coord;
 
   return (
     <Container>
@@ -58,6 +62,9 @@ export const WeatherWidgets = ({ weather, forecast }) => {
       </WeeklyForecast>
       <PrecipitationMap>
         <BlockHeader>Precipitation Map</BlockHeader>
+        <BlockMap>
+          <WeatherMap lon={lon} lat={lat} city = {weather.name} />
+        </BlockMap>
       </PrecipitationMap>
       <Sunrise>
         <BlockHeader>Sunrise</BlockHeader>

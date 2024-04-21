@@ -13,7 +13,7 @@ import {
 } from './WeeklyForecastCard.styled';
 
 export const WeeklyForecastCard = ({ weatherDay }) => {
-  console.log('weatherDay:', weatherDay);
+  // console.log('weatherDay:', weatherDay);
 
   const tempMin = weatherDay.reduce(
     (minTemp, element) =>
@@ -22,7 +22,7 @@ export const WeeklyForecastCard = ({ weatherDay }) => {
   );
 
   // const tempMin = sumTempMin / weatherDay.length;
-  console.log('tempMin: ', tempMin);
+  // console.log('tempMin: ', tempMin);
 
   const tempMax = weatherDay.reduce(
     (maxTemp, element) =>
@@ -30,7 +30,7 @@ export const WeeklyForecastCard = ({ weatherDay }) => {
     weatherDay[0]
   );
   // const tempMax = sumTempMax / weatherDay.length;
-  console.log('tempMax: ', tempMax);
+  // console.log('tempMax: ', tempMax);
 
   return (
     <Container>

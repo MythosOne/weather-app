@@ -5,6 +5,8 @@ export const Container = styled.div`
   scrollbar-width: none;
 
   height: 100%;
+
+  padding-top: 8px;
 `;
 
 export const ForecastList = styled.ul`

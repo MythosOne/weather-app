@@ -86,7 +86,7 @@ export const WeatherCity = ({
       .then(console.log('first'))
       .catch(error => console.error(error))
       .finally(() => setIsLoading(false))
-    // !!!! WeatherMap
+      // !!!! WeatherMap
       .catch(() => alert('City not found'))
       .finally(() => setIsLoading(false));
   }, [searchCity, forecastCities]);

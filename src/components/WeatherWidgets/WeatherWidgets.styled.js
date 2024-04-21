@@ -135,6 +135,16 @@ export const PrecipitationMap = styled.li`
   }
 `;
 
+export const BlockMap = styled.div`
+  /* overflow: auto;
+  scrollbar-width: none; */
+
+  margin-top: 5px;
+  /* box-sizing: border-box; */
+  width: 100%;
+  height: 90%;
+`;
+
 export const Sunrise = styled.li`
   /* position: relative; */
   grid-area: sunrise;
@@ -177,8 +187,8 @@ export const Block = styled.div`
     'pictureSunrise textSunrise'
     'pictureSunset textSunset';
 
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 `;
 
 export const PictureSunrise = styled.picture`

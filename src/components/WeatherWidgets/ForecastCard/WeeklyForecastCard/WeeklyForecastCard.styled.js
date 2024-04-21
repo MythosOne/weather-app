@@ -7,6 +7,10 @@ export const Container = styled.li`
   &:last-child {
     border-bottom: none;
   }
+
+  @media screen and (min-width: 1279px) {
+    border-bottom: none;
+  }
 `;
 
 export const Block = styled.ul`
@@ -17,9 +21,9 @@ export const Block = styled.ul`
 
   grid-template-areas:
     'weekDay blockTemp'
-    'weekDay blockTemp'
-    'itemWeatgImg blockTemp'
-    'itemWeatgImg blockTemp';
+    'itemWeatherImg blockTemp'
+    'itemWeatherImg blockTemp'
+    'itemWeatherImg blockTemp';
 
   /* display: flex;
   align-items: center;
@@ -35,7 +39,19 @@ export const Block = styled.ul`
   @media screen and (min-width: 1279px) {
     flex-direction: column;
     border: none;
+    justify-items: start;
     /* padding: 0; */
+
+    grid-template-areas:
+      'weekDay weekDay'
+      /* 'weekDay blockTemp' */
+      'itemWeatherImg blockTemp'
+      'itemWeatherImg blockTemp';
+    /* 'itemWeatherImg blockTemp'; */
+
+    gap: 8px;
+
+    align-items: center;
   }
 `;
 
@@ -44,7 +60,7 @@ export const ItemWeekDay = styled.li`
 `;
 
 export const ItemWeatherImg = styled.li`
-  grid-area: itemWeatgImg;
+  grid-area: itemWeatherImg;
 `;
 
 export const BlockTemp = styled.li`
@@ -65,9 +81,9 @@ export const MinTemp = styled.div`
   justify-content: space-evenly;
   margin-top: 8px;
 
-  @media screen and (min-width: 1279px) {
+  /* @media screen and (min-width: 1279px) {
     margin: 0;
-  }
+  } */
 `;
 
 export const Text = styled.p`
