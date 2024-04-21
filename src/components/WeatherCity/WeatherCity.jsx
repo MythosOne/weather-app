@@ -71,8 +71,9 @@ export const WeatherCity = ({
     apiServiceSearchData(searchCity).then(data => {
       setWeatherCities([...weatherCities, { ...data }]);
 
-      lat = data.coord.lat;
-      lon = data.coord.lon;
+      // lat = data.coord.lat;
+      // lon = data.coord.lon;
+      const { lat, lon } = data.coord;
 
       apiServiceForecastData(lat, lon)
         .then(forecast =>
@@ -82,14 +83,14 @@ export const WeatherCity = ({
         .finally(() => setIsLoading(false));
     });
     // !!!! WeatherMap
-    apiServiceWeatherMaps(lat, lon)
-      .then(console.log('first'))
+    apiServiceWeatherMaps()
+      .then(console.log("1.png"))
       .catch(error => console.error(error))
       .finally(() => setIsLoading(false))
       // !!!! WeatherMap
       .catch(() => alert('City not found'))
       .finally(() => setIsLoading(false));
-  }, [searchCity, forecastCities]);
+  }, [searchCity]);
 
   localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
   localStorage.setItem('forecastCities', JSON.stringify(forecastCities));

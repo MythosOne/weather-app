@@ -35,7 +35,7 @@ import {
 
 import { HourlyForecastList } from './ForecastList/HourlyForecastList/HourlyForecastList';
 import { WeeklyForecastList } from './ForecastList/WeeklyForecastList/WeeklyForecastList';
-import { WeatherMap } from '../WeatherWidgets/WeatherMap';
+import { WeatherMap } from './WeatherMap/WeatherMap';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
   const UTCTime = unixTime => {

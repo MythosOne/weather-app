@@ -65,6 +65,10 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
     console.log(error);
   };
 
+  useEffect(()=>{
+    localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
+  }, [weatherCities])
+
   useEffect(() => {
     setIsLoading(true);
 
