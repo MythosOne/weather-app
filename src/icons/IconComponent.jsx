@@ -128,6 +128,18 @@ export const CloseCardImg = ({ stroke }) => {
 //   );
 // };
 
+export const AverageTempImg = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+      <image
+        width="48"
+        height="48"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAACIklEQVR4nO3VsUvjUBwH8Czn3V+jgn+AgyAieEOahx5HI6Hp0NJk0O3mVhE0WZQTB7VWsS6Kot5ytNmKsSc2tLWvHWoE4eottWACWo28ox4ZqmmreelJv/DdGvrh/X7JI4j3mpnv0a+L0QMpvBvLoy5Gf0gzS1tfiHaIuLK9IJ3AivqnYpgbT2Yr4vLOvOMnVw+nPiGPMxVHTxKN9TmcWisat/mZxMCAUa+2ACN7cWgFXNuLQcKprO9LRSvg+r5U7ADf8gQTOHewM+LX5l2eYKKzg6bIo2PV/MSk8VLl0bEq4VQyAe5OF0XjpWYC3N1/Bfz87cCo17YBYk0mwN02ALwlnEra59esgGmfX3MMCL3eSysgZL2Xju1gweMpWgELHo9zN0kH+JocDg19LLDsueWIWfYc/RbrDsb7+z+dUtTP66mpeyvgdSj0oFBUzIy0PSmXK4z+2AqnPyGnp+9PSXIVC+5oeLhX5fmrRnF6rRc8XzoZHOyxHai4XBs3s7NN4XRRNG7m5gwFgLDtQEjTcrM4vdbc+PiR7cA8w+RaBeYZJocDCNsamKXp41aBZ263bDtQAWBTE4SmcZogGOgFw/OZ4bhSs0CV437/GhnpJnAkRZKRcgO3iF5rORSqKhSF50ONkgagKwWAVA4Gqw3i4sm+vg/YgP+QJBlReb5Ubyc1Qfg7VnQtYseZg64vBYCNM5qWIcNA1KzbLaMXAtvOtUseAfsDlHmPgTRHAAAAAElFTkSuQmCC"
+      />
+    </svg>
+  );
+};
+
 export const SunriseImg = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">

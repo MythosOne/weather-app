@@ -60,7 +60,6 @@ export const BlockHeader = styled.h3`
   width: 100%;
   text-align: start;
   font-size: 10px;
-  font-size: 10px;
   font-weight: 500;
   text-transform: uppercase;
   color: #6382af;
@@ -340,7 +339,7 @@ export const Precipitation = styled.li`
   @media screen and (min-width: 1279px) {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: flex-start;
     align-items: center;
     gap: 16px;
 

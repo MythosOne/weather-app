@@ -28,8 +28,9 @@ import {
   SunriseImg,
   SunsetImg,
   HumidityImg,
+  AverageTempImg,
   PressureImg,
-  PrecipitationImg,
+  // PrecipitationImg,
   VisibilityImg,
 } from 'icons/IconComponent';
 
@@ -39,7 +40,7 @@ import { WeatherMap } from './WeatherMap/WeatherMap';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
   const UTCTime = unixTime => {
-    let time = new Date(unixTime * 1000);
+    let time = new Date((unixTime + weather.timezone) * 1000);
     return `${time.getUTCHours().toString().padStart(2, '0')}:${time
       .getUTCMinutes()
       .toString()
@@ -63,7 +64,7 @@ export const WeatherWidgets = ({ weather, forecast }) => {
       <PrecipitationMap>
         <BlockHeader>Precipitation Map</BlockHeader>
         <BlockMap>
-          <WeatherMap lon={lon} lat={lat} city = {weather.name} />
+          <WeatherMap lon={lon} lat={lat} city={weather.name} />
         </BlockMap>
       </PrecipitationMap>
       <Sunrise>
@@ -107,8 +108,11 @@ export const WeatherWidgets = ({ weather, forecast }) => {
         <Text>{weather.main.humidity}%</Text>
       </Humidity>
       <Precipitation>
-        <BlockHeader>Precipitation</BlockHeader>
-        <PrecipitationImg />
+        {/* <BlockHeader>Precipitation</BlockHeader>
+        <PrecipitationImg /> */}
+        <BlockHeader>Average temp 24 hrs</BlockHeader>
+        <AverageTempImg />
+        <Text style={{color:"red", fontWeight:"900"}}>{weather.main.pressure}°C</Text>
       </Precipitation>
       <Pressure>
         <BlockHeader>Pressure</BlockHeader>

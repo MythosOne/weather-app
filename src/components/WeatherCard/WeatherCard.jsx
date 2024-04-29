@@ -77,8 +77,8 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
           <Description>{weatherCity.weather[0].description}</Description>
         </Blockweather>
         <Location>
-          H:{Math.trunc(weatherCity.coord.lat)} L:
-          {Math.trunc(weatherCity.coord.lon)}
+          H:{Math.trunc(weatherCity.coord.lat)}° L:
+          {Math.trunc(weatherCity.coord.lon)}°
         </Location>
       </Block>
       {onCloseBtn && (

@@ -11,7 +11,7 @@ import { WeatherList } from '../WeatherList/WeatherList';
 import {
   apiServiceSearchData,
   apiServiceForecastData,
-  apiServiceWeatherMaps,
+  // apiServiceWeatherMaps,
 } from '../../Api/apiService';
 import { Loader } from '../Loader/Loader';
 
@@ -65,14 +65,9 @@ export const WeatherCity = ({
 
     setIsLoading(true);
 
-    let lat;
-    let lon;
+    apiServiceSearchData(searchCity)
+    .then(data => {setWeatherCities([...weatherCities, { ...data }]);
 
-    apiServiceSearchData(searchCity).then(data => {
-      setWeatherCities([...weatherCities, { ...data }]);
-
-      // lat = data.coord.lat;
-      // lon = data.coord.lon;
       const { lat, lon } = data.coord;
 
       apiServiceForecastData(lat, lon)
@@ -80,16 +75,10 @@ export const WeatherCity = ({
           setForecastCities([...forecastCities, { ...forecast }])
         )
         .catch(error => console.error(error))
-        .finally(() => setIsLoading(false));
-    });
-    // !!!! WeatherMap
-    apiServiceWeatherMaps()
-      .then(console.log("1.png"))
-      .catch(error => console.error(error))
-      .finally(() => setIsLoading(false))
-      // !!!! WeatherMap
-      .catch(() => alert('City not found'))
-      .finally(() => setIsLoading(false));
+        })
+    .catch(() => alert('City not found'))
+    .finally(() => setIsLoading(false));
+    
   }, [searchCity]);
 
   localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
@@ -97,8 +86,11 @@ export const WeatherCity = ({
 
   const onDeleteCard = cityId => {
     setCityId(cityId);
+
     setWeatherCities(weatherCities.filter(({ id }) => id !== cityId));
     // console.log('WeatherCity weatherCities:', weatherCities);
+    // !!!! Работает очистка local Storage forecastCities при удалении карточки погоды города.
+    setForecastCities(forecastCities.filter(({city}) => city.id !== cityId));
   };
 
   return (

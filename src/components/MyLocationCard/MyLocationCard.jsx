@@ -40,7 +40,7 @@ function MyLocationCard({ weather }) {
           <Description>{weather.weather[0].description}</Description>
         </Blockweather>
         <Location>
-          H:{Math.trunc(weather.coord.lat)} L:{Math.trunc(weather.coord.lon)}
+          H:{Math.trunc(weather.coord.lat)}° L:{Math.trunc(weather.coord.lon)}°
         </Location>
       </Block>
     </Container>

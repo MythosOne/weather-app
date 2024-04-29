@@ -5,6 +5,7 @@ import { HomePageContext } from 'pages/Homepage';
 
 export const WeatherList = ({ onCloseBtn, onDeleteCard }) => {
   const { weatherCities, handlerSelectWeatherCity } = useContext(HomePageContext);
+
   return (
     <Container>
       {weatherCities.map(city => (
