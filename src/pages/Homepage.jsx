@@ -88,24 +88,21 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
             myLocation: true,
           })
         )
-        .catch(error => console.error(error))
+        .catch(error => console.error('Error fetching weather data:', error))
         .finally(() => setIsLoading(false));
 
       apiServiceForecastData(latitude, longitude)
         .then(forecast => setLocationForecast(forecast))
-        .catch(error => console.error(error))
+        .catch(error => console.error('Error fetching forecast data:', error))
         .finally(() => setIsLoading(false));
     }
 
     const updatedWeatherCities = [...weatherCities];
     const updatedForecastCities = [...forecastCities];
 
-    let lat;
-    let lon;
-
     weatherCities.forEach(weatherCity => {
-      lat = weatherCity.coord.lat;
-      lon = weatherCity.coord.lon;
+      const lat = weatherCity.coord.lat;
+      const lon = weatherCity.coord.lon;
 
       apiServiceWeatherData(lat, lon)
         .then(weather => {
@@ -117,36 +114,39 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
             updatedWeatherCities[indexToUpdate] = {
               ...weatherCity,
               ...weather,
-              string: 'ОБНОВИЛСЯ!!!!!',
             };
           }
 
           setWeatherCities(updatedWeatherCities);
         })
-        .catch(error => console.error(error))
+        .catch(error => console.error('Error fetching weather data:', error))
         .finally(() => setIsLoading(false));
     });
 
     forecastCities.forEach(forecastCity => {
+      const lat = forecastCity.city.coord.lat;
+      const lon = forecastCity.city.coord.lon;
+
       apiServiceForecastData(lat, lon)
         .then(forecast => {
           const indexToUpdate = updatedForecastCities.findIndex(
-            city => city.id === forecastCity.city.id
+            ({city}) => city.id === forecastCity.city.id
           );
-          console.log(indexToUpdate);
+          // console.log(indexToUpdate);
           if (indexToUpdate !== -1) {
             updatedForecastCities[indexToUpdate] = {
               ...forecastCity,
               ...forecast,
-              string: 'ОБНОВИЛСЯ!!!!!',
             };
           }
 
           setForecastCities(updatedForecastCities);
         })
-        .catch(error => console.error(error))
+        .catch(error => console.error('Error fetching forecast data:', error))
         .finally(() => setIsLoading(false));
     });
+// !!! На iOS не исчезает значок загрузки при получении данных по геолокации. 
+    setIsLoading(false);
   }, [latitude, longitude]);
 
   localStorage.setItem('locationWeather', JSON.stringify(locationWeather));

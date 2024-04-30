@@ -10,12 +10,14 @@ import {
   PrecipitationMap,
   BlockMap,
   Sunrise,
+  BlockSunrise,
   PictureSunrise,
-  PictureSunset,
   TextSunrise,
-  BlockText,
+  // BlockText,
+  BlockSunset,
   TextSunset,
-  TimeSunset,
+  Time,
+  PictureSunset,
   Wind,
   Visibility,
   Humidity,
@@ -89,18 +91,22 @@ export const WeatherWidgets = ({ weather, forecast }) => {
         <BlockHeader>Sunrise</BlockHeader>
         {/* <WiSunrise style={{ width: '24px', height: '24px' }} /> */}
         <Block>
-          <TextSunrise>
+          <BlockSunrise>
+            <TextSunrise>Sunrise</TextSunrise>
+            <Time>{UTCTime(weather.sys.sunrise)}</Time>
+          </BlockSunrise>
+          {/* <TextSunrise>
             Sunrise
             <br />
             {UTCTime(weather.sys.sunrise)}
-          </TextSunrise>
+          </TextSunrise> */}
           <PictureSunrise>
             <SunriseImg />
           </PictureSunrise>
-          <BlockText>
+          <BlockSunset>
             <TextSunset>Sunset</TextSunset>
-            <TimeSunset>{UTCTime(weather.sys.sunset)}</TimeSunset>
-          </BlockText>
+            <Time>{UTCTime(weather.sys.sunset)}</Time>
+          </BlockSunset>
           <PictureSunset>
             <SunsetImg />
           </PictureSunset>

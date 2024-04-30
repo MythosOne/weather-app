@@ -31,6 +31,8 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
   // console.log(timezone)
   const [currentTime, setCurrentTime] = useState(new Date());
   // console.log(currentTime);
+  const [showComponent, setShowComponent] = useState(false);
+  // console.log('showComponent:', showComponent);
 
   const iconUrl = `http://openweathermap.org/img/w/${weatherCity.weather[0].icon}.png`;
 
@@ -47,9 +49,6 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
       clearInterval(interval);
     };
   }, []);
-
-  const [showComponent, setShowComponent] = useState(false);
-  // console.log('showComponent:', showComponent);
 
   useEffect(() => {
     setShowComponent(!showComponent);

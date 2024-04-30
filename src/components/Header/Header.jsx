@@ -54,7 +54,7 @@ export const Header = ({ isOpen, setIsOpen }) => {
       </MenuBtn>
       <BlockClock>
         <CurrentTime>{`${currentTime.toLocaleTimeString('en-US')}` /*or  toLocaleTimeString([], currentTime.{ hour: "2-digit", minute: "2-digit" })*/}</CurrentTime>
-        <CurrentDate>{`${formattedDate}`}</CurrentDate>
+        <CurrentDate>{`${formattedDate.toLocaleString('en-US')}`}</CurrentDate>
       </BlockClock>
       <Logo />
     </Section>

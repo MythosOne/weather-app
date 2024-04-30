@@ -198,16 +198,21 @@ export const PictureSunset = styled.picture`
   grid-area: pictureSunset;
 `;
 
+export const BlockSunrise = styled.div`
+  grid-area: textSunrise;
+`;
+
 export const TextSunrise = styled.p`
   /* position: absolute; */
-  grid-area: textSunrise;
+  /* grid-area: textSunrise; */
 
   bottom: 8px;
   right: 8px;
   font-size: 12px;
+  color: #6382af;
 `;
 
-export const BlockText = styled.div`
+export const BlockSunset = styled.div`
   grid-area: textSunset;
 `;
 
@@ -219,7 +224,7 @@ export const TextSunset = styled.span`
   color: #6382af;
 `;
 
-export const TimeSunset = styled.p`
+export const Time = styled.p`
   font-size: 20px;`;
 
 export const Wind = styled.li`
