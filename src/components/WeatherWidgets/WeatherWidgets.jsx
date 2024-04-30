@@ -13,7 +13,9 @@ import {
   PictureSunrise,
   PictureSunset,
   TextSunrise,
+  BlockText,
   TextSunset,
+  TimeSunset,
   Wind,
   Visibility,
   Humidity,
@@ -37,6 +39,7 @@ import {
 import { HourlyForecastList } from './ForecastList/HourlyForecastList/HourlyForecastList';
 import { WeeklyForecastList } from './ForecastList/WeeklyForecastList/WeeklyForecastList';
 import { WeatherMap } from './WeatherMap/WeatherMap';
+import { AverageTemp } from './AverageTemp/AverageTemp';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
   const UTCTime = unixTime => {
@@ -50,6 +53,21 @@ export const WeatherWidgets = ({ weather, forecast }) => {
   // console.log('forecast:', forecast);
   // console.log("weather.coord.lon:", weather.coord.lon)
   const { lat, lon } = weather.coord;
+
+  const arrTemp = [];
+
+  const averageTemp = ({ forecast }) => {
+    forecast.list.map((element, index) => {
+      if (index <= 7) {
+        arrTemp.push(element.main.temp);
+      }
+    });
+    const averageTemp = arrTemp.reduce((prevTemp, temp) => {
+      return prevTemp + temp;
+    }, 0);
+    console.log(forecast.city.name);
+    return <p>{Math.round(averageTemp / arrTemp.length)}°C</p>;
+  };
 
   return (
     <Container>
@@ -79,16 +97,15 @@ export const WeatherWidgets = ({ weather, forecast }) => {
           <PictureSunrise>
             <SunriseImg />
           </PictureSunrise>
-          {/* {new Date(weather.sys.sunrise * 1000).toUTCString()} */}
-          {/* <WiSunset style={{ width: '24px', height: '24px' }} /> */}
-          <TextSunset>
-            Sunset
-            <br />
-            {UTCTime(weather.sys.sunset)}
-          </TextSunset>
+          <BlockText>
+            <TextSunset>Sunset</TextSunset>
+            <TimeSunset>{UTCTime(weather.sys.sunset)}</TimeSunset>
+          </BlockText>
           <PictureSunset>
             <SunsetImg />
           </PictureSunset>
+          {/* {new Date(weather.sys.sunrise * 1000).toUTCString()} */}
+          {/* <WiSunset style={{ width: '24px', height: '24px' }} /> */}
         </Block>
         {/* Sunset {new Date(weather.sys.sunset * 1000).toUTCString()} */}
       </Sunrise>
@@ -112,7 +129,10 @@ export const WeatherWidgets = ({ weather, forecast }) => {
         <PrecipitationImg /> */}
         <BlockHeader>Average temp 24 hrs</BlockHeader>
         <AverageTempImg />
-        <Text style={{color:"red", fontWeight:"900"}}>{weather.main.pressure}°C</Text>
+        <AverageTemp forecast={forecast} />
+        {/* <Text style={{ color: 'red', fontWeight: '900' }}>
+          {averageTemp({ forecast })}°C
+        </Text> */}
       </Precipitation>
       <Pressure>
         <BlockHeader>Pressure</BlockHeader>

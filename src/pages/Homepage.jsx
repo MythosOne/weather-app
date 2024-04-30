@@ -130,7 +130,7 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
     forecastCities.forEach(forecastCity => {
       apiServiceForecastData(lat, lon)
         .then(forecast => {
-          const indexToUpdate = updatedWeatherCities.findIndex(
+          const indexToUpdate = updatedForecastCities.findIndex(
             city => city.id === forecastCity.city.id
           );
           console.log(indexToUpdate);
