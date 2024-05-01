@@ -25,6 +25,8 @@ export const WeatherBar = styled.section`
     position: sticky;
     top: 70px;
 
+    margin: 70px auto 20px;
+
     width: 260px;
     height: inherit;
 
@@ -36,6 +38,8 @@ export const WeatherBar = styled.section`
   @media screen and (min-width: 1279px) {
     width: 280px;
     align-self: stretch;
+
+    margin: 0;
     /* grid-template-columns: 1fr; */
     /* height: calc(100% - 120px); */
     /* background-color: rgba(21, 67, 96, 0.5); */

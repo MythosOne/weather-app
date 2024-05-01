@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+import { createPortal } from 'react-dom';
 import { SearchBar } from '../SearchBar/SearchBar';
 import {
   WeatherBar,
@@ -41,6 +42,21 @@ export const WeatherCity = ({
 
   const { weatherCities, setWeatherCities } = useContext(HomePageContext);
   // console.log("weatherCities:", weatherCities)
+// !!! portal
+  // const [portal, setPortal] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+// !!! portal
+  // useEffect(() => {
+  //   setPortal(document.getElementById('mobile-portal'));
+  // }, []);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const mobilePortal = document.getElementById('mobile-portal');
 
   useEffect(() => {
     if (isOpen) {
@@ -66,19 +82,19 @@ export const WeatherCity = ({
     setIsLoading(true);
 
     apiServiceSearchData(searchCity)
-    .then(data => {setWeatherCities([...weatherCities, { ...data }]);
+      .then(data => {
+        setWeatherCities([...weatherCities, { ...data }]);
 
-      const { lat, lon } = data.coord;
+        const { lat, lon } = data.coord;
 
-      apiServiceForecastData(lat, lon)
-        .then(forecast =>
-          setForecastCities([...forecastCities, { ...forecast }])
-        )
-        .catch(error => console.error(error))
-        })
-    .catch(() => alert('City not found'))
-    .finally(() => setIsLoading(false));
-    
+        apiServiceForecastData(lat, lon)
+          .then(forecast =>
+            setForecastCities([...forecastCities, { ...forecast }])
+          )
+          .catch(error => console.error(error));
+      })
+      .catch(() => alert('City not found'))
+      .finally(() => setIsLoading(false));
   }, [searchCity]);
 
   localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
@@ -90,10 +106,10 @@ export const WeatherCity = ({
     setWeatherCities(weatherCities.filter(({ id }) => id !== cityId));
     // console.log('WeatherCity weatherCities:', weatherCities);
     // !!!! Работает очистка local Storage forecastCities при удалении карточки погоды города.
-    setForecastCities(forecastCities.filter(({city}) => city.id !== cityId));
+    setForecastCities(forecastCities.filter(({ city }) => city.id !== cityId));
   };
 
-  return (
+  const content = (
     <WeatherBar dataOffset={offset}>
       <BlockBtn>
         <ListBtn
@@ -124,4 +140,10 @@ export const WeatherCity = ({
       {isLoading && <Loader />}
     </WeatherBar>
   );
+
+  if (windowWidth <= 768 && mobilePortal) {
+    return createPortal(content, mobilePortal);
+  }
+
+  return content;
 };
