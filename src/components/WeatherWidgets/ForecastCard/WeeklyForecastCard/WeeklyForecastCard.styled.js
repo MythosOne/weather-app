@@ -15,7 +15,6 @@ export const Container = styled.li`
 
 export const Block = styled.ul`
   list-style: none;
-  /* padding-left: 6px; */
   display: grid;
   justify-items: center;
 
@@ -25,30 +24,13 @@ export const Block = styled.ul`
     'itemWeatherImg blockTemp'
     'itemWeatherImg blockTemp';
 
-  /* display: flex;
-  align-items: center;
-  justify-content: space-around; */
-
-  /* padding: 5px 0; */
-  /* height: 100%; */
-
-  /* @media screen and (max-width: 380px) {
-    padding-left: 0;
-  } */
-
   @media screen and (min-width: 1279px) {
     flex-direction: column;
     border: none;
     justify-items: start;
-    /* padding: 0; */
-
     grid-template-areas:
-      'weekDay weekDay'
-      /* 'weekDay blockTemp' */
-      'itemWeatherImg blockTemp'
+      'weekDay weekDay' 'itemWeatherImg blockTemp'
       'itemWeatherImg blockTemp';
-    /* 'itemWeatherImg blockTemp'; */
-
     gap: 8px;
 
     align-items: center;
@@ -80,10 +62,6 @@ export const MinTemp = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin-top: 8px;
-
-  /* @media screen and (min-width: 1279px) {
-    margin: 0;
-  } */
 `;
 
 export const Text = styled.p`

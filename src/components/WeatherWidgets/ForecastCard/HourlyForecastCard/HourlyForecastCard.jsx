@@ -2,14 +2,13 @@ import React from 'react';
 import { Container, Block, BlockItem, ImgDate, BlockTemp } from './HourlyForecastCard.styled';
 
 export const HourlyForecastCard = ({ element }) => {
-  // console.log("element:", element);
+  
   return (
     <Container>
       <Block>
         <BlockItem>
           {new Date(element.dt * 1000).toLocaleTimeString([], {
             hour: '2-digit',
-            // minute: '2-digit',
           })}
         </BlockItem>
         <BlockItem>

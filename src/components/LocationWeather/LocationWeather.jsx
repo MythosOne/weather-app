@@ -11,8 +11,6 @@ function LocationWeather({ weather }) {
   return (
     <Container id="LocationWeather">
       {weather.myLocation === true ? <MyLocation>My Location</MyLocation> : <City>{weather.name}</City>}
-      {/* <MyLocation>My Location</MyLocation> */}
-      {/* <City>{weather.name}</City> */}
       <Temperature>{Math.trunc(weather.main.temp)}°</Temperature>
       <Description>{weather.weather[0].description}</Description>
       <Location>

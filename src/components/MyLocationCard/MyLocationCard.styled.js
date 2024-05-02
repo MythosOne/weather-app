@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const Container = styled.ul`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: stretch;
   gap: 13px;
 
@@ -17,7 +16,6 @@ export const Container = styled.ul`
   border-color: rgba(240, 243, 244, 0);
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
-  /* box-shadow: 3px 4px 8px rgba(136, 198, 253, 0.5); */
 
   &:hover {
     border-color: rgba(240, 243, 244, 0.5);
@@ -37,7 +35,7 @@ export const BlockItem = styled.div`
   flex-direction: column;
 `;
 
-export const Blockweather = styled.div`
+export const BlockWeather = styled.div`
 display: flex;
 align-items: center;
 gap: 5px;

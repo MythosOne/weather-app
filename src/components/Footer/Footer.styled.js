@@ -20,25 +20,11 @@ export const Section = styled.footer`
   border-top: 2px solid transparent;
   border-image: radial-gradient(circle, #a3d4ff, transparent) 1 0%;
 
-  /* padding: 36px 20px 10px; */
-
-  /* bottom: 0;
-  left: 0;
-  position: fixed;
-  z-index: 1000; */
-
-  /* backdrop-filter: blur(50px); */
-
   @media screen and (min-width: 767px) {
     max-width: none;
     width: 708px;
-    /* margin: 0 auto; */
-    backdrop-filter: none;
 
-    /* bottom: 0;
-    left: 0; */
-    /* position: fixed;
-    z-index: 1000; */
+    backdrop-filter: none;
 
     grid-template-areas:
       'logo linkList arrowUp '
@@ -51,8 +37,6 @@ export const Section = styled.footer`
 
   @media screen and (min-width: 1279px) {
     width: 1040px;
-
-    /* position: static; */
   }
 `;
 
@@ -108,9 +92,6 @@ export const Copyright = styled.span`
   grid-area: copyright;
   text-align: center;
 
-  /* width: 100px; */
-
-  /* font-family: 'Fira Sans'; */
   font-size: 10px;
   font-style: normal;
   font-weight: 400;

@@ -7,6 +7,4 @@ export const LoaderSpinner = styled.div`
   right: 0;
   bottom: 0;
   z-index: 1001;
-  /* display: grid;
-  place-content: center; */
 `;

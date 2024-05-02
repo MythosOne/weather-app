@@ -3,7 +3,7 @@ import {
   Container,
   Block,
   BlockItem,
-  Blockweather,
+  BlockWeather,
   City,
   Time,
   WeatherIcon,
@@ -11,28 +11,13 @@ import {
   Temperature,
   Location,
   CloseBtn,
-  // FadeInComponent,
 } from './WeatherCard.styled';
 
 import { CloseCardImg } from 'icons/IconComponent';
-// import { CSSTransition } from 'react-transition-group';
 
 function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
-  // const [onCloseBtn, setOnCloseBtn] = useState(false);
-  // console.log("onCloseBtn:", onCloseBtn)
-  // console.log(weatherCity);
-  // console.log((new Date(weatherCity.dt * 1000)).getTimezoneOffset() / 60)
-  // !!!!! The time is shown incorrectly, correct it...
-  // const UTCTime = () => {
-  //   let time = new Date(weatherCity.dt*1000);
-  //   return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  // };
-  // let timezone = weatherCity.dt + weatherCity.timezone;
-  // console.log(timezone)
   const [currentTime, setCurrentTime] = useState(new Date());
-  // console.log(currentTime);
   const [showComponent, setShowComponent] = useState(false);
-  // console.log('showComponent:', showComponent);
 
   const iconUrl = `http://openweathermap.org/img/w/${weatherCity.weather[0].icon}.png`;
 
@@ -52,7 +37,6 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
 
   useEffect(() => {
     setShowComponent(!showComponent);
-    // console.log(showComponent)
   }, []);
 
   return (
@@ -61,7 +45,6 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
         <BlockItem>
           <City>{weatherCity.name}</City>
           <Time>
-            {/* {(new Date(weatherCity.dt * 1000)).toUTCString()} */}
             {`${currentTime.toLocaleTimeString([], {
               hour: '2-digit',
               minute: '2-digit',
@@ -71,10 +54,10 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
         <Temperature>{Math.trunc(weatherCity.main.temp)}°</Temperature>
       </Block>
       <Block>
-        <Blockweather>
+        <BlockWeather>
           <WeatherIcon src={iconUrl} width="32" alt="Weather icon" />
           <Description>{weatherCity.weather[0].description}</Description>
-        </Blockweather>
+        </BlockWeather>
         <Location>
           H:{Math.trunc(weatherCity.coord.lat)}° L:
           {Math.trunc(weatherCity.coord.lon)}°

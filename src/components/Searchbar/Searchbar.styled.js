@@ -10,7 +10,6 @@ export const Container = styled.div`
 `;
 
 export const SearchBarForm = styled.form`
-  /* position: relative; */
   width: 90%;
   margin: 0 auto;
 
@@ -24,7 +23,6 @@ export const SearchBarForm = styled.form`
   border-color: rgba(21, 67, 96, 0);
 
   background-color: #c9dfed;
-  /* box-shadow: 3px 4px 8px rgba(136, 198, 253, 0.5); */
 
   &:hover {
     border-color: rgba(21, 67, 96, 0.5);
@@ -45,17 +43,14 @@ export const Input = styled.input`
   color: #888;
 
   margin-left: 10px;
-  /* text-align: center; */
 `;
 
 export const ButtonSearch = styled.button`
-  /* position: absolute; */
   display: flex;
   justify-content: center;
   align-items: center;
 
   background-color: inherit;
-  /* color: gray; */
   border: none;
   padding: 0;
   margin-left: 10px;
@@ -70,11 +65,3 @@ export const ButtonSearch = styled.button`
     transition: all 0.2s ease-in-out;
   }
 `;
-
-// export const ButtonAdd = styled.button`
-//   /* position: absolute; */
-
-//   background-color: #c9dfed;
-//   color: green;
-//   border: none;
-// `;

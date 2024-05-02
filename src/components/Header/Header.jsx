@@ -10,12 +10,9 @@ import {
 import { MenuBurgerImg } from 'icons/IconComponent.jsx';
 
 export const Header = ({ isOpen, setIsOpen }) => {
-  // const [isOpen, setIsOpen] = useState(false);
-  // console.log('isOpen', isOpen);
   const [currentTime, setCurrentTime] = useState(new Date());
-  // console.log("currentTime:", currentTime)
+
   const currentDate = new Date();
-  // console.log(currentDate)
 
   const options = {
     weekday: 'long',
@@ -35,9 +32,9 @@ export const Header = ({ isOpen, setIsOpen }) => {
     };
   }, []);
 
-/*clearInterval() гарантирует, что интервал будет остановлен, когда компонент больше не используется. Это важно для предотвращения утечек памяти и избегания ненужных вызовов функции, когда компонент больше не отображается на странице.
+  /*clearInterval() гарантирует, что интервал будет остановлен, когда компонент больше не используется. Это важно для предотвращения утечек памяти и избегания ненужных вызовов функции, когда компонент больше не отображается на странице.
 
-Вкоде clearInterval(intervalId) выполняется при размонтировании компонента, чтобы корректно очистить ресурсы, связанные с интервалом. 😊*/
+В коде clearInterval(intervalId) выполняется при размонтировании компонента, чтобы корректно очистить ресурсы, связанные с интервалом. 😊*/
 
   return (
     <Section>
@@ -46,14 +43,15 @@ export const Header = ({ isOpen, setIsOpen }) => {
         aria-label="burger-menu"
         title="Menu"
         onClick={() => {
-          // console.log('Header-isOpen', isOpen);
           setIsOpen(!isOpen);
         }}
       >
         <MenuBurgerImg />
       </MenuBtn>
       <BlockClock>
-        <CurrentTime>{`${currentTime.toLocaleTimeString('en-US')}` /*or  toLocaleTimeString([], currentTime.{ hour: "2-digit", minute: "2-digit" })*/}</CurrentTime>
+        <CurrentTime>{`${currentTime.toLocaleTimeString(
+          'en-US'
+        )}`}</CurrentTime>
         <CurrentDate>{`${formattedDate.toLocaleString('en-US')}`}</CurrentDate>
       </BlockClock>
       <Logo />

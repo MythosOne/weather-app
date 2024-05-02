@@ -64,9 +64,3 @@ html {
 div {
   scroll-margin-top: 70px;
 }
-/* !!!не работает scroll-margin-top в Safari */
-/* div::-webkit-full-page-media,
-div:future,
-div:root .safari-only {
-  padding-top: 60px;
-} */

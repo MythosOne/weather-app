@@ -10,13 +10,10 @@ export const WeatherBar = styled.section`
 
   width: 250px;
   height: 100%;
-  /* min-height: calc(90vh - 50px); */
   background-color: rgb(21, 72, 149);
-  /* backdrop-filter: blur(5px); */
   transform: translateX(${props => props.dataOffset}%);
   transition: 0.2s ease;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 10px 0px;
-  /* transform: translateX(-100%); */
 
   @media screen and (min-width: 767px) {
     transform: none;
@@ -40,9 +37,6 @@ export const WeatherBar = styled.section`
     align-self: stretch;
 
     margin: 0;
-    /* grid-template-columns: 1fr; */
-    /* height: calc(100% - 120px); */
-    /* background-color: rgba(21, 67, 96, 0.5); */
   }
 `;
 
@@ -51,27 +45,17 @@ export const BlockBtn = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 5px 10px;
-  /* gap: 90px; */
-
-  /* margin-top: 12px;
-  margin-bottom: 12px; */
 `;
 
 export const Title = styled.h1`
   font-size: 28px;
   font-weight: 600;
 
-  /* margin-top: 12px;
-  margin-bottom: 12px;*/
   margin-left: 10px;
   margin-bottom: 5px;
 
   text-align: left;
   color: rgba(240, 243, 244, 0.9);
-
-  /* @media screen and (min-width: 767px) {
-    margin-top: 0;
-  } */
 `;
 
 export const ListBtn = styled.button`
@@ -85,7 +69,6 @@ export const ListBtn = styled.button`
 
   &:hover {
     fill: #2977bd;
-
     transition: all 0.2s ease-in-out;
   }
 `;
@@ -101,7 +84,6 @@ export const CloseBtn = styled.button`
 
   &:hover {
     fill: #2977bd;
-
     transition: all 0.2s ease-in-out;
   }
 

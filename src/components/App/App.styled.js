@@ -1,12 +1,5 @@
 import styled from '@emotion/styled';
 
-// export const Container = styled.section`
-
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// `;
-
 export const Container = styled.div`
   opacity: 0;
   transform: scale(0.9);

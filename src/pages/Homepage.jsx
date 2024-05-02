@@ -64,12 +64,6 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
   const handleError = error => {
     console.log(error);
   };
-  //!!!
-  // useEffect(() => {
-  //   localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
-  //   // !!!! Не работает очистка local Storage forecastCities при удалении карточи погоды города.
-  //   localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
-  // }, [weatherCities, forecastCities]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -151,52 +145,6 @@ export const Homepage = ({ isOpen, setIsOpen }) => {
 
   localStorage.setItem('locationWeather', JSON.stringify(locationWeather));
   localStorage.setItem('locationForecast', JSON.stringify(locationForecast));
-  // !!!! Обновление (не) работает!!! (нужно обновить массивы данных weatherCities и forecastCities)
-  // useEffect(() => {
-  //   setIsLoading(true);
-
-  //   const updatedWeatherCities = [...weatherCities];
-  //   const updatedForecastCities = [...forecastCities];
-
-  //   weatherCities.forEach(weatherCity => {
-  //     const latitude = weatherCity.coord.lat;
-  //     const longitude = weatherCity.coord.lon;
-
-  //     apiServiceWeatherData(latitude, longitude)
-  //       .then(weather => {
-  //         const indexToUpdate = updatedWeatherCities.findIndex(city => city.id === weatherCity.id);
-
-  //         if (indexToUpdate !== -1) {
-  //           updatedWeatherCities[indexToUpdate] = {...weatherCity, ...weather, string: 'ОБНОВИЛСЯ!!!!!'};
-  //         }
-
-  //         setWeatherCities(updatedWeatherCities)
-  //       })
-  //       .catch(error => console.error(error))
-  //       .finally(() => setIsLoading(false));
-  // });
-
-  // forecastCities.forEach(forecastCity => {
-  //   apiServiceForecastData(latitude, longitude)
-  //     .then(forecast => {
-  //       const indexToUpdate = updatedWeatherCities.findIndex(
-  //         ({city}) => city.id === forecastCity.city.id
-  //       );
-  //       console.log(indexToUpdate)
-  //       if (indexToUpdate !== -1) {
-  //         updatedForecastCities[indexToUpdate] = {
-  //           ...forecastCities,
-  //           ...forecast,
-  //           string: 'ОБНОВИЛСЯ!!!!!',
-  //         };
-  //       }
-
-  //       setForecastCities(updatedForecastCities);
-  //     })
-  //     .catch(error => console.error(error))
-  //     .finally(() => setIsLoading(false));
-  // });
-  // }, []);
 
   localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
   localStorage.setItem('forecastCities', JSON.stringify(forecastCities));

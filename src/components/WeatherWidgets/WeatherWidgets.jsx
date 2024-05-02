@@ -4,16 +4,13 @@ import {
   Block,
   HourlyForecast,
   BlockHeader,
-  // BlockHourlyWater,
   WeeklyForecast,
-  // BlockWeeklyWater,
   PrecipitationMap,
   BlockMap,
   Sunrise,
   BlockSunrise,
   PictureSunrise,
   TextSunrise,
-  // BlockText,
   BlockSunset,
   TextSunset,
   Time,
@@ -26,7 +23,6 @@ import {
   Text,
 } from './WeatherWidgets.styled';
 
-// import { WiSunrise, WiSunset } from 'react-icons/wi';
 import {
   WindImg,
   SunriseImg,
@@ -34,7 +30,6 @@ import {
   HumidityImg,
   AverageTempImg,
   PressureImg,
-  // PrecipitationImg,
   VisibilityImg,
 } from 'icons/IconComponent';
 
@@ -51,9 +46,6 @@ export const WeatherWidgets = ({ weather, forecast }) => {
       .toString()
       .padStart(2, '0')}`;
   };
-  // console.log('weather:', weather);
-  // console.log('forecast:', forecast);
-  // console.log("weather.coord.lon:", weather.coord.lon)
   const { lat, lon } = weather.coord;
 
   const arrTemp = [];
@@ -89,17 +81,11 @@ export const WeatherWidgets = ({ weather, forecast }) => {
       </PrecipitationMap>
       <Sunrise>
         <BlockHeader>Sunrise</BlockHeader>
-        {/* <WiSunrise style={{ width: '24px', height: '24px' }} /> */}
         <Block>
           <BlockSunrise>
             <TextSunrise>Sunrise</TextSunrise>
             <Time>{UTCTime(weather.sys.sunrise)}</Time>
           </BlockSunrise>
-          {/* <TextSunrise>
-            Sunrise
-            <br />
-            {UTCTime(weather.sys.sunrise)}
-          </TextSunrise> */}
           <PictureSunrise>
             <SunriseImg />
           </PictureSunrise>
@@ -110,10 +96,7 @@ export const WeatherWidgets = ({ weather, forecast }) => {
           <PictureSunset>
             <SunsetImg />
           </PictureSunset>
-          {/* {new Date(weather.sys.sunrise * 1000).toUTCString()} */}
-          {/* <WiSunset style={{ width: '24px', height: '24px' }} /> */}
         </Block>
-        {/* Sunset {new Date(weather.sys.sunset * 1000).toUTCString()} */}
       </Sunrise>
       <Wind>
         <BlockHeader>Wind</BlockHeader>
@@ -131,20 +114,14 @@ export const WeatherWidgets = ({ weather, forecast }) => {
         <Text>{weather.main.humidity}%</Text>
       </Humidity>
       <Precipitation>
-        {/* <BlockHeader>Precipitation</BlockHeader>
-        <PrecipitationImg /> */}
         <BlockHeader>Average temp 24 hrs</BlockHeader>
         <AverageTempImg />
         <AverageTemp forecast={forecast} />
-        {/* <Text style={{ color: 'red', fontWeight: '900' }}>
-          {averageTemp({ forecast })}°C
-        </Text> */}
       </Precipitation>
       <Pressure>
         <BlockHeader>Pressure</BlockHeader>
         <PressureImg />
         <Text>{weather.main.pressure}hPa</Text>
-        {/* {weather.main.pressure} hPa */}
       </Pressure>
     </Container>
   );

@@ -135,17 +135,12 @@ export const PrecipitationMap = styled.li`
 `;
 
 export const BlockMap = styled.div`
-  /* overflow: auto;
-  scrollbar-width: none; */
-
   margin-top: 5px;
-  /* box-sizing: border-box; */
   width: 100%;
   height: 90%;
 `;
 
 export const Sunrise = styled.li`
-  /* position: relative; */
   grid-area: sunrise;
 
   box-sizing: border-box;
@@ -155,7 +150,6 @@ export const Sunrise = styled.li`
   height: 100px;
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
-  /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
 
   @media screen and (min-width: 767px) {
     width: 130px;
@@ -171,12 +165,9 @@ export const Sunrise = styled.li`
 
   color: #e7ecee;
   text-align: center;
-  /* font-family: Oswald; */
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  /* line-height: 48px; */
-  /* text-transform: uppercase; */
 `;
 
 export const Block = styled.div`
@@ -202,11 +193,7 @@ export const BlockSunrise = styled.div`
   grid-area: textSunrise;
 `;
 
-export const TextSunrise = styled.p`
-  /* position: absolute; */
-  /* grid-area: textSunrise; */
-
-  bottom: 8px;
+export const TextSunrise = styled.p`  bottom: 8px;
   right: 8px;
   font-size: 12px;
   color: #6382af;
@@ -217,7 +204,6 @@ export const BlockSunset = styled.div`
 `;
 
 export const TextSunset = styled.span`
-  /* position: absolute; */
   top: 8px;
   right: 8px;
   font-size: 12px;
@@ -238,7 +224,6 @@ export const Wind = styled.li`
   height: 100px;
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
-  /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
 
   display: flex;
   flex-direction: column;
@@ -257,7 +242,6 @@ export const Wind = styled.li`
 
   color: #e7ecee;
   text-align: center;
-  /* font-family: Oswald; */
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -274,7 +258,6 @@ export const Visibility = styled.li`
   height: 100px;
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
-  /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
 
   display: flex;
   flex-direction: column;
@@ -293,7 +276,6 @@ export const Visibility = styled.li`
 
   color: #e7ecee;
   text-align: center;
-  /* font-family: Oswald; */
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -310,19 +292,15 @@ export const Humidity = styled.li`
   height: 100px;
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
-  /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
 
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   gap: 4px;
 
   backdrop-filter: blur(5px);
 
   color: #e7ecee;
-  /* text-align: center; */
-  /* font-family: Oswald; */
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

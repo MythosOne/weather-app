@@ -26,29 +26,14 @@ export const WeatherCity = ({
   isOpen,
   setIsOpen,
 }) => {
-  // const [value, setValue] = useState('');
   const [searchCity, setSearchCity] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(-100);
-  // console.log('first value: ' + JSON.stringify(value));
-  // console.log('weatherCities:', weatherCities[0].coord.lon);
-  // console.log('WeatherCity- isOpen:', isOpen);
-  // console.log('offset:', offset);
-  // console.log('searchCity:', searchCity);
-
   const [onCloseBtn, setOnCloseBtn] = useState(false);
   const [cityId, setCityId] = useState(0);
-  // console.log('State CityId:', cityId);
 
   const { weatherCities, setWeatherCities } = useContext(HomePageContext);
-  // console.log("weatherCities:", weatherCities)
-// !!! portal
-  // const [portal, setPortal] = useState(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-// !!! portal
-  // useEffect(() => {
-  //   setPortal(document.getElementById('mobile-portal'));
-  // }, []);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -60,7 +45,6 @@ export const WeatherCity = ({
 
   useEffect(() => {
     if (isOpen) {
-      // console.log('WeatherCity-useEffect-isOpen:', isOpen);
       return setOffset(0);
     }
   }, [isOpen]);
@@ -104,8 +88,6 @@ export const WeatherCity = ({
     setCityId(cityId);
 
     setWeatherCities(weatherCities.filter(({ id }) => id !== cityId));
-    // console.log('WeatherCity weatherCities:', weatherCities);
-    // !!!! Работает очистка local Storage forecastCities при удалении карточки погоды города.
     setForecastCities(forecastCities.filter(({ city }) => city.id !== cityId));
   };
 
@@ -141,7 +123,7 @@ export const WeatherCity = ({
     </WeatherBar>
   );
 
-  if (windowWidth <= 768 && mobilePortal) {
+  if (windowWidth <= 767 && mobilePortal) {
     return createPortal(content, mobilePortal);
   }
 

@@ -12,7 +12,6 @@ export const Section = styled.header`
 
   padding: 0 20px 0;
 
-  top: 0;
   left: 0;
   right: 0;
   position: fixed;
@@ -27,9 +26,7 @@ export const Section = styled.header`
     max-width: none;
 
     width: 708px;
-    /* margin: 0 auto; */
     backdrop-filter: none;
-    /* z-index: 1100; */
 
     backdrop-filter: blur(10px);
   }

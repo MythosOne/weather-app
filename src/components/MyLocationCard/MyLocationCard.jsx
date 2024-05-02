@@ -3,7 +3,7 @@ import {
   Container,
   Block,
   BlockItem,
-  Blockweather,
+  BlockWeather,
   WeatherIcon,
   City,
   Description,
@@ -14,7 +14,6 @@ import {
 import { HomePageContext } from 'pages/Homepage';
 
 function MyLocationCard({ weather }) {
-  // console.log(weather)
   const { setWeatherSection, setCurrentWeatherCityId } =
     useContext(HomePageContext);
 
@@ -35,10 +34,10 @@ function MyLocationCard({ weather }) {
         <Temperature>{Math.trunc(weather.main.temp)}°</Temperature>
       </Block>
       <Block>
-        <Blockweather>
+        <BlockWeather>
           <WeatherIcon src={iconUrl} width="32" alt="Weather icon" />
           <Description>{weather.weather[0].description}</Description>
-        </Blockweather>
+        </BlockWeather>
         <Location>
           H:{Math.trunc(weather.coord.lat)}° L:{Math.trunc(weather.coord.lon)}°
         </Location>
