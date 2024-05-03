@@ -44,12 +44,14 @@ function App() {
   return (
     <>
       {location.latitude !== null && (
+        <>
         <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+        <div id="mobile-portal"></div>
+        </>
       )}
       <Container className={showComponent ? 'active' : 'exit-active'}>
         {location.latitude !== null && (
           <>
-            <div id="mobile-portal"></div>
             <Homepage
               location={location}
               isOpen={isOpen}
