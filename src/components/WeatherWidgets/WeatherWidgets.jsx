@@ -48,21 +48,6 @@ export const WeatherWidgets = ({ weather, forecast }) => {
   };
   const { lat, lon } = weather.coord;
 
-  const arrTemp = [];
-
-  const averageTemp = ({ forecast }) => {
-    forecast.list.map((element, index) => {
-      if (index <= 7) {
-        arrTemp.push(element.main.temp);
-      }
-    });
-    const averageTemp = arrTemp.reduce((prevTemp, temp) => {
-      return prevTemp + temp;
-    }, 0);
-    console.log(forecast.city.name);
-    return <p>{Math.round(averageTemp / arrTemp.length)}°C</p>;
-  };
-
   return (
     <Container>
       <HourlyForecast>

@@ -55,7 +55,7 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
       </Block>
       <Block>
         <BlockWeather>
-          <WeatherIcon src={iconUrl} width="32" alt="Weather icon" />
+          <WeatherIcon src={iconUrl} width="32" height="32" alt="weather-icon" />
           <Description>{weatherCity.weather[0].description}</Description>
         </BlockWeather>
         <Location>
