@@ -13,9 +13,9 @@ Frontend:
 6. Mobile(up to 480px responsive), tablet and desktop adaptive design.
 7. CSS Grid.
 
-![Mobile version](./src/public/images/mobile-version.jpg)
-![Tablet version](./src/public/images/tablet-version.jpg)
-![Desktop version](./src/public/images/desktop-version.jpg)
+![Mobile version](./public/images/mobile-version.jpg)
+![Tablet version](./public/images/tablet-version.jpg)
+![Desktop version](./public/images/desktop-version.jpg)
 
 Backend:
 
