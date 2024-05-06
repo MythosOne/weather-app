@@ -19,7 +19,7 @@ export const MyLocation = styled.h1`
 
 export const City = styled.h2`
   color: rgba(240, 243, 244, 0.9);
-  font-size: 28px;
+  font-size: 18px;
   font-weight: 600;
 `;
 

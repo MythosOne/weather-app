@@ -29,7 +29,7 @@ function MyLocationCard({ weather }) {
       <Block>
         <BlockItem>
           <MyLocation>My Location</MyLocation>
-          <City>{weather.name}</City>
+          <City>{weather.name ? weather.name : "unknown location"}</City>
         </BlockItem>
         <Temperature>{Math.trunc(weather.main.temp)}°</Temperature>
       </Block>

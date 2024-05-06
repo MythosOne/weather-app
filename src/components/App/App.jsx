@@ -15,6 +15,12 @@ function App() {
   const [showComponent, setShowComponent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [isConfirmed, setIsConfirmed] = useState(false);
+
+  // const handleConfirmation = () => {
+  //   setIsConfirmed(true);
+  // };
+
   useEffect(() => {
     const handleSuccess = position => {
       const { latitude, longitude } = position.coords;
@@ -24,8 +30,12 @@ function App() {
     const handleError = () => {
       setIsLoading(true);
 
-      alert('Enable geolocation on your browser');
+      alert('Please, enable geolocation in your browser');
       console.log('Error geolocation data');
+
+      setLocation({ ...location, latitude: -1, longitude: -1 });
+      // handleConfirmation();
+      setIsLoading(false);
     };
 
     if ('geolocation' in navigator) {
@@ -34,32 +44,38 @@ function App() {
       alert('Geolocation is not supported by your browser');
     }
 
+    setIsConfirmed(true);
     setIsLoading(false);
   }, []);
 
   useEffect(() => {
     setShowComponent(location.latitude !== null);
-  }, [location.latitude]);
+  }, [location]);
 
   return (
     <>
-      {location.latitude !== null && (
+      <Container className={showComponent ? 'active' : 'exit-active'}>
+      {isConfirmed && (
         <>
-        <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-        <div id="mobile-portal"></div>
+          {location && (
+            <>
+              <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
+            </>
+          )}
+
+          {location && (
+            <>
+              <div id="mobile-portal"></div>
+              <Homepage
+                location={location}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen} 
+              />
+              <Footer />
+            </>
+          )}
         </>
       )}
-      <Container className={showComponent ? 'active' : 'exit-active'}>
-        {location.latitude !== null && (
-          <>
-            <Homepage
-              location={location}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
-            <Footer />
-          </>
-        )}
       </Container>
       {isLoading && <Loader />}
     </>
