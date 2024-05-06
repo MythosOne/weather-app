@@ -10,7 +10,7 @@ import { Main } from './Homepage.styled';
 
 export const HomePageContext = createContext();
 
-export const Homepage = ({location, isOpen, setIsOpen }) => {
+export const Homepage = ({ location, isOpen, setIsOpen }) => {
   //!!!State weather cities
   const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCities')) ?? []
@@ -120,17 +120,13 @@ export const Homepage = ({location, isOpen, setIsOpen }) => {
         .catch(error => console.error('Error fetching forecast data:', error))
         .finally(() => setIsLoading(false));
     });
-    // !!! На iOS не исчезает значок загрузки при получении данных по геолокации.
+
     setIsLoading(false);
   }, [latitude, longitude]);
 
   localStorage.setItem('locationWeather', JSON.stringify(locationWeather));
   localStorage.setItem('locationForecast', JSON.stringify(locationForecast));
 
-  localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
-  localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
-
-  // !!!!
   useEffect(() => {
     const handleChangeCity = () => {
       weatherCities.forEach(weatherCity => {
@@ -148,9 +144,12 @@ export const Homepage = ({location, isOpen, setIsOpen }) => {
     handleChangeCity();
   }, [currentWeatherCityId, forecastCities, weatherCities, locationForecast]);
 
+  localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
+  localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
+
   const handlerSelectWeatherCity = cityId => setCurrentWeatherCityId(cityId);
 
-  const {myLocation} = locationWeather
+  const { myLocation } = locationWeather;
 
   useEffect(() => {
     if (isOpen) {
@@ -161,36 +160,36 @@ export const Homepage = ({location, isOpen, setIsOpen }) => {
   return (
     <>
       {myLocation && (
-          <Main>
-            <HomePageContext.Provider
-              value={{
-                weatherCities,
-                setWeatherCities,
-                handlerSelectWeatherCity,
-                setWeatherSection,
-                setCurrentWeatherCityId,
-                locationForecast,
-                forecastSection,
-                locationWeather,
-                weatherSection,
-              }}
-            >
-              {Object.keys(locationWeather).length && (
-                <WeatherCity
-                  weather={locationWeather}
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                  forecastCities={forecastCities}
-                  setForecastCities={setForecastCities}
-                  offset={offset}
-                  setOffset={setOffset}
-                />
-              )}
-              {Object.keys(locationWeather).length &&
-                Object.keys(locationForecast).length && <WeatherSection />}
-              {isLoading && <Loader />}
-            </HomePageContext.Provider>
-          </Main>
+        <Main>
+          <HomePageContext.Provider
+            value={{
+              weatherCities,
+              setWeatherCities,
+              handlerSelectWeatherCity,
+              setWeatherSection,
+              setCurrentWeatherCityId,
+              locationForecast,
+              forecastSection,
+              locationWeather,
+              weatherSection,
+            }}
+          >
+            {Object.keys(locationWeather).length && (
+              <WeatherCity
+                weather={locationWeather}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                forecastCities={forecastCities}
+                setForecastCities={setForecastCities}
+                offset={offset}
+                setOffset={setOffset}
+              />
+            )}
+            {Object.keys(locationWeather).length &&
+              Object.keys(locationForecast).length && <WeatherSection />}
+            {isLoading && <Loader />}
+          </HomePageContext.Provider>
+        </Main>
       )}
     </>
   );
