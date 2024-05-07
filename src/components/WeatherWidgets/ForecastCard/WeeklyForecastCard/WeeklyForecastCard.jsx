@@ -35,7 +35,7 @@ export const WeeklyForecastCard = ({ weatherDay }) => {
         </ItemWeekDay>
         <ItemWeatherImg>
           <ImgDate
-            src={`http://openweathermap.org/img/w/${weatherDay[0].weather[0].icon}.png`}
+            src={`https://openweathermap.org/img/wn/${weatherDay[0].weather[0].icon}@2x.png`}
             width="42"
             height="42"
             alt="weather-icon"

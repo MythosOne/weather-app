@@ -13,7 +13,7 @@ export const HourlyForecastCard = ({ element }) => {
         </BlockItem>
         <BlockItem>
           <ImgDate
-            src={`http://openweathermap.org/img/w/${element.weather[0].icon}.png`}
+            src={`https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png`}
             width="42"
             height="42"
             alt="weather-icon"

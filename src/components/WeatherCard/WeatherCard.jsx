@@ -19,7 +19,7 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showComponent, setShowComponent] = useState(false);
 
-  const iconUrl = `http://openweathermap.org/img/w/${weatherCity.weather[0].icon}.png`;
+  const iconUrl = `https://openweathermap.org/img/wn/${weatherCity.weather[0].icon}@2x.png`;
 
   useEffect(() => {
     const interval = setInterval(() => {

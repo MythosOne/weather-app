@@ -17,7 +17,7 @@ function MyLocationCard({ weather }) {
   const { setWeatherSection, setCurrentWeatherCityId } =
     useContext(HomePageContext);
 
-  const iconUrl = `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+  const iconUrl = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
 
   return (
     <Container
@@ -35,7 +35,7 @@ function MyLocationCard({ weather }) {
       </Block>
       <Block>
         <BlockWeather>
-          <WeatherIcon src={iconUrl} width="32" alt="Weather icon" />
+          <WeatherIcon src={iconUrl} width="32" alt="weather-icon" />
           <Description>{weather.weather[0].description}</Description>
         </BlockWeather>
         <Location>
