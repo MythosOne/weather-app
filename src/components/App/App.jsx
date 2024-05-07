@@ -17,25 +17,19 @@ function App() {
 
   const [isConfirmed, setIsConfirmed] = useState(false);
 
-  // const handleConfirmation = () => {
-  //   setIsConfirmed(true);
-  // };
-
   useEffect(() => {
+    setIsLoading(true);
+
     const handleSuccess = position => {
       const { latitude, longitude } = position.coords;
       setLocation({ latitude, longitude });
     };
 
     const handleError = () => {
-      setIsLoading(true);
-
       alert('Please, enable geolocation in your browser');
       console.log('Error geolocation data');
 
       setLocation({ ...location, latitude: -1, longitude: -1 });
-      // handleConfirmation();
-      setIsLoading(false);
     };
 
     if ('geolocation' in navigator) {
@@ -54,29 +48,28 @@ function App() {
 
   return (
     <>
-      <Container className={showComponent ? 'active' : 'exit-active'}>
       {isConfirmed && (
         <>
           {location && (
             <>
-              <Header isOpen={isOpen} setIsOpen={setIsOpen}/>
-            </>
-          )}
-
-          {location && (
-            <>
+              <Header isOpen={isOpen} setIsOpen={setIsOpen} />
               <div id="mobile-portal"></div>
-              <Homepage
-                location={location}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen} 
-              />
-              <Footer />
             </>
           )}
+          <Container className={showComponent ? 'active' : 'exit-active'}>
+            {location && (
+              <>
+                <Homepage
+                  location={location}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                />
+                <Footer />
+              </>
+            )}
+          </Container>
         </>
       )}
-      </Container>
       {isLoading && <Loader />}
     </>
   );

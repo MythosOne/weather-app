@@ -9,7 +9,7 @@ export const Container = styled.div`
     transform: translateX(0);
     transition: opacity 300ms, transform 300ms;
   }
-  /* !!!!!! No work */
+
   &.exit-active {
     opacity: 0;
     transform: scale(0.9);

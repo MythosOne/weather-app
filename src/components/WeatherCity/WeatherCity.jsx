@@ -30,10 +30,8 @@ export const WeatherCity = ({
 }) => {
   const [searchCity, setSearchCity] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // const [offset, setOffset] = useState(-100);
   const [onCloseBtn, setOnCloseBtn] = useState(false);
-  const [cityId, setCityId] = useState(0);
-
+  const [, setCityId] = useState(0);
   const { weatherCities, setWeatherCities } = useContext(HomePageContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -44,12 +42,6 @@ export const WeatherCity = ({
   }, []);
 
   const mobilePortal = document.getElementById('mobile-portal');
-
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     return setOffset(0);
-  //   }
-  // }, [isOpen]);
 
   useEffect(() => {
     if (searchCity.trim() === '') {
