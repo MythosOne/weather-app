@@ -14,11 +14,18 @@ function LocationWeather({ weather }) {
 
   return (
     <Container id="LocationWeather">
-      { weather.id === locationWeather.id ? (
-        <>
-          <MyLocation>My Location</MyLocation>
-          <City>{weather.name}</City>
-        </>
+      {weather.id === locationWeather.id ? (
+        weather.name ? (
+          <>
+            <MyLocation>My Location</MyLocation>
+            <City>{weather.name}</City>
+          </>
+        ) : (
+          <>
+            <MyLocation>My Location</MyLocation>
+            <City>unknown location</City>
+          </>
+        )
       ) : (
         <MyLocation>{weather.name}</MyLocation>
       )}
