@@ -1,3 +1,5 @@
+import React, { useContext } from 'react';
+import { HomePageContext } from 'pages/Homepage';
 import {
   Container,
   MyLocation,
@@ -8,15 +10,17 @@ import {
 } from './LocationWeather.styled';
 
 function LocationWeather({ weather }) {
+  const { locationWeather } = useContext(HomePageContext);
+
   return (
     <Container id="LocationWeather">
-      {weather.name ? (
+      { weather.id === locationWeather.id ? (
         <>
           <MyLocation>My Location</MyLocation>
           <City>{weather.name}</City>
         </>
       ) : (
-        <MyLocation>Unknown location</MyLocation>
+        <MyLocation>{weather.name}</MyLocation>
       )}
       <Temperature>{Math.trunc(weather.main.temp)}°</Temperature>
       <Description>{weather.weather[0].description}</Description>

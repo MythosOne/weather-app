@@ -1,6 +1,6 @@
+import React, { useEffect, useState, createContext } from 'react';
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
 import { WeatherSection } from '../components/WeatherSection/WeatherSection';
-import React, { useEffect, useState, createContext } from 'react';
 import {
   apiServiceWeatherData,
   apiServiceForecastData,
