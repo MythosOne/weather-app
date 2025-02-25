@@ -21,19 +21,19 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
 
   const iconUrl = `https://openweathermap.org/img/wn/${weatherCity.weather[0].icon}@2x.png`;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const utcTime = now.getTime() + now.getTimezoneOffset() * 60000;
-      const timeWithOffset = new Date(utcTime + weatherCity.timezone * 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const now = new Date();
+  //     const utcTime = now.getTime() + now.getTimezoneOffset() * 60000;
+  //     const timeWithOffset = new Date(utcTime + weatherCity.timezone * 1000);
 
-      setCurrentTime(timeWithOffset);
-    }, 1000);
+  //     setCurrentTime(timeWithOffset);
+  //   }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   useEffect(() => {
     setShowComponent(!showComponent);

@@ -39,18 +39,7 @@ export const Homepage = ({ location, isOpen, setIsOpen }) => {
   const [currentWeatherCityId, setCurrentWeatherCityId] = useState(0);
 
   const [offset, setOffset] = useState(-100);
-
-  // console.log('currentWeatherCityId:', currentWeatherCityId);
-
-  // const [isOpen, setIsOpen] = useState(false);
-  // console.log('weatherCities:', weatherCities);
-  // console.log('weatherSection:', weatherSection);
-  // console.log('locationWeatherId:', locationWeather.id);
-  // console.log('locationWeather:', locationWeather);
-  // console.log('locationForecast:', locationForecast);
-  // console.log('forecastSection:', forecastSection);
-  // console.log('forecastCities:', forecastCities);
-  // console.log('Homepage weatherCities:', weatherCities);
+  
   const { latitude, longitude } = location;
 
   useEffect(() => {

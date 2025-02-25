@@ -47,21 +47,25 @@ export const WeatherCity = ({
     if (searchCity.trim() === '') {
       return;
     }
-    const LoweredCase = searchCity.toLowerCase().trim();
-    const weatherCity = weatherCities.some(
-      city => city.name.toLowerCase().trim() === LoweredCase
-    );
+    //!!!
+    // const LoweredCase = searchCity.toLowerCase().trim();
+    // const weatherCity = weatherCities.some(
+    //   city => city.name.toLowerCase().trim() === LoweredCase
+    // );
 
-    if (weatherCity) {
-      alert(`${searchCity} is already in contacts`);
-      return;
-    }
+    //!!!
+    // if (weatherCity) {
+    //   alert(`${searchCity} is already in contacts`);
+    //   return;
+    // }
 
     setIsLoading(true);
 
     apiServiceSearchData(searchCity)
       .then(data => {
-        setWeatherCities([...weatherCities, { ...data }]);
+        weatherCities.some(city => city.id === data.id)
+          ? alert(`${searchCity} is already in contacts`)
+          : setWeatherCities([...weatherCities, { ...data }]);
 
         const { lat, lon } = data.coord;
 
@@ -75,15 +79,16 @@ export const WeatherCity = ({
       .finally(() => setIsLoading(false));
   }, [searchCity]);
 
-  localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
-  localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
-
   const onDeleteCard = cityId => {
     setCityId(cityId);
 
     setWeatherCities(weatherCities.filter(({ id }) => id !== cityId));
     setForecastCities(forecastCities.filter(({ city }) => city.id !== cityId));
   };
+
+  localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
+  localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
+
 
   const content = (
     <WeatherBar dataOffset={offset}>

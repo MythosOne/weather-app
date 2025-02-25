@@ -22,15 +22,15 @@ export const Header = ({ isOpen, setIsOpen }) => {
   };
   const formattedDate = currentDate.toLocaleDateString(undefined, options);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentTime(new Date());
+  //   }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   /*clearInterval() гарантирует, что интервал будет остановлен, когда компонент больше не используется. Это важно для предотвращения утечек памяти и избегания ненужных вызовов функции, когда компонент больше не отображается на странице.
 
