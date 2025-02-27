@@ -11,20 +11,23 @@ import MyLocationCard from '../MyLocationCard/MyLocationCard';
 export const SearchBar = ({ weather, setSearchCity }) => {
   const [value, setValue] = useState('');
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
 
-    if (value.trim().length === 0) {
+    const normalizedValue  = value.toLowerCase().trim();
+
+    if (normalizedValue.length === 0) {
       alert('Field must be filled');
       return;
     }
 
-    setSearchCity(value);
+    setSearchCity(normalizedValue);
+
     setValue('');
   };
 
-  const handleChange = e => {
-    setValue(e.target.value);
+  const handleChange = event => {
+    setValue(event.target.value);
   };
 
   return (

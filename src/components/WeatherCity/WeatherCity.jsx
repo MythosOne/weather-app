@@ -44,20 +44,9 @@ export const WeatherCity = ({
   const mobilePortal = document.getElementById('mobile-portal');
 
   useEffect(() => {
-    if (searchCity.trim() === '') {
+    if (searchCity === '') {
       return;
     }
-    //!!!
-    // const LoweredCase = searchCity.toLowerCase().trim();
-    // const weatherCity = weatherCities.some(
-    //   city => city.name.toLowerCase().trim() === LoweredCase
-    // );
-
-    //!!!
-    // if (weatherCity) {
-    //   alert(`${searchCity} is already in contacts`);
-    //   return;
-    // }
 
     setIsLoading(true);
 
@@ -70,8 +59,12 @@ export const WeatherCity = ({
         const { lat, lon } = data.coord;
 
         apiServiceForecastData(lat, lon)
-          .then(forecast =>
-            setForecastCities([...forecastCities, { ...forecast }])
+          .then(
+            forecast => {
+              if (!forecastCities.some(({city}) => city.id === forecast.city.id)) {
+                setForecastCities([...forecastCities, { ...forecast }]);
+              }
+            }
           )
           .catch(error => console.error(error));
       })
@@ -88,7 +81,6 @@ export const WeatherCity = ({
 
   localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
   localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
-
 
   const content = (
     <WeatherBar dataOffset={offset}>
