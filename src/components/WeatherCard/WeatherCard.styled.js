@@ -63,13 +63,6 @@ export const City = styled.h2`
   font-weight: 400;
 `;
 
-export const Time = styled.p`
-  margin: 0;
-  color: rgba(240, 243, 244, 0.9);
-  font-size: 12px;
-  font-weight: 400;
-`;
-
 export const Temperature = styled.p`
   margin: 0;
   color: rgba(240, 243, 244, 0.9);

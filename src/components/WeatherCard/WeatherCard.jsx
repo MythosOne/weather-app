@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+
+import { Clock } from 'components/Clock/Clock';
+
 import {
   Container,
   Block,
   BlockItem,
   BlockWeather,
   City,
-  Time,
   WeatherIcon,
   Description,
   Temperature,
@@ -16,24 +18,9 @@ import {
 import { CloseCardImg } from 'icons/IconComponent';
 
 function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [showComponent, setShowComponent] = useState(false);
 
   const iconUrl = `https://openweathermap.org/img/wn/${weatherCity.weather[0].icon}@2x.png`;
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const now = new Date();
-  //     const utcTime = now.getTime() + now.getTimezoneOffset() * 60000;
-  //     const timeWithOffset = new Date(utcTime + weatherCity.timezone * 1000);
-
-  //     setCurrentTime(timeWithOffset);
-  //   }, 1000);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
 
   useEffect(() => {
     setShowComponent(!showComponent);
@@ -44,18 +31,21 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
       <Block>
         <BlockItem>
           <City>{weatherCity.name}</City>
-          <Time>
-            {`${currentTime.toLocaleTimeString([], {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}`}
-          </Time>
+          <Clock
+            timeZoneOffset={weatherCity.timezone}
+            clockWeatherCard={true}
+          />
         </BlockItem>
         <Temperature>{Math.trunc(weatherCity.main.temp)}°</Temperature>
       </Block>
       <Block>
         <BlockWeather>
-          <WeatherIcon src={iconUrl} width="32" height="32" alt="weather-icon" />
+          <WeatherIcon
+            src={iconUrl}
+            width="32"
+            height="32"
+            alt="weather-icon"
+          />
           <Description>{weatherCity.weather[0].description}</Description>
         </BlockWeather>
         <Location>
