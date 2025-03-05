@@ -6,15 +6,14 @@ import {
   ButtonSearch,
   Input,
 } from './SearchBar.styled';
-import MyLocationCard from '../MyLocationCard/MyLocationCard';
 
-export const SearchBar = ({ weather, setSearchCity }) => {
+export const SearchBar = ({ setSearchCity }) => {
   const [value, setValue] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
 
-    const normalizedValue  = value.toLowerCase().trim();
+    const normalizedValue = value.toLowerCase().trim();
 
     if (normalizedValue.length === 0) {
       alert('Field must be filled');
@@ -46,7 +45,6 @@ export const SearchBar = ({ weather, setSearchCity }) => {
           placeholder="Search for a city"
         />
       </SearchBarForm>
-      <MyLocationCard weather={weather} />
     </Container>
   );
 };

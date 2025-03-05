@@ -6,7 +6,7 @@ export const Container = styled.ul`
   align-items: stretch;
   gap: 13px;
 
-  margin: 0 auto;
+  margin: 0 auto 10px;
   margin-top: 10px;
   padding: 5px;
   width: 85%;

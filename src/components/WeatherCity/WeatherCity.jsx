@@ -1,6 +1,10 @@
 import { useEffect, useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
+
 import { SearchBar } from '../SearchBar/SearchBar';
+import { WeatherList } from '../WeatherList/WeatherList';
+import MyLocationCard from '../MyLocationCard/MyLocationCard';
+
 import {
   WeatherBar,
   BlockBtn,
@@ -8,7 +12,7 @@ import {
   ListBtn,
   CloseBtn,
 } from './WeatherCity.styled';
-import { WeatherList } from '../WeatherList/WeatherList';
+
 import {
   apiServiceSearchData,
   apiServiceForecastData,
@@ -41,46 +45,69 @@ export const WeatherCity = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    if (searchCity) {
+      handleAddCity(searchCity);
+    }
+  }, [searchCity]);
+
   const mobilePortal = document.getElementById('mobile-portal');
 
-  useEffect(() => {
+  const handleAddCity = async (searchCity) => {
     if (searchCity === '') {
       return;
     }
 
     setIsLoading(true);
-
-    apiServiceSearchData(searchCity)
-      .then(data => {
-        weatherCities.some(city => city.id === data.id)
-          ? alert(`${searchCity} is already in contacts`)
-          : setWeatherCities([...weatherCities, { ...data }]);
-
-        const { lat, lon } = data.coord;
-
-        apiServiceForecastData(lat, lon)
-          .then(
-            forecast => {
-              if (!forecastCities.some(({city}) => city.id === forecast.city.id)) {
-                setForecastCities([...forecastCities, { ...forecast }]);
-              }
-            }
-          )
-          .catch(error => console.error(error));
-      })
-      .catch(() => alert('City not found'))
-      .finally(() => setIsLoading(false));
-  }, [searchCity]);
+  
+    try {
+      const data = await apiServiceSearchData(searchCity);
+  
+      if (weatherCities.some(city => city.id === data.id)) {
+        alert(`${searchCity} is already in contacts`);
+        return;
+      }
+  
+      const { lat, lon } = data.coord;
+      const forecast = await apiServiceForecastData(lat, lon);
+  
+      setWeatherCities(prevState => {
+        const updatedWeatherCities = [...prevState, data];
+        localStorage.setItem('weatherCities', JSON.stringify(updatedWeatherCities));
+        return updatedWeatherCities;
+      });
+  
+      setForecastCities(prevState => {
+        const updatedForecastCities = [...prevState, forecast];
+        localStorage.setItem('forecastCities', JSON.stringify(updatedForecastCities));
+        return updatedForecastCities;
+      });
+  
+    } catch (error) {
+      alert('City not found');
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const onDeleteCard = cityId => {
     setCityId(cityId);
 
-    setWeatherCities(weatherCities.filter(({ id }) => id !== cityId));
-    setForecastCities(forecastCities.filter(({ city }) => city.id !== cityId));
+    // setWeatherCities(weatherCities.filter(({ id }) => id !== cityId));
+    // setForecastCities(forecastCities.filter(({ city }) => city.id !== cityId));
+    setWeatherCities(prev => {
+      const updatedWeather = prev.filter(({ id }) => id !== cityId);
+      localStorage.setItem('weatherCities', JSON.stringify(updatedWeather));
+      return updatedWeather;
+    });
+  
+    setForecastCities(prev => {
+      const updatedForecast = prev.filter(({ city }) => city.id !== cityId);
+      localStorage.setItem('forecastCities', JSON.stringify(updatedForecast));
+      return updatedForecast;
+    });
   };
-
-  localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
-  localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
 
   const content = (
     <WeatherBar dataOffset={offset}>
@@ -108,7 +135,8 @@ export const WeatherCity = ({
         </CloseBtn>
       </BlockBtn>
       <Title>Weather</Title>
-      <SearchBar setSearchCity={setSearchCity} weather={weather} />
+      <SearchBar setSearchCity={setSearchCity}/>
+      <MyLocationCard weather={weather} />
       <WeatherList onCloseBtn={onCloseBtn} onDeleteCard={onDeleteCard} />
       {isLoading && <Loader />}
     </WeatherBar>
