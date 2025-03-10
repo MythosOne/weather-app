@@ -10,12 +10,12 @@ export const WeatherSection = () => {
 
   return (
     <Section>
-      {Object.keys(weatherSection).length ? (
+      {weatherSection && Object.keys(weatherSection).length ? (
         <LocationWeather weather={weatherSection} />
       ) : (
         <LocationWeather weather={locationWeather} />
       )}
-      {Object.keys(weatherSection).length ? (
+      {forecastSection && Object.keys(weatherSection).length ? (
         <WeatherWidgets weather={weatherSection} forecast={forecastSection} />
       ) : (
         <WeatherWidgets weather={locationWeather} forecast={locationForecast} />

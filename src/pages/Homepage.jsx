@@ -33,108 +33,191 @@ export const Homepage = ({ location, isOpen, setIsOpen }) => {
   const [forecastSection, setForecastSection] = useState(
     JSON.parse(localStorage.getItem('forecastSection')) ?? {}
   );
+  console.log('weatherSection: ', weatherSection);
+  console.log('forecastSection: ', forecastSection);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const [currentWeatherCityId, setCurrentWeatherCityId] = useState(0);
+  console.log('currentWeatherCityId:', currentWeatherCityId);
 
   const [offset, setOffset] = useState(-100);
-  
+
   const { latitude, longitude } = location;
 
-  useEffect(() => {
+//!!!! useEffect(() => {
+  //   setIsLoading(true);
+
+  //   if (latitude !== null && longitude !== null) {
+  //     apiServiceWeatherData(latitude, longitude)
+  //       .then(weather =>
+  //         setLocationWeather({
+  //           ...weather,
+  //           myLocation: true,
+  //         })
+  //       )
+  //       .catch(error => console.error('Error fetching weather data:', error))
+  //       .finally(() => setIsLoading(false));
+
+  //     apiServiceForecastData(latitude, longitude)
+  //       .then(forecast => setLocationForecast(forecast))
+  //       .catch(error => console.error('Error fetching forecast data:', error))
+  //       .finally(() => setIsLoading(false));
+  //   }
+
+  //   const updatedWeatherCities = [...weatherCities];
+  //   const updatedForecastCities = [...forecastCities];
+
+  //   weatherCities.forEach(weatherCity => {
+  //     const lat = weatherCity.coord.lat;
+  //     const lon = weatherCity.coord.lon;
+
+  //     apiServiceWeatherData(lat, lon)
+  //       .then(weather => {
+  //         const indexToUpdate = updatedWeatherCities.findIndex(
+  //           city => city.id === weatherCity.id
+  //         );
+
+  //         if (indexToUpdate !== -1) {
+  //           updatedWeatherCities[indexToUpdate] = {
+  //             ...weatherCity,
+  //             ...weather,
+  //           };
+  //         }
+
+  //         setWeatherCities(updatedWeatherCities);
+  //       })
+  //       .catch(error => console.error('Error fetching weather data:', error))
+  //       .finally(() => setIsLoading(false));
+  //   });
+
+  //   forecastCities.forEach(forecastCity => {
+  //     const lat = forecastCity.city.coord.lat;
+  //     const lon = forecastCity.city.coord.lon;
+
+  //     apiServiceForecastData(lat, lon)
+  //       .then(forecast => {
+  //         const indexToUpdate = updatedForecastCities.findIndex(
+  //           ({ city }) => city.id === forecastCity.city.id
+  //         );
+  //         if (indexToUpdate !== -1) {
+  //           updatedForecastCities[indexToUpdate] = {
+  //             ...forecastCity,
+  //             ...forecast,
+  //           };
+  //         }
+
+  //         setForecastCities(updatedForecastCities);
+  //       })
+  //       .catch(error => console.error('Error fetching forecast data:', error))
+  //       .finally(() => setIsLoading(false));
+  //   });
+
+  //   setIsLoading(false);
+
+  //   localStorage.setItem('locationWeather', JSON.stringify(locationWeather));
+  //   localStorage.setItem('locationForecast', JSON.stringify(locationForecast));
+  // }, [latitude, longitude]);
+
+  const fetchLocationData = async () => {
+    if (!latitude&& !longitude) {
+      return;
+    };
     setIsLoading(true);
 
-    if (latitude !== null && longitude !== null) {
-      apiServiceWeatherData(latitude, longitude)
-        .then(weather =>
-          setLocationWeather({
-            ...weather,
-            myLocation: true,
-          })
-        )
-        .catch(error => console.error('Error fetching weather data:', error))
-        .finally(() => setIsLoading(false));
+    try {
+      const [weather, forecast] = await Promise.all([
+        apiServiceWeatherData(latitude, longitude),
+        apiServiceForecastData(latitude, longitude)
+      ])
 
-      apiServiceForecastData(latitude, longitude)
-        .then(forecast => setLocationForecast(forecast))
-        .catch(error => console.error('Error fetching forecast data:', error))
-        .finally(() => setIsLoading(false));
+      setLocationWeather({
+        ...weather,
+        myLocation: true
+      });
+      setLocationForecast(forecast);
+
+      localStorage.setItem('locationWeather', JSON.stringify(weather));
+      localStorage.setItem('locationForecast', JSON.stringify(forecast));
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    } finally {
+      setIsLoading(false);
     }
+  }; 
 
-    const updatedWeatherCities = [...weatherCities];
-    const updatedForecastCities = [...forecastCities];
+  const fetchCitiesData = async ()=>{
+    if(weatherCities.length === 0 && forecastCities === 0){
+      return;
+    };
+    setIsLoading(true);
 
-    weatherCities.forEach(weatherCity => {
-      const lat = weatherCity.coord.lat;
-      const lon = weatherCity.coord.lon;
-
-      apiServiceWeatherData(lat, lon)
-        .then(weather => {
-          const indexToUpdate = updatedWeatherCities.findIndex(
-            city => city.id === weatherCity.id
-          );
-
-          if (indexToUpdate !== -1) {
-            updatedWeatherCities[indexToUpdate] = {
-              ...weatherCity,
-              ...weather,
-            };
+    try{
+      const updatedWeatherCities = await Promise.all(
+        weatherCities.map(async weatherCity => {
+          const { lat, lon } = weatherCity.coord;
+          const weather = await apiServiceWeatherData(lat, lon);
+          return {
+            ...weatherCity,
+            ...weather
           }
-
-          setWeatherCities(updatedWeatherCities);
         })
-        .catch(error => console.error('Error fetching weather data:', error))
-        .finally(() => setIsLoading(false));
-    });
+      )
 
-    forecastCities.forEach(forecastCity => {
-      const lat = forecastCity.city.coord.lat;
-      const lon = forecastCity.city.coord.lon;
-
-      apiServiceForecastData(lat, lon)
-        .then(forecast => {
-          const indexToUpdate = updatedForecastCities.findIndex(
-            ({ city }) => city.id === forecastCity.city.id
-          );
-          if (indexToUpdate !== -1) {
-            updatedForecastCities[indexToUpdate] = {
-              ...forecastCity,
-              ...forecast,
-            };
+      const updatedForecastCities = await Promise.all(
+        forecastCities.map(async forecastCity => {
+          const { lat, lon } = forecastCity.city.coord;
+          const forecast = await apiServiceForecastData(lat, lon);
+          return {
+            ...forecastCity,
+            ...forecast
           }
-
-          setForecastCities(updatedForecastCities);
         })
-        .catch(error => console.error('Error fetching forecast data:', error))
-        .finally(() => setIsLoading(false));
-    });
+      )
+      setWeatherCities(updatedWeatherCities);
+      setForecastCities(updatedForecastCities);
 
-    setIsLoading(false);
-  }, [latitude, longitude]);
-
-  localStorage.setItem('locationWeather', JSON.stringify(locationWeather));
-  localStorage.setItem('locationForecast', JSON.stringify(locationForecast));
+      localStorage.setItem('weatherCities', JSON.stringify(updatedWeatherCities));
+      localStorage.setItem('forecastCities', JSON.stringify(updatedForecastCities));
+    }catch(error){
+      console.error('Error fetching weather data:', error);
+    }finally{
+      setIsLoading(false);
+    }
+  };
+  
+  useEffect(() => {
+    fetchLocationData();
+  },[latitude, longitude]);
 
   useEffect(() => {
-    const handleChangeCity = () => {
-      weatherCities.forEach(weatherCity => {
-        if (currentWeatherCityId === weatherCity.id) {
-          setWeatherSection(weatherCity);
-        }
-      });
-      forecastCities.forEach(forecastCity => {
-        if (currentWeatherCityId === forecastCity.city.id) {
-          setForecastSection(forecastCity);
-        }
-      });
-    };
+    fetchCitiesData();
+  },[]);
 
-    handleChangeCity();
-  }, [currentWeatherCityId, forecastCities, weatherCities, locationForecast]);
+  useEffect(() => {
+    let selectedWeatherCity;
+    let selectedForecastCity;
 
-  localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
-  localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
+    if (currentWeatherCityId !== 0) {
+      selectedWeatherCity = weatherCities.find(
+        city => city.id === currentWeatherCityId
+      );
+      selectedForecastCity = forecastCities.find(
+        city => city.city.id === currentWeatherCityId
+      );
+    }
+
+    if (selectedWeatherCity) {
+      setWeatherSection(selectedWeatherCity);
+    }
+
+    if (selectedForecastCity) {
+      setForecastSection(selectedForecastCity);
+    }
+
+    localStorage.setItem('weatherCities', JSON.stringify(weatherCities));
+    localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
+  }, [currentWeatherCityId, forecastCities, weatherCities]);
 
   const handlerSelectWeatherCity = cityId => setCurrentWeatherCityId(cityId);
 
