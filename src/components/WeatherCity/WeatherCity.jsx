@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
 
-import { SearchBar } from '../SearchBar/SearchBar';
+import { SearchBar } from '../SearchBar/Searchbar';
 import { WeatherList } from '../WeatherList/WeatherList';
 import MyLocationCard from '../MyLocationCard/MyLocationCard';
 
@@ -53,36 +53,41 @@ export const WeatherCity = ({
 
   const mobilePortal = document.getElementById('mobile-portal');
 
-  const handleAddCity = async (searchCity) => {
+  const handleAddCity = async searchCity => {
     if (searchCity === '') {
       return;
     }
 
     setIsLoading(true);
-  
+
     try {
       const data = await apiServiceSearchData(searchCity);
-  
+
       if (weatherCities.some(city => city.id === data.id)) {
         alert(`${searchCity} is already in contacts`);
         return;
       }
-  
+
       const { lat, lon } = data.coord;
       const forecast = await apiServiceForecastData(lat, lon);
-  
+
       setWeatherCities(prevState => {
         const updatedWeatherCities = [...prevState, data];
-        localStorage.setItem('weatherCities', JSON.stringify(updatedWeatherCities));
+        localStorage.setItem(
+          'weatherCities',
+          JSON.stringify(updatedWeatherCities)
+        );
         return updatedWeatherCities;
       });
-  
+
       setForecastCities(prevState => {
         const updatedForecastCities = [...prevState, forecast];
-        localStorage.setItem('forecastCities', JSON.stringify(updatedForecastCities));
+        localStorage.setItem(
+          'forecastCities',
+          JSON.stringify(updatedForecastCities)
+        );
         return updatedForecastCities;
       });
-  
     } catch (error) {
       alert('City not found');
       console.error(error);
@@ -101,7 +106,7 @@ export const WeatherCity = ({
       localStorage.setItem('weatherCities', JSON.stringify(updatedWeather));
       return updatedWeather;
     });
-  
+
     setForecastCities(prev => {
       const updatedForecast = prev.filter(({ city }) => city.id !== cityId);
       localStorage.setItem('forecastCities', JSON.stringify(updatedForecast));
@@ -135,7 +140,7 @@ export const WeatherCity = ({
         </CloseBtn>
       </BlockBtn>
       <Title>Weather</Title>
-      <SearchBar setSearchCity={setSearchCity}/>
+      <SearchBar setSearchCity={setSearchCity} />
       <MyLocationCard weather={weather} />
       <WeatherList onCloseBtn={onCloseBtn} onDeleteCard={onDeleteCard} />
       {isLoading && <Loader />}

@@ -10,7 +10,7 @@ import { Main } from './Homepage.styled';
 
 export const HomePageContext = createContext();
 
-export const Homepage = ({ location, isOpen, setIsOpen }) => {
+export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   //!!!State weather cities
   const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCities')) ?? []
@@ -45,7 +45,7 @@ export const Homepage = ({ location, isOpen, setIsOpen }) => {
 
   const { latitude, longitude } = location;
 
-//!!!! useEffect(() => {
+  //!!!! useEffect(() => {
   //   setIsLoading(true);
 
   //   if (latitude !== null && longitude !== null) {
@@ -119,80 +119,13 @@ export const Homepage = ({ location, isOpen, setIsOpen }) => {
   //   localStorage.setItem('locationForecast', JSON.stringify(locationForecast));
   // }, [latitude, longitude]);
 
-  const fetchLocationData = async () => {
-    if (!latitude&& !longitude) {
-      return;
-    };
-    setIsLoading(true);
-
-    try {
-      const [weather, forecast] = await Promise.all([
-        apiServiceWeatherData(latitude, longitude),
-        apiServiceForecastData(latitude, longitude)
-      ])
-
-      setLocationWeather({
-        ...weather,
-        myLocation: true
-      });
-      setLocationForecast(forecast);
-
-      localStorage.setItem('locationWeather', JSON.stringify(weather));
-      localStorage.setItem('locationForecast', JSON.stringify(forecast));
-    } catch (error) {
-      console.error('Error fetching weather data:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }; 
-
-  const fetchCitiesData = async ()=>{
-    if(weatherCities.length === 0 && forecastCities === 0){
-      return;
-    };
-    setIsLoading(true);
-
-    try{
-      const updatedWeatherCities = await Promise.all(
-        weatherCities.map(async weatherCity => {
-          const { lat, lon } = weatherCity.coord;
-          const weather = await apiServiceWeatherData(lat, lon);
-          return {
-            ...weatherCity,
-            ...weather
-          }
-        })
-      )
-
-      const updatedForecastCities = await Promise.all(
-        forecastCities.map(async forecastCity => {
-          const { lat, lon } = forecastCity.city.coord;
-          const forecast = await apiServiceForecastData(lat, lon);
-          return {
-            ...forecastCity,
-            ...forecast
-          }
-        })
-      )
-      setWeatherCities(updatedWeatherCities);
-      setForecastCities(updatedForecastCities);
-
-      localStorage.setItem('weatherCities', JSON.stringify(updatedWeatherCities));
-      localStorage.setItem('forecastCities', JSON.stringify(updatedForecastCities));
-    }catch(error){
-      console.error('Error fetching weather data:', error);
-    }finally{
-      setIsLoading(false);
-    }
-  };
-  
   useEffect(() => {
     fetchLocationData();
-  },[latitude, longitude]);
+  }, [latitude, longitude]);
 
   useEffect(() => {
     fetchCitiesData();
-  },[]);
+  }, []);
 
   useEffect(() => {
     let selectedWeatherCity;
@@ -219,15 +152,93 @@ export const Homepage = ({ location, isOpen, setIsOpen }) => {
     localStorage.setItem('forecastCities', JSON.stringify(forecastCities));
   }, [currentWeatherCityId, forecastCities, weatherCities]);
 
-  const handlerSelectWeatherCity = cityId => setCurrentWeatherCityId(cityId);
-
-  const { myLocation } = locationWeather;
-
   useEffect(() => {
     if (isOpen) {
       return setOffset(0);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    onLoad();
+    console.log('onLoad() called');
+  }, []);
+
+  const fetchLocationData = async () => {
+    if (!latitude && !longitude) {
+      return;
+    }
+    setIsLoading(true);
+
+    try {
+      const [weather, forecast] = await Promise.all([
+        apiServiceWeatherData(latitude, longitude),
+        apiServiceForecastData(latitude, longitude),
+      ]);
+
+      setLocationWeather({
+        ...weather,
+        myLocation: true,
+      });
+      setLocationForecast(forecast);
+
+      localStorage.setItem('locationWeather', JSON.stringify(weather));
+      localStorage.setItem('locationForecast', JSON.stringify(forecast));
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchCitiesData = async () => {
+    if (weatherCities.length === 0 && forecastCities === 0) {
+      return;
+    }
+    setIsLoading(true);
+
+    try {
+      const updatedWeatherCities = await Promise.all(
+        weatherCities.map(async weatherCity => {
+          const { lat, lon } = weatherCity.coord;
+          const weather = await apiServiceWeatherData(lat, lon);
+          return {
+            ...weatherCity,
+            ...weather,
+          };
+        })
+      );
+
+      const updatedForecastCities = await Promise.all(
+        forecastCities.map(async forecastCity => {
+          const { lat, lon } = forecastCity.city.coord;
+          const forecast = await apiServiceForecastData(lat, lon);
+          return {
+            ...forecastCity,
+            ...forecast,
+          };
+        })
+      );
+      setWeatherCities(updatedWeatherCities);
+      setForecastCities(updatedForecastCities);
+
+      localStorage.setItem(
+        'weatherCities',
+        JSON.stringify(updatedWeatherCities)
+      );
+      localStorage.setItem(
+        'forecastCities',
+        JSON.stringify(updatedForecastCities)
+      );
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handlerSelectWeatherCity = cityId => setCurrentWeatherCityId(cityId);
+
+  const { myLocation } = locationWeather;
 
   return (
     <>

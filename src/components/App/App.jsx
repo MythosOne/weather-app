@@ -14,8 +14,10 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [showComponent, setShowComponent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isHomepageLoaded, setIsHomepageLoaded] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
+  console.log("isConfirmed:", isConfirmed);
+  console.log("isHomepageLoaded:", isHomepageLoaded);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,6 +25,7 @@ function App() {
     const handleSuccess = position => {
       const { latitude, longitude } = position.coords;
       setLocation({ latitude, longitude });
+      setIsLoading(false);
     };
 
     const handleError = () => {
@@ -30,6 +33,7 @@ function App() {
       console.log('Error geolocation data');
 
       setLocation({ ...location, latitude: -1, longitude: -1 });
+      setIsLoading(false);
     };
 
     if ('geolocation' in navigator) {
@@ -39,36 +43,25 @@ function App() {
     }
 
     setIsConfirmed(true);
-    setIsLoading(false);
+    // setIsLoading(false);
   }, []);
 
   useEffect(() => {
     setShowComponent(location.latitude !== null);
   }, [location]);
+  
 
   return (
     <>
-      {isConfirmed && (
-        <>
-          {location && (
-            <>
-              <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-              <div id="mobile-portal"></div>
-            </>
-          )}
-          <Container className={showComponent ? 'active' : 'exit-active'}>
-            {location && (
-              <>
-                <Homepage
-                  location={location}
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                />
-                <Footer />
-              </>
-            )}
-          </Container>
-        </>
+      <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+      <div id="mobile-portal"></div>
+      {isConfirmed ? (
+        <Container className={showComponent ? 'active' : 'exit-active'}>
+          <Homepage location={location} isOpen={isOpen} setIsOpen={setIsOpen} onLoad = {()=> setIsHomepageLoaded(true)}/>
+          {isHomepageLoaded && < Footer />}
+        </Container>
+      ) : (
+        <Loader />
       )}
       {isLoading && <Loader />}
     </>
