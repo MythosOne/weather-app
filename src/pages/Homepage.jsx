@@ -158,10 +158,15 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
     }
   }, [isOpen]);
 
-  useEffect(() => {
-    onLoad();
-    console.log('onLoad() called');
-  }, []);
+  //!!! useEffect(() => {
+  //   new Promise(resolve => {
+  //     setTimeout(resolve, 1000);
+  //   }).then(() => {
+  //     onLoad();
+  //   });
+
+  //   console.log('onLoad() called');
+  // }, []);
 
   const fetchLocationData = async () => {
     if (!latitude && !longitude) {
@@ -187,6 +192,8 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       console.error('Error fetching weather data:', error);
     } finally {
       setIsLoading(false);
+      onLoad();
+      console.log('onLoad() called');
     }
   };
 
@@ -233,6 +240,8 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       console.error('Error fetching weather data:', error);
     } finally {
       setIsLoading(false);
+      onLoad();
+      console.log('onLoad() called');
     }
   };
 

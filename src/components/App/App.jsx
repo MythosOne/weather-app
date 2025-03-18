@@ -16,8 +16,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isHomepageLoaded, setIsHomepageLoaded] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
-  console.log("isConfirmed:", isConfirmed);
-  console.log("isHomepageLoaded:", isHomepageLoaded);
+  console.log('isConfirmed:', isConfirmed);
+  console.log('isHomepageLoaded:', isHomepageLoaded);
 
   useEffect(() => {
     setIsLoading(true);
@@ -49,7 +49,6 @@ function App() {
   useEffect(() => {
     setShowComponent(location.latitude !== null);
   }, [location]);
-  
 
   return (
     <>
@@ -57,12 +56,19 @@ function App() {
       <div id="mobile-portal"></div>
       {isConfirmed ? (
         <Container className={showComponent ? 'active' : 'exit-active'}>
-          <Homepage location={location} isOpen={isOpen} setIsOpen={setIsOpen} onLoad = {()=> setIsHomepageLoaded(true)}/>
-          {isHomepageLoaded && < Footer />}
+          {!isHomepageLoaded && <Loader />}
+          <Homepage
+            location={location}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            onLoad={() => setIsHomepageLoaded(true)}
+          />
+          {/* {isHomepageLoaded && <Footer />} */}
         </Container>
       ) : (
         <Loader />
       )}
+      {isHomepageLoaded && <Footer />}
       {isLoading && <Loader />}
     </>
   );
