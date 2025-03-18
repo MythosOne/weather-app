@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
 
-import { SearchBar } from '../SearchBar/Searchbar';
+import { SearchBar } from '../SearchBar/SearchBar';
 import { WeatherList } from '../WeatherList/WeatherList';
 import MyLocationCard from '../MyLocationCard/MyLocationCard';
 

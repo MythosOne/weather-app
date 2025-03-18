@@ -36,7 +36,7 @@ export const WeatherBar = styled.section`
     width: 280px;
     align-self: stretch;
 
-    margin: 0;
+    margin: 50px auto 20px;
   }
 `;
 

@@ -63,7 +63,6 @@ function App() {
             setIsOpen={setIsOpen}
             onLoad={() => setIsHomepageLoaded(true)}
           />
-          {/* {isHomepageLoaded && <Footer />} */}
         </Container>
       ) : (
         <Loader />

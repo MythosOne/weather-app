@@ -12,6 +12,7 @@ export const Section = styled.header`
 
   padding: 0 20px 0;
 
+  top: 0;
   left: 0;
   right: 0;
   position: fixed;
@@ -33,8 +34,6 @@ export const Section = styled.header`
 
   @media screen and (min-width: 1279px) {
     width: 1040px;
-
-    position: static;
   }
 `;
 

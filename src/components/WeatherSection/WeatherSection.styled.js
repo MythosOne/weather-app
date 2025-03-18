@@ -29,6 +29,6 @@ export const Section = styled.section`
 
     width: 740px;
 
-    margin: 0;
+    margin: 50px auto 20px;
   }
 `;

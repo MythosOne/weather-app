@@ -45,80 +45,6 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
 
   const { latitude, longitude } = location;
 
-  //!!!! useEffect(() => {
-  //   setIsLoading(true);
-
-  //   if (latitude !== null && longitude !== null) {
-  //     apiServiceWeatherData(latitude, longitude)
-  //       .then(weather =>
-  //         setLocationWeather({
-  //           ...weather,
-  //           myLocation: true,
-  //         })
-  //       )
-  //       .catch(error => console.error('Error fetching weather data:', error))
-  //       .finally(() => setIsLoading(false));
-
-  //     apiServiceForecastData(latitude, longitude)
-  //       .then(forecast => setLocationForecast(forecast))
-  //       .catch(error => console.error('Error fetching forecast data:', error))
-  //       .finally(() => setIsLoading(false));
-  //   }
-
-  //   const updatedWeatherCities = [...weatherCities];
-  //   const updatedForecastCities = [...forecastCities];
-
-  //   weatherCities.forEach(weatherCity => {
-  //     const lat = weatherCity.coord.lat;
-  //     const lon = weatherCity.coord.lon;
-
-  //     apiServiceWeatherData(lat, lon)
-  //       .then(weather => {
-  //         const indexToUpdate = updatedWeatherCities.findIndex(
-  //           city => city.id === weatherCity.id
-  //         );
-
-  //         if (indexToUpdate !== -1) {
-  //           updatedWeatherCities[indexToUpdate] = {
-  //             ...weatherCity,
-  //             ...weather,
-  //           };
-  //         }
-
-  //         setWeatherCities(updatedWeatherCities);
-  //       })
-  //       .catch(error => console.error('Error fetching weather data:', error))
-  //       .finally(() => setIsLoading(false));
-  //   });
-
-  //   forecastCities.forEach(forecastCity => {
-  //     const lat = forecastCity.city.coord.lat;
-  //     const lon = forecastCity.city.coord.lon;
-
-  //     apiServiceForecastData(lat, lon)
-  //       .then(forecast => {
-  //         const indexToUpdate = updatedForecastCities.findIndex(
-  //           ({ city }) => city.id === forecastCity.city.id
-  //         );
-  //         if (indexToUpdate !== -1) {
-  //           updatedForecastCities[indexToUpdate] = {
-  //             ...forecastCity,
-  //             ...forecast,
-  //           };
-  //         }
-
-  //         setForecastCities(updatedForecastCities);
-  //       })
-  //       .catch(error => console.error('Error fetching forecast data:', error))
-  //       .finally(() => setIsLoading(false));
-  //   });
-
-  //   setIsLoading(false);
-
-  //   localStorage.setItem('locationWeather', JSON.stringify(locationWeather));
-  //   localStorage.setItem('locationForecast', JSON.stringify(locationForecast));
-  // }, [latitude, longitude]);
-
   useEffect(() => {
     fetchLocationData();
   }, [latitude, longitude]);
@@ -158,16 +84,6 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
     }
   }, [isOpen]);
 
-  //!!! useEffect(() => {
-  //   new Promise(resolve => {
-  //     setTimeout(resolve, 1000);
-  //   }).then(() => {
-  //     onLoad();
-  //   });
-
-  //   console.log('onLoad() called');
-  // }, []);
-
   const fetchLocationData = async () => {
     if (!latitude && !longitude) {
       return;
@@ -188,12 +104,14 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
 
       localStorage.setItem('locationWeather', JSON.stringify(weather));
       localStorage.setItem('locationForecast', JSON.stringify(forecast));
+
+      onLoad();
+      console.log('onLoad() called fetchLocationData');
+
     } catch (error) {
       console.error('Error fetching weather data:', error);
     } finally {
       setIsLoading(false);
-      onLoad();
-      console.log('onLoad() called');
     }
   };
 
@@ -236,12 +154,14 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
         'forecastCities',
         JSON.stringify(updatedForecastCities)
       );
+
+      setCurrentWeatherCityId(updatedWeatherCities[updatedWeatherCities.length-1].id);
     } catch (error) {
       console.error('Error fetching weather data:', error);
     } finally {
       setIsLoading(false);
-      onLoad();
-      console.log('onLoad() called');
+      // onLoad();
+      // console.log('onLoad() called fetchCitiesData');
     }
   };
 
