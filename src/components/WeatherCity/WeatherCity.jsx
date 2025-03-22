@@ -27,6 +27,7 @@ export const WeatherCity = ({
   weather,
   forecastCities,
   setForecastCities,
+  setCurrentWeatherCityId,
   isOpen,
   setIsOpen,
   offset,
@@ -58,34 +59,44 @@ export const WeatherCity = ({
       return;
     }
 
+    const LoweredCase = searchCity.toLowerCase().trim();
+    const weatherCity = weatherCities.some(
+      city => city.name.toLowerCase().trim() === LoweredCase
+    );
+
+    if (weatherCity) {
+      alert(`${searchCity} is already in cities`);
+      setSearchCity('');
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       const data = await apiServiceSearchData(searchCity);
-
-      if (weatherCities.some(city => city.id === data.id)) {
-        alert(`${searchCity} is already in contacts`);
-        return;
-      }
 
       const { lat, lon } = data.coord;
       const forecast = await apiServiceForecastData(lat, lon);
 
       setWeatherCities(prevState => {
         const updatedWeatherCities = [...prevState, data];
+
         localStorage.setItem(
           'weatherCities',
           JSON.stringify(updatedWeatherCities)
         );
+
         return updatedWeatherCities;
       });
 
       setForecastCities(prevState => {
         const updatedForecastCities = [...prevState, forecast];
+
         localStorage.setItem(
           'forecastCities',
           JSON.stringify(updatedForecastCities)
         );
+
         return updatedForecastCities;
       });
     } catch (error) {
@@ -103,13 +114,19 @@ export const WeatherCity = ({
     // setForecastCities(forecastCities.filter(({ city }) => city.id !== cityId));
     setWeatherCities(prev => {
       const updatedWeather = prev.filter(({ id }) => id !== cityId);
+
       localStorage.setItem('weatherCities', JSON.stringify(updatedWeather));
+      
       return updatedWeather;
     });
 
     setForecastCities(prev => {
       const updatedForecast = prev.filter(({ city }) => city.id !== cityId);
+
       localStorage.setItem('forecastCities', JSON.stringify(updatedForecast));
+
+      setCurrentWeatherCityId(null);
+
       return updatedForecast;
     });
   };

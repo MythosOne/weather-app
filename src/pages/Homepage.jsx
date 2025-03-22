@@ -33,12 +33,12 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [forecastSection, setForecastSection] = useState(
     JSON.parse(localStorage.getItem('forecastSection')) ?? {}
   );
-  console.log('weatherSection: ', weatherSection);
-  console.log('forecastSection: ', forecastSection);
+  // console.log('weatherSection: ', weatherSection);
+  // console.log('forecastSection: ', forecastSection);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [currentWeatherCityId, setCurrentWeatherCityId] = useState(0);
+  const [currentWeatherCityId, setCurrentWeatherCityId] = useState(null);
   console.log('currentWeatherCityId:', currentWeatherCityId);
 
   const [offset, setOffset] = useState(-100);
@@ -106,8 +106,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       localStorage.setItem('locationForecast', JSON.stringify(forecast));
 
       onLoad();
-      console.log('onLoad() called fetchLocationData');
-
+      // console.log('onLoad() called fetchLocationData');
     } catch (error) {
       console.error('Error fetching weather data:', error);
     } finally {
@@ -116,6 +115,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   };
 
   const fetchCitiesData = async () => {
+    console.log('fetchCitiesData called');
     if (weatherCities.length === 0 && forecastCities === 0) {
       return;
     }
@@ -155,7 +155,17 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
         JSON.stringify(updatedForecastCities)
       );
 
-      setCurrentWeatherCityId(updatedWeatherCities[updatedWeatherCities.length-1].id);
+      if (weatherCities.length) {
+        setCurrentWeatherCityId(
+          weatherCities[weatherCities.length - 1].id,
+          console.log(
+            'setCurrentWeatherCityId:',
+            weatherCities[weatherCities.length - 1].id
+          )
+        );
+      }
+
+      // console.log('onLoad() called fetchCitiesData');
     } catch (error) {
       console.error('Error fetching weather data:', error);
     } finally {
@@ -184,6 +194,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
               forecastSection,
               locationWeather,
               weatherSection,
+              
             }}
           >
             {Object.keys(locationWeather).length && (
