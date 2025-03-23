@@ -28,12 +28,14 @@ export const WeatherCity = ({
   forecastCities,
   setForecastCities,
   setCurrentWeatherCityId,
+  setWeatherSections,
   isOpen,
   setIsOpen,
   offset,
   setOffset,
 }) => {
   const [searchCity, setSearchCity] = useState('');
+  // console.log(searchCity);
   const [isLoading, setIsLoading] = useState(false);
   const [onCloseBtn, setOnCloseBtn] = useState(false);
   const [, setCityId] = useState(0);
@@ -59,9 +61,8 @@ export const WeatherCity = ({
       return;
     }
 
-    const LoweredCase = searchCity.toLowerCase().trim();
     const weatherCity = weatherCities.some(
-      city => city.name.toLowerCase().trim() === LoweredCase
+      city => city.name.toLowerCase() === searchCity.toLowerCase()
     );
 
     if (weatherCity) {
@@ -74,6 +75,12 @@ export const WeatherCity = ({
 
     try {
       const data = await apiServiceSearchData(searchCity);
+
+      if (weatherCities.some(city => city.id === data.id)) {
+        alert(`${searchCity} is already in cities`);
+        setSearchCity('');
+        return;
+      }
 
       const { lat, lon } = data.coord;
       const forecast = await apiServiceForecastData(lat, lon);
@@ -99,6 +106,8 @@ export const WeatherCity = ({
 
         return updatedForecastCities;
       });
+
+      setSearchCity('');
     } catch (error) {
       alert('City not found');
       console.error(error);
@@ -110,13 +119,11 @@ export const WeatherCity = ({
   const onDeleteCard = cityId => {
     setCityId(cityId);
 
-    // setWeatherCities(weatherCities.filter(({ id }) => id !== cityId));
-    // setForecastCities(forecastCities.filter(({ city }) => city.id !== cityId));
     setWeatherCities(prev => {
       const updatedWeather = prev.filter(({ id }) => id !== cityId);
 
       localStorage.setItem('weatherCities', JSON.stringify(updatedWeather));
-      
+
       return updatedWeather;
     });
 
@@ -126,9 +133,12 @@ export const WeatherCity = ({
       localStorage.setItem('forecastCities', JSON.stringify(updatedForecast));
 
       setCurrentWeatherCityId(null);
+      setWeatherSections({});
 
       return updatedForecast;
     });
+
+    setSearchCity('');
   };
 
   const content = (

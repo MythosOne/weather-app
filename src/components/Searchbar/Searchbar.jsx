@@ -13,7 +13,7 @@ export const SearchBar = ({ setSearchCity }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    const normalizedValue = value.toLowerCase().trim();
+    const normalizedValue = value.trim();
 
     if (normalizedValue.length === 0) {
       alert('Field must be filled');

@@ -18,6 +18,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [forecastCities, setForecastCities] = useState(
     JSON.parse(localStorage.getItem('forecastCities')) ?? []
   );
+  // console.log("forecastCities: ", forecastCities);
   //!!! state location weather
   const [locationWeather, setLocationWeather] = useState(
     JSON.parse(localStorage.getItem('locationWeather')) ?? {}
@@ -39,7 +40,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [currentWeatherCityId, setCurrentWeatherCityId] = useState(null);
-  console.log('currentWeatherCityId:', currentWeatherCityId);
+  // console.log('currentWeatherCityId:', currentWeatherCityId);
 
   const [offset, setOffset] = useState(-100);
 
@@ -57,14 +58,17 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
     let selectedWeatherCity;
     let selectedForecastCity;
 
-    if (currentWeatherCityId !== 0) {
+    if (currentWeatherCityId !== null) {
       selectedWeatherCity = weatherCities.find(
         city => city.id === currentWeatherCityId
       );
       selectedForecastCity = forecastCities.find(
         city => city.city.id === currentWeatherCityId
       );
-    }
+    } else if (currentWeatherCityId === null) {
+      selectedWeatherCity = weatherCities[weatherCities.length - 1];
+      selectedForecastCity = forecastCities[forecastCities.length - 1];
+    };
 
     if (selectedWeatherCity) {
       setWeatherSection(selectedWeatherCity);
@@ -100,6 +104,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
         ...weather,
         myLocation: true,
       });
+
       setLocationForecast(forecast);
 
       localStorage.setItem('locationWeather', JSON.stringify(weather));
@@ -115,7 +120,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   };
 
   const fetchCitiesData = async () => {
-    console.log('fetchCitiesData called');
+    // console.log('fetchCitiesData called');
     if (weatherCities.length === 0 && forecastCities === 0) {
       return;
     }
@@ -155,15 +160,15 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
         JSON.stringify(updatedForecastCities)
       );
 
-      if (weatherCities.length) {
-        setCurrentWeatherCityId(
-          weatherCities[weatherCities.length - 1].id,
-          console.log(
-            'setCurrentWeatherCityId:',
-            weatherCities[weatherCities.length - 1].id
-          )
-        );
-      }
+      // if (weatherCities.length) {
+      //   setCurrentWeatherCityId(
+      //     weatherCities[weatherCities.length - 1].id,
+      //     console.log(
+      //       'setCurrentWeatherCityId:',
+      //       weatherCities[weatherCities.length - 1].id
+      //     )
+      //   );
+      // }
 
       // console.log('onLoad() called fetchCitiesData');
     } catch (error) {
@@ -206,6 +211,8 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
                 setForecastCities={setForecastCities}
                 offset={offset}
                 setOffset={setOffset}
+                setCurrentWeatherCityId={setCurrentWeatherCityId}
+                setWeatherSections={setWeatherSection}
               />
             )}
             {Object.keys(locationWeather).length &&
