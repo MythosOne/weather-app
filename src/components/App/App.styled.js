@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  opacity: 0;
+  /* opacity: 0;
   transform: scale(0.9);
 
   &.active {
@@ -14,5 +14,5 @@ export const Container = styled.div`
     opacity: 0;
     transform: scale(0.9);
     transition: opacity 300ms, transform 300ms;
-  }
+  } */
 `;

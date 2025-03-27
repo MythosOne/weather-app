@@ -86,11 +86,17 @@ export const Location = styled.span`
   font-weight: 400;
 `;
 
-export const CloseBtn = styled.button`
-  opacity: 0;
-  transform: scale(0.9);
+export const BlockBtn = styled.div`
+  position: absolute;
+  top: -10px;
+  right: -10px;
+`;
 
-  &.active {
+export const CloseBtn = styled.button`
+  /* opacity: 0;
+  transform: scale(0.9); */
+
+  /* &.active {
     opacity: 1;
     transform: translateX(0);
     transition: opacity 300ms, transform 300ms;
@@ -99,16 +105,13 @@ export const CloseBtn = styled.button`
     opacity: 0;
     transform: scale(0.9);
     transition: opacity 300ms, transform 300ms;
-  }
+  } */
 
   display: flex;
   padding: 0;
   align-items: center;
   justify-content: center;
 
-  position: absolute;
-  top: -8px;
-  right: -8px;
   width: 24px;
   height: 24px;
   background-color: inherit;

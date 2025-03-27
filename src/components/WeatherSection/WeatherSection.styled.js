@@ -32,3 +32,5 @@ export const Section = styled.section`
     margin: 50px auto 20px;
   }
 `;
+
+export const Container = styled.div``;
