@@ -1,4 +1,10 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, {
+  useContext,
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+} from 'react';
 import { Transition } from 'react-transition-group';
 import LocationWeather from '../LocationWeather/LocationWeather';
 import { WeatherWidgets } from '../WeatherWidgets/WeatherWidgets';
@@ -25,35 +31,21 @@ const styles = {
 
 export const WeatherSection = () => {
   const nodeRef = useRef(null);
-  const [showComponent, setShowComponent] = useState(Boolean);
-  console.log('showComponent WeatherSection:', showComponent);
-
   const { locationForecast, forecastSection, locationWeather, weatherSection } =
     useContext(HomePageContext);
 
-  console.log('weatherSection:', weatherSection.name);
-  console.log('forecastSection:', forecastSection.city.name);
+  // const [showComponent, setShowComponent] = useState(true);
+  // console.log('showComponent WeatherSection:', showComponent);
 
-  useEffect(() => {
-    // setShowComponent(true);
-    setShowComponent(false); // Сначала скрываем компонент
-
-  const timer = setTimeout(() => {
-    setShowComponent(true); // Затем снова показываем
-  }, 10); // Небольшая задержка для корректной работы Transition
-
-  return () => clearTimeout(timer); // Очищаем таймер при изменении данных
-  }, [weatherSection, forecastSection]);
-
-  useEffect(() => {
-    console.log('nodeRef.current WeatherSection:', nodeRef.current);
-  }, [showComponent]);
+  // useEffect(() => {
+  //   console.log('nodeRef.current WeatherSection:', nodeRef.current);
+  // }, [showComponent]);
 
   return (
     <Section>
       <Transition
         nodeRef={nodeRef}
-        in={showComponent}
+        in={true}
         timeout={300}
         mountOnEnter
         unmountOnExit

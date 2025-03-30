@@ -22,7 +22,7 @@ export const WeatherBar = styled.section`
     position: sticky;
     top: 70px;
 
-    margin: 70px auto 20px;
+    margin: 50px auto 20px;
 
     width: 260px;
     height: inherit;

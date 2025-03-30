@@ -199,7 +199,6 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
               forecastSection,
               locationWeather,
               weatherSection,
-              
             }}
           >
             {Object.keys(locationWeather).length && (

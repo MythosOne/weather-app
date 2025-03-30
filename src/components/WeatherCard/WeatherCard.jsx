@@ -40,6 +40,8 @@ const styles = {
 function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
   const buttonRef = useRef(null);
   const [showComponent, setShowComponent] = useState(false);
+  const [currentCloseButton, setCurrentCloseButton] = useState(onCloseBtn);
+  // console.log('currentCloseButton:', currentCloseButton);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   // console.log('isButtonVisible:', isButtonVisible);
   // console.log('onCloseBtn:', onCloseBtn);
@@ -48,7 +50,6 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
 
   useEffect(() => {
     setShowComponent(true);
-    // setIsButtonVisible(true);
   }, []);
 
   // useEffect(() => {
@@ -56,12 +57,11 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
   // }, [showComponent]);
 
   useEffect(() => {
-    // if (onCloseBtn) {
-    //   setIsButtonVisible(true);
-    // } else {
-    //   setIsButtonVisible(false);
-    // }   
     setIsButtonVisible(Boolean(onCloseBtn));
+
+    setTimeout(() => {
+      setCurrentCloseButton(onCloseBtn);
+    }, 300);
   }, [onCloseBtn]);
 
   return (
@@ -107,17 +107,16 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
               ...(state === 'exited' && styles.exited),
             }}
           >
-            {onCloseBtn && (
+            {currentCloseButton && (
               <CloseBtn
                 ref={buttonRef}
                 type="button"
                 aria-label="close"
                 title="Close"
                 onClick={() => {
-                  onDeleteCard(weatherCity.id);
                   setIsButtonVisible(false);
+                  setTimeout(() => onDeleteCard(weatherCity.id), 300);
                 }}
-                // className={onCloseBtn ? 'active' : ''}
               >
                 <CloseCardImg />
               </CloseBtn>
