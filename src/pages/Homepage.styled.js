@@ -7,13 +7,12 @@ export const Main = styled.main`
 
   position: relative;
   margin: 0 auto;
-  
+
   @media screen and (min-width: 767px) {
     width: 708px;
 
     flex-direction: row;
     align-items: stretch;
-    
 
     gap: 10px;
   }
@@ -27,3 +26,7 @@ export const Main = styled.main`
   }
 `;
 
+export const Container = styled.div`
+  display: flex;
+  gap: 20px;
+`;

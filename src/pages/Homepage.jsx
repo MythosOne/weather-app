@@ -1,4 +1,6 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useEffect, useState, createContext, useRef } from 'react';
+import { Transition } from 'react-transition-group';
+
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
 import { WeatherSection } from '../components/WeatherSection/WeatherSection';
 import {
@@ -6,11 +8,31 @@ import {
   apiServiceForecastData,
 } from '../Api/apiService';
 import { Loader } from '../components/Loader/Loader';
-import { Main } from './Homepage.styled';
+import { Main, Container } from './Homepage.styled';
 
 export const HomePageContext = createContext();
 
+const styles = {
+  initial: {
+    opacity: 0,
+    transform: 'scale(0.9)',
+    transition: 'opacity 300ms, transform 300ms',
+  },
+  entered: {
+    opacity: 1,
+    transform: 'translateX(0)',
+    transition: 'opacity 300ms, transform 300ms',
+  },
+  exited: {
+    opacity: 0,
+    transform: 'scale(0.9)',
+    transition: 'opacity 300ms, transform 300ms',
+  },
+};
+
 export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
+  const nodeRef = useRef(null);
+  const [showComponent, setShowComponent] = useState(false);
   //!!!State weather cities
   const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCities')) ?? []
@@ -18,7 +40,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [forecastCities, setForecastCities] = useState(
     JSON.parse(localStorage.getItem('forecastCities')) ?? []
   );
-  // console.log("forecastCities: ", forecastCities);
+
   //!!! state location weather
   const [locationWeather, setLocationWeather] = useState(
     JSON.parse(localStorage.getItem('locationWeather')) ?? {}
@@ -34,17 +56,18 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [forecastSection, setForecastSection] = useState(
     JSON.parse(localStorage.getItem('forecastSection')) ?? {}
   );
-  // console.log('weatherSection: ', weatherSection);
-  // console.log('forecastSection: ', forecastSection);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const [currentWeatherCityId, setCurrentWeatherCityId] = useState(null);
-  // console.log('currentWeatherCityId:', currentWeatherCityId);
 
   const [offset, setOffset] = useState(-100);
 
   const { latitude, longitude } = location;
+
+  // useEffect(() => {
+  //   console.log("nodeRef.current App:", nodeRef.current);
+  // }, [showComponent]);
 
   useEffect(() => {
     fetchLocationData();
@@ -68,7 +91,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
     } else if (currentWeatherCityId === null) {
       selectedWeatherCity = weatherCities[weatherCities.length - 1];
       selectedForecastCity = forecastCities[forecastCities.length - 1];
-    };
+    }
 
     if (selectedWeatherCity) {
       setWeatherSection(selectedWeatherCity);
@@ -120,7 +143,6 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   };
 
   const fetchCitiesData = async () => {
-    // console.log('fetchCitiesData called');
     if (weatherCities.length === 0 && forecastCities === 0) {
       return;
     }
@@ -160,23 +182,12 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
         JSON.stringify(updatedForecastCities)
       );
 
-      // if (weatherCities.length) {
-      //   setCurrentWeatherCityId(
-      //     weatherCities[weatherCities.length - 1].id,
-      //     console.log(
-      //       'setCurrentWeatherCityId:',
-      //       weatherCities[weatherCities.length - 1].id
-      //     )
-      //   );
-      // }
+      setShowComponent(true);
 
-      // console.log('onLoad() called fetchCitiesData');
     } catch (error) {
       console.error('Error fetching weather data:', error);
     } finally {
       setIsLoading(false);
-      // onLoad();
-      // console.log('onLoad() called fetchCitiesData');
     }
   };
 
@@ -188,6 +199,22 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
     <>
       {myLocation && (
         <Main>
+          <Transition
+            in={showComponent}
+            timeout={300}
+            nodeRef={nodeRef}
+            mountOnEnter
+            unmountOnExit
+          >
+            {state => (
+              <Container
+                style={{
+                  ...styles.initial,
+                  ...(state === 'entered' && styles.entered),
+                  ...(state === 'exited' && styles.exited),
+                }}
+                ref={nodeRef}
+              >
           <HomePageContext.Provider
             value={{
               weatherCities,
@@ -218,6 +245,9 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
               Object.keys(locationForecast).length && <WeatherSection />}
             {isLoading && <Loader />}
           </HomePageContext.Provider>
+          </Container>
+          )}
+          </Transition>
         </Main>
       )}
     </>

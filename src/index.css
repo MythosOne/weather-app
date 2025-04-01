@@ -62,7 +62,7 @@ html {
 }
 
 div {
-  scroll-margin-top: 70px;
+  /* scroll-margin-top: 70px; */
 
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */

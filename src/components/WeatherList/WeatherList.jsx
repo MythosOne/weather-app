@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Container } from './Weather.styled';
+import { Container } from './WeatherList.styled';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import { HomePageContext } from 'pages/Homepage';
 
