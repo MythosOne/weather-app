@@ -41,6 +41,7 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
   const buttonRef = useRef(null);
   const [showComponent, setShowComponent] = useState(false);
   const [currentCloseButton, setCurrentCloseButton] = useState(onCloseBtn);
+
   // console.log('currentCloseButton:', currentCloseButton);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
   // console.log('isButtonVisible:', isButtonVisible);
@@ -115,6 +116,7 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
                 title="Close"
                 onClick={() => {
                   setIsButtonVisible(false);
+                  setShowComponent(false);
                   setTimeout(() => onDeleteCard(weatherCity.id), 300);
                 }}
               >

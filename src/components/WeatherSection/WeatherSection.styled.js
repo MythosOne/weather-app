@@ -21,7 +21,7 @@ export const Section = styled.section`
   @media screen and (min-width: 767px) {
     margin: 0;
 
-    margin: 50px auto 20px;
+    margin: 70px auto 20px;
   }
 
   @media screen and (min-width: 1279px) {
