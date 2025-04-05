@@ -32,7 +32,7 @@ const styles = {
 
 export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const nodeRef = useRef(null);
-  const [showComponent, setShowComponent] = useState(false);
+  const [showHomePage, setShowHomePage] = useState(false);
   //!!!State weather cities
   const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCities')) ?? []
@@ -182,7 +182,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
         JSON.stringify(updatedForecastCities)
       );
 
-      setShowComponent(true);
+      setShowHomePage(true);
 
     } catch (error) {
       console.error('Error fetching weather data:', error);
@@ -200,7 +200,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       {myLocation && (
         <Main>
           <Transition
-            in={showComponent}
+            in={showHomePage}
             timeout={300}
             nodeRef={nodeRef}
             mountOnEnter

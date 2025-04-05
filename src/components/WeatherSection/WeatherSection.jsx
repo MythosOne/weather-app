@@ -39,7 +39,7 @@ export const WeatherSection = () => {
     handlerSelectWeatherCity,
   } = useContext(HomePageContext);
 
-  const [showComponent, setShowComponent] = useState(false);
+  const [showSection, setShowSection] = useState(false);
   const [showWeatherSection, setShowWeatherSection] = useState(weatherSection);
   const [showForecastSection, setShowForecastSection] =
     useState(forecastSection);
@@ -49,19 +49,19 @@ export const WeatherSection = () => {
   // }, [showComponent]);
 
   useLayoutEffect(() => {
-    setShowComponent(true);
+    setShowSection(true);
     setShowWeatherSection(true);
     setShowForecastSection(true);
   }, []);
 
   useEffect(() => {
-    setShowComponent(false);
+    setShowSection(false);
 
     setTimeout(() => {
       setShowWeatherSection(weatherSection);
       setShowForecastSection(forecastSection);
 
-      setShowComponent(true);
+      setShowSection(true);
     }, 300);
   }, [handlerSelectWeatherCity]);
 
@@ -69,7 +69,7 @@ export const WeatherSection = () => {
     <Section>
       <Transition
         nodeRef={nodeRef}
-        in={showComponent}
+        in={showSection}
         timeout={300}
         mountOnEnter
         unmountOnExit
