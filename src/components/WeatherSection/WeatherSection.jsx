@@ -13,6 +13,10 @@ import { HomePageContext } from 'pages/Homepage';
 
 const styles = {
   initial: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+
     opacity: 0,
     transform: 'scale(0.9)',
     transition: 'opacity 300ms, transform 300ms',
@@ -39,7 +43,7 @@ export const WeatherSection = () => {
     handlerSelectWeatherCity,
   } = useContext(HomePageContext);
 
-  const [showSection, setShowSection] = useState(false);
+  const [showComponent, setShowComponent] = useState(false);
   const [showWeatherSection, setShowWeatherSection] = useState(weatherSection);
   const [showForecastSection, setShowForecastSection] =
     useState(forecastSection);
@@ -49,19 +53,22 @@ export const WeatherSection = () => {
   // }, [showComponent]);
 
   useLayoutEffect(() => {
-    setShowSection(true);
+    setShowComponent(true);
     setShowWeatherSection(true);
     setShowForecastSection(true);
   }, []);
 
   useEffect(() => {
-    setShowSection(false);
+    // if (handlerSelectWeatherCity) {
+    //   setShowComponent(false);}
+
+    setShowComponent(false);
 
     setTimeout(() => {
       setShowWeatherSection(weatherSection);
       setShowForecastSection(forecastSection);
 
-      setShowSection(true);
+      setShowComponent(true);
     }, 300);
   }, [handlerSelectWeatherCity]);
 
@@ -69,7 +76,7 @@ export const WeatherSection = () => {
     <Section>
       <Transition
         nodeRef={nodeRef}
-        in={showSection}
+        in={showComponent}
         timeout={300}
         mountOnEnter
         unmountOnExit

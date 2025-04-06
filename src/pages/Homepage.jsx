@@ -183,7 +183,6 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       );
 
       setShowHomePage(true);
-
     } catch (error) {
       console.error('Error fetching weather data:', error);
     } finally {
@@ -215,38 +214,38 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
                 }}
                 ref={nodeRef}
               >
-          <HomePageContext.Provider
-            value={{
-              weatherCities,
-              setWeatherCities,
-              handlerSelectWeatherCity,
-              setWeatherSection,
-              setCurrentWeatherCityId,
-              locationForecast,
-              forecastSection,
-              locationWeather,
-              weatherSection,
-            }}
-          >
-            {Object.keys(locationWeather).length && (
-              <WeatherCity
-                weather={locationWeather}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                forecastCities={forecastCities}
-                setForecastCities={setForecastCities}
-                offset={offset}
-                setOffset={setOffset}
-                setCurrentWeatherCityId={setCurrentWeatherCityId}
-                setWeatherSections={setWeatherSection}
-              />
+                <HomePageContext.Provider
+                  value={{
+                    weatherCities,
+                    setWeatherCities,
+                    handlerSelectWeatherCity,
+                    setWeatherSection,
+                    setCurrentWeatherCityId,
+                    locationForecast,
+                    forecastSection,
+                    locationWeather,
+                    weatherSection,
+                  }}
+                >
+                  {Object.keys(locationWeather).length && (
+                    <WeatherCity
+                      weather={locationWeather}
+                      isOpen={isOpen}
+                      setIsOpen={setIsOpen}
+                      forecastCities={forecastCities}
+                      setForecastCities={setForecastCities}
+                      offset={offset}
+                      setOffset={setOffset}
+                      setCurrentWeatherCityId={setCurrentWeatherCityId}
+                      setWeatherSections={setWeatherSection}
+                    />
+                  )}
+                  {Object.keys(locationWeather).length &&
+                    Object.keys(locationForecast).length && <WeatherSection />}
+                  {isLoading && <Loader />}
+                </HomePageContext.Provider>
+              </Container>
             )}
-            {Object.keys(locationWeather).length &&
-              Object.keys(locationForecast).length && <WeatherSection />}
-            {isLoading && <Loader />}
-          </HomePageContext.Provider>
-          </Container>
-          )}
           </Transition>
         </Main>
       )}

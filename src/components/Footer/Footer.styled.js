@@ -73,6 +73,10 @@ export const ArrowUpBtn = styled.a`
     width: 32px;
     height: 32px;
   }
+
+  @media screen and (min-width: 1279px) {
+    display: none;
+  }
 `;
 
 export const LinkList = styled.ul`

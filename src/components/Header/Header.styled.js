@@ -34,6 +34,7 @@ export const Section = styled.header`
 
   @media screen and (min-width: 1279px) {
     width: 1040px;
+    position: sticky;
   }
 `;
 

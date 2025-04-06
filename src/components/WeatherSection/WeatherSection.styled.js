@@ -5,10 +5,10 @@ export const Section = styled.section`
 
   max-width: 460px;
 
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: stretch;
+  align-items: stretch; */
 
   margin: 70px auto 20px;
 
@@ -16,7 +16,7 @@ export const Section = styled.section`
   font-size: 16px;
   color: white;
 
-  gap: 20px;
+  /* gap: 20px; */
 
   @media screen and (min-width: 767px) {
     margin: 0;
@@ -29,7 +29,7 @@ export const Section = styled.section`
 
     width: 740px;
 
-    margin: 50px auto 20px;
+    margin:0 auto ;
   }
 `;
 

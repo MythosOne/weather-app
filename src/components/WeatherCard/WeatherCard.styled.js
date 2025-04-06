@@ -88,6 +88,7 @@ export const Location = styled.span`
 
 export const BlockBtn = styled.div`
   position: absolute;
+
   top: -10px;
   right: -10px;
 `;

@@ -48,18 +48,22 @@ function App() {
 
   return (
     <>
-      <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+      {isHomepageLoaded && <Header isOpen={isOpen} setIsOpen={setIsOpen} />}
       <div id="mobile-portal"></div>
       {isConfirmed ? (
-        <Container>
+        <>
           {!isHomepageLoaded && <Loader />}
           <Homepage
             location={location}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            onLoad={() => setIsHomepageLoaded(true)}
+            onLoad={() =>
+              setTimeout(() => {
+                setIsHomepageLoaded(true);
+              }, 300)
+            }
           />
-        </Container>
+        </>
       ) : (
         <Loader />
       )}

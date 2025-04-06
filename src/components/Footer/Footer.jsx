@@ -17,7 +17,7 @@ import {
   TelegramImg,
 } from 'icons/IconComponent';
 
-export const Footer = ({show}) => {
+export const Footer = () => {
   return (
     <Section>
       <Logo />

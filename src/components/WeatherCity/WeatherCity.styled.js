@@ -20,7 +20,7 @@ export const WeatherBar = styled.section`
     z-index: 101;
 
     position: sticky;
-    top: 70px;
+    /* top: 70px; */
 
     margin: 70px auto 20px;
 
@@ -36,7 +36,7 @@ export const WeatherBar = styled.section`
     width: 280px;
     align-self: stretch;
 
-    margin: 50px auto 20px;
+    margin: 0 auto;
   }
 `;
 
