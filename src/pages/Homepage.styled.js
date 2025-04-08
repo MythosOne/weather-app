@@ -20,7 +20,7 @@ export const Main = styled.main`
   @media screen and (min-width: 1279px) {
     width: 1040px;
 
-    margin: 20px auto;
+    /* margin: 20px auto; */
 
     gap: 30px;
   }

@@ -10,7 +10,8 @@ export const WeatherBar = styled.section`
 
   width: 250px;
   height: 100%;
-  background-color: rgb(21, 72, 149);
+  background-color: rgb(21, 72, 149, .6);
+  backdrop-filter: blur(10px);
   transform: translateX(${props => props.dataOffset}%);
   transition: 0.2s ease;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 10px 0px;
@@ -22,21 +23,21 @@ export const WeatherBar = styled.section`
     position: sticky;
     /* top: 70px; */
 
-    margin: 70px auto 20px;
+    margin: 20px auto;
 
     width: 260px;
     height: inherit;
 
     border-radius: 12px;
 
-    background-color: rgb(21, 72, 149, 0.9);
+    /* background-color: rgb(21, 72, 149, 0.9); */
   }
 
   @media screen and (min-width: 1279px) {
     width: 280px;
     align-self: stretch;
 
-    margin: 0 auto;
+    /* margin: 0 auto; */
   }
 `;
 
@@ -89,5 +90,34 @@ export const CloseBtn = styled.button`
 
   @media screen and (min-width: 767px) {
     display: none;
+  }
+`;
+
+export const CardList = styled.div`
+  list-style: none;
+
+  overflow: hidden;
+  /* height: 600px; */
+
+  @media screen and (min-width: 768px) {
+    height: 715px;
+  };
+
+  @media screen and (min-width: 1279px) {
+    height: 600px;
+  };
+`;
+
+export const ScrollableList = styled.ul`
+  max-height: 98%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(240, 243, 244, 0.5);
+  }
+  &::-webkit-scrollbar {
+    width: 8px;
+    background: rgba(240, 243, 244, 0.1);
+    border-radius: 10px;
   }
 `;

@@ -27,6 +27,7 @@ export const Section = styled.header`
     max-width: none;
 
     width: 708px;
+    position: sticky;
     backdrop-filter: none;
 
     backdrop-filter: blur(10px);

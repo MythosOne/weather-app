@@ -18,12 +18,13 @@ function LocationWeather({ weather }) {
         weather.name ? (
           <>
             <MyLocation>My Location</MyLocation>
-            <City>{weather.name}</City>
+            {/* <City>{weather.name}</City> */}
           </>
         ) : (
           <>
-            <MyLocation>My Location</MyLocation>
-            <City>unknown location</City>
+            <MyLocation>Unknown location</MyLocation>
+            {/* <MyLocation>My Location</MyLocation> */}
+            {/* <City>unknown location</City> */}
           </>
         )
       ) : (

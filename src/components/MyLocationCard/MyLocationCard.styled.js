@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.ul`
+export const Container = styled.li`
   display: flex;
   flex-direction: column;
   align-items: stretch;

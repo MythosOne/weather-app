@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
 
 import { SearchBar } from '../SearchBar/SearchBar';
-import { WeatherList } from '../WeatherList/WeatherList';
+import { ListOfWeatherCard } from '../ListOfWeatherCard/ListOfWeatherCard';
 import MyLocationCard from '../MyLocationCard/MyLocationCard';
 
 import {
@@ -11,6 +11,8 @@ import {
   Title,
   ListBtn,
   CloseBtn,
+  CardList,
+  ScrollableList,
 } from './WeatherCity.styled';
 
 import {
@@ -143,33 +145,42 @@ export const WeatherCity = ({
 
   const content = (
     <WeatherBar dataOffset={offset}>
-      <BlockBtn>
-        <ListBtn
-          type="button"
-          aria-label="list"
-          title="List"
-          onClick={() => {
-            setOnCloseBtn(!onCloseBtn);
-          }}
-        >
-          <CorrectListImg />
-        </ListBtn>
-        <CloseBtn
-          type="button"
-          aria-label="close"
-          title="Close"
-          onClick={() => {
-            setOffset(-100);
-            setIsOpen(!isOpen);
-          }}
-        >
-          <WeatherCityClose />
-        </CloseBtn>
-      </BlockBtn>
-      <Title>Weather</Title>
-      <SearchBar setSearchCity={setSearchCity} />
-      <MyLocationCard weather={weather} />
-      <WeatherList onCloseBtn={onCloseBtn} onDeleteCard={onDeleteCard} />
+      <div style={{ backdropFilter: 'blur(10px)' }}>
+        <BlockBtn>
+          <ListBtn
+            type="button"
+            aria-label="list"
+            title="List"
+            onClick={() => {
+              setOnCloseBtn(!onCloseBtn);
+            }}
+          >
+            <CorrectListImg />
+          </ListBtn>
+          <CloseBtn
+            type="button"
+            aria-label="close"
+            title="Close"
+            onClick={() => {
+              setOffset(-100);
+              setIsOpen(!isOpen);
+            }}
+          >
+            <WeatherCityClose />
+          </CloseBtn>
+        </BlockBtn>
+        <Title>Weather</Title>
+        <SearchBar setSearchCity={setSearchCity} />
+      </div>
+      <CardList>
+        <ScrollableList>
+          <MyLocationCard weather={weather} />
+          <ListOfWeatherCard
+            onCloseBtn={onCloseBtn}
+            onDeleteCard={onDeleteCard}
+          />
+        </ScrollableList>
+      </CardList>
       {isLoading && <Loader />}
     </WeatherBar>
   );

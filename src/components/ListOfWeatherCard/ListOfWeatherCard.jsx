@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import { Container, ScrollableList } from './WeatherList.styled';
+import { Container, ScrollableList } from './ListOfWeatherCard.styled';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import { HomePageContext } from 'pages/Homepage';
 
-export const WeatherList = ({ onCloseBtn, onDeleteCard }) => {
+export const ListOfWeatherCard = ({ onCloseBtn, onDeleteCard }) => {
   const { weatherCities, handlerSelectWeatherCity } = useContext(HomePageContext);
   
   return (
     <Container>
-      <ScrollableList>
+      {/* <ScrollableList> */}
       {weatherCities.map(city => (
         <li key={city.id} onClick={() => handlerSelectWeatherCity(city.id)}>
           <WeatherCard
@@ -18,7 +18,7 @@ export const WeatherList = ({ onCloseBtn, onDeleteCard }) => {
           />
         </li>
       ))}
-      </ScrollableList>
+      {/* </ScrollableList> */}
     </Container>
   );
 };
