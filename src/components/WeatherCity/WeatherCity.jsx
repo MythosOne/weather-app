@@ -145,33 +145,31 @@ export const WeatherCity = ({
 
   const content = (
     <WeatherBar dataOffset={offset}>
-      <div style={{ backdropFilter: 'blur(10px)' }}>
-        <BlockBtn>
-          <ListBtn
-            type="button"
-            aria-label="list"
-            title="List"
-            onClick={() => {
-              setOnCloseBtn(!onCloseBtn);
-            }}
-          >
-            <CorrectListImg />
-          </ListBtn>
-          <CloseBtn
-            type="button"
-            aria-label="close"
-            title="Close"
-            onClick={() => {
-              setOffset(-100);
-              setIsOpen(!isOpen);
-            }}
-          >
-            <WeatherCityClose />
-          </CloseBtn>
-        </BlockBtn>
-        <Title>Weather</Title>
-        <SearchBar setSearchCity={setSearchCity} />
-      </div>
+      <BlockBtn>
+        <ListBtn
+          type="button"
+          aria-label="list"
+          title="List"
+          onClick={() => {
+            setOnCloseBtn(!onCloseBtn);
+          }}
+        >
+          <CorrectListImg />
+        </ListBtn>
+        <CloseBtn
+          type="button"
+          aria-label="close"
+          title="Close"
+          onClick={() => {
+            setOffset(-100);
+            setIsOpen(!isOpen);
+          }}
+        >
+          <WeatherCityClose />
+        </CloseBtn>
+      </BlockBtn>
+      <Title>Weather</Title>
+      <SearchBar setSearchCity={setSearchCity} />
       <CardList>
         <ScrollableList>
           <MyLocationCard weather={weather} />

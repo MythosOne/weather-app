@@ -70,7 +70,7 @@ export const WeatherSection = () => {
 
       setShowComponent(true);
     }, 300);
-  }, [handlerSelectWeatherCity]);
+  }, [forecastSection, weatherSection]);
 
   return (
     <Section>

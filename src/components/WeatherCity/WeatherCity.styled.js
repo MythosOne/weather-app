@@ -97,7 +97,8 @@ export const CardList = styled.div`
   list-style: none;
 
   overflow: hidden;
-  /* height: 600px; */
+  
+  height: 88%;
 
   @media screen and (min-width: 768px) {
     height: 715px;
@@ -112,12 +113,14 @@ export const ScrollableList = styled.ul`
   max-height: 98%;
   overflow-y: auto;
 
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgba(240, 243, 244, 0.5);
-  }
   &::-webkit-scrollbar {
     width: 8px;
     background: rgba(240, 243, 244, 0.1);
     border-radius: 10px;
   }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(240, 243, 244, 0.3);
+    border-radius: 10px;
+  }
+
 `;
