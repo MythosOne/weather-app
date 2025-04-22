@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 
 import { SearchBar } from '../SearchBar/SearchBar';
@@ -37,12 +37,13 @@ export const WeatherCity = ({
   setOffset,
 }) => {
   const [searchCity, setSearchCity] = useState('');
-  // console.log(searchCity);
   const [isLoading, setIsLoading] = useState(false);
   const [onCloseBtn, setOnCloseBtn] = useState(false);
-  const [, setCityId] = useState(0);
   const { weatherCities, setWeatherCities } = useContext(HomePageContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [mobilePortal, setMobilePortal] = useState(null);
+
+  WeatherCity.whyDidYouRender = true;
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -52,97 +53,72 @@ export const WeatherCity = ({
 
   useEffect(() => {
     if (searchCity) {
-      handleAddCity(searchCity);
+      handleCitySearch(searchCity);
     }
   }, [searchCity]);
 
-  const mobilePortal = document.getElementById('mobile-portal');
+  useEffect(() => {
+    setMobilePortal(document.getElementById('mobile-portal'));
+  }, []);
 
-  const handleAddCity = async searchCity => {
-    if (searchCity === '') {
-      return;
-    }
+  const handleCitySearch = useCallback(
+    async searchCity => {
+      if (!searchCity.trim()) return;
 
-    const weatherCity = weatherCities.some(
-      city => city.name.toLowerCase() === searchCity.toLowerCase()
-    );
+      setIsLoading(true);
 
-    if (weatherCity) {
-      alert(`${searchCity} is already in cities`);
-      setSearchCity('');
-      return;
-    }
+      try {
+        const data = await apiServiceSearchData(searchCity);
 
-    setIsLoading(true);
+        if (weatherCities.some(city => city.id === data.id)) {
+          alert(`${searchCity} is already in cities`);
+          setSearchCity('');
+          return;
+        }
 
-    try {
-      const data = await apiServiceSearchData(searchCity);
+        setWeatherCities(prev => {
+          const updated = [...prev, data];
+          localStorage.setItem('weatherCities', JSON.stringify(updated));
+          return updated;
+        });
 
-      if (weatherCities.some(city => city.id === data.id)) {
-        alert(`${searchCity} is already in cities`);
+        const { lat, lon } = data.coord;
+        const forecast = await apiServiceForecastData(lat, lon);
+
+        setForecastCities(prev => {
+          const updated = [...prev, forecast];
+          localStorage.setItem('forecastCities', JSON.stringify(updated));
+          return updated;
+        });
+
         setSearchCity('');
-        return;
+      } catch (error) {
+        alert('City not found');
+        console.error(error);
+      } finally {
+        setIsLoading(false);
       }
+    },
+    [weatherCities, setWeatherCities, setForecastCities]
+  );
 
-      const { lat, lon } = data.coord;
-      const forecast = await apiServiceForecastData(lat, lon);
+  const onDeleteCard = useCallback(
+    cityId => {
+      setWeatherCities(prev => prev.filter(({ id }) => id !== cityId));
+      setForecastCities(prev => prev.filter(({ city }) => city.id !== cityId));
+    },
+    [setWeatherCities, setForecastCities]
+  );
 
-      setWeatherCities(prevState => {
-        const updatedWeatherCities = [...prevState, data];
+  const handleCloseBtn = useCallback(() => {
+    setOnCloseBtn(prev => !prev);
+  }, []);
 
-        localStorage.setItem(
-          'weatherCities',
-          JSON.stringify(updatedWeatherCities)
-        );
-
-        return updatedWeatherCities;
-      });
-
-      setForecastCities(prevState => {
-        const updatedForecastCities = [...prevState, forecast];
-
-        localStorage.setItem(
-          'forecastCities',
-          JSON.stringify(updatedForecastCities)
-        );
-
-        return updatedForecastCities;
-      });
-
-      setSearchCity('');
-    } catch (error) {
-      alert('City not found');
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const onDeleteCard = cityId => {
-    setCityId(cityId);
-
-    setWeatherCities(prev => {
-      const updatedWeather = prev.filter(({ id }) => id !== cityId);
-
-      localStorage.setItem('weatherCities', JSON.stringify(updatedWeather));
-
-      return updatedWeather;
-    });
-
-    setForecastCities(prev => {
-      const updatedForecast = prev.filter(({ city }) => city.id !== cityId);
-
-      localStorage.setItem('forecastCities', JSON.stringify(updatedForecast));
-
-      setCurrentWeatherCityId(null);
-      setWeatherSections({});
-
-      return updatedForecast;
-    });
-
-    setSearchCity('');
-  };
-
+  const handleClose = useCallback(() => {
+    setOffset(-100);
+    setIsOpen(prev => !prev);
+  }, [setOffset, setIsOpen]);
+  // debugger;
   const content = (
     <WeatherBar dataOffset={offset}>
       <BlockBtn>
@@ -150,9 +126,7 @@ export const WeatherCity = ({
           type="button"
           aria-label="list"
           title="List"
-          onClick={() => {
-            setOnCloseBtn(!onCloseBtn);
-          }}
+          onClick={handleCloseBtn}
         >
           <CorrectListImg />
         </ListBtn>
@@ -160,10 +134,7 @@ export const WeatherCity = ({
           type="button"
           aria-label="close"
           title="Close"
-          onClick={() => {
-            setOffset(-100);
-            setIsOpen(!isOpen);
-          }}
+          onClick={handleClose}
         >
           <WeatherCityClose />
         </CloseBtn>

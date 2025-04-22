@@ -39,6 +39,8 @@ import { WeatherMap } from './WeatherMap/WeatherMap';
 import { AverageTemp } from './AverageTemp/AverageTemp';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
+  // console.log("weather:", weather);
+  console.log("forecast:", forecast);
   const UTCTime = unixTime => {
     let time = new Date((unixTime + weather.timezone) * 1000);
     return `${time.getUTCHours().toString().padStart(2, '0')}:${time

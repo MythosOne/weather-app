@@ -15,6 +15,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isHomepageLoaded, setIsHomepageLoaded] = useState(false);
+  // console.log('isHomepageLoaded:', isHomepageLoaded);
   const [isConfirmed, setIsConfirmed] = useState(false);
   // console.log('isConfirmed:', isConfirmed);
   // console.log('isHomepageLoaded:', isHomepageLoaded);

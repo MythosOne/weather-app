@@ -1,4 +1,10 @@
-import React, { useEffect, useState, createContext, useRef } from 'react';
+import React, {
+  useEffect,
+  useState,
+  createContext,
+  useRef,
+  useMemo,
+} from 'react';
 import { Transition } from 'react-transition-group';
 
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
@@ -53,9 +59,11 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [weatherSection, setWeatherSection] = useState(
     JSON.parse(localStorage.getItem('weatherSection')) ?? {}
   );
+  console.log("weatherSection:", weatherSection);
   const [forecastSection, setForecastSection] = useState(
     JSON.parse(localStorage.getItem('forecastSection')) ?? {}
   );
+  console.log("forecastSection:", forecastSection);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -64,6 +72,8 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [offset, setOffset] = useState(-100);
 
   const { latitude, longitude } = location;
+
+  //!!! // Homepage.whyDidYouRender = true;
 
   // useEffect(() => {
   //   console.log("nodeRef.current App:", nodeRef.current);
@@ -194,6 +204,27 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
 
   const { myLocation } = locationWeather;
 
+  const contextValue = useMemo(
+    () => ({
+      weatherCities,
+      setWeatherCities,
+      handlerSelectWeatherCity,
+      setWeatherSection,
+      setCurrentWeatherCityId,
+      locationForecast,
+      forecastSection,
+      locationWeather,
+      weatherSection,
+    }),
+    [
+      weatherCities,
+      locationForecast,
+      forecastSection,
+      locationWeather,
+      weatherSection,
+    ]
+  );
+
   return (
     <>
       {myLocation && (
@@ -214,19 +245,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
                 }}
                 ref={nodeRef}
               >
-                <HomePageContext.Provider
-                  value={{
-                    weatherCities,
-                    setWeatherCities,
-                    handlerSelectWeatherCity,
-                    setWeatherSection,
-                    setCurrentWeatherCityId,
-                    locationForecast,
-                    forecastSection,
-                    locationWeather,
-                    weatherSection,
-                  }}
-                >
+                <HomePageContext.Provider value={contextValue}>
                   {Object.keys(locationWeather).length && (
                     <WeatherCity
                       weather={locationWeather}

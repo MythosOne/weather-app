@@ -47,16 +47,18 @@ export const WeatherSection = () => {
   const [showWeatherSection, setShowWeatherSection] = useState(weatherSection);
   const [showForecastSection, setShowForecastSection] =
     useState(forecastSection);
+    console.log("showWeatherSection:", showWeatherSection);
+  console.log("showForecastSection:", showForecastSection);
 
   // useEffect(() => {
   //   console.log('nodeRef.current WeatherSection:', nodeRef.current);
   // }, [showComponent]);
 
-  useLayoutEffect(() => {
-    setShowComponent(true);
-    setShowWeatherSection(true);
-    setShowForecastSection(true);
-  }, []);
+  // useLayoutEffect(() => {
+  //   setShowComponent(true);
+  //   setShowWeatherSection(true);
+  //   setShowForecastSection(true);
+  // }, []);
 
   useEffect(() => {
     // if (handlerSelectWeatherCity) {
