@@ -39,6 +39,8 @@ const styles = {
 export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const nodeRef = useRef(null);
   const [showHomePage, setShowHomePage] = useState(false);
+  const [withAnimation, setWithAnimation] = useState(false);
+  console.log("withAnimation:", withAnimation);
   //!!!State weather cities
   const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCities')) ?? []
@@ -59,11 +61,11 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [weatherSection, setWeatherSection] = useState(
     JSON.parse(localStorage.getItem('weatherSection')) ?? {}
   );
-  console.log("weatherSection:", weatherSection);
+  console.log('weatherSection:', weatherSection);
   const [forecastSection, setForecastSection] = useState(
     JSON.parse(localStorage.getItem('forecastSection')) ?? {}
   );
-  console.log("forecastSection:", forecastSection);
+  console.log('forecastSection:', forecastSection);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -215,6 +217,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       forecastSection,
       locationWeather,
       weatherSection,
+      setWithAnimation,
     }),
     [
       weatherCities,

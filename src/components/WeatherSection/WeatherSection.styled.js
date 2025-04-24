@@ -3,8 +3,11 @@ import styled from '@emotion/styled';
 export const Section = styled.section`
   grid-area: weatherSection;
 
-  max-width: 460px;
-
+  /* max-width: 460px */
+  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -12,7 +15,8 @@ export const Section = styled.section`
 
   margin: 70px auto 20px;
 
-  width: 90%;
+  /* width: 75%; */
+  
   font-size: 16px;
   color: white;
 
@@ -20,6 +24,8 @@ export const Section = styled.section`
 
   @media screen and (min-width: 767px) {
     margin: 0;
+
+    min-width: 460px;
 
     margin: 20px auto;
   }

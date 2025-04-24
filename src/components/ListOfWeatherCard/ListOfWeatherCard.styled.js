@@ -11,6 +11,8 @@ export const Container = styled.li`
   height: 480px; */
 `;
 
+export const WeatherCardList = styled.ul``;
+
 // export const ScrollableList = styled.ul`
 //   /* max-height: 98%; */
 //   overflow-y: auto;

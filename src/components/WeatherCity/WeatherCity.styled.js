@@ -25,7 +25,7 @@ export const WeatherBar = styled.section`
 
     margin: 20px auto;
 
-    width: 260px;
+    max-width: 260px;
     height: inherit;
 
     border-radius: 12px;

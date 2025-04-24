@@ -41,14 +41,16 @@ export const WeatherSection = () => {
     locationWeather,
     weatherSection,
     handlerSelectWeatherCity,
+    withAnimation,
   } = useContext(HomePageContext);
 
   const [showComponent, setShowComponent] = useState(false);
+  console.log('showComponent:', showComponent);
   const [showWeatherSection, setShowWeatherSection] = useState(weatherSection);
   const [showForecastSection, setShowForecastSection] =
     useState(forecastSection);
-    console.log("showWeatherSection:", showWeatherSection);
-  console.log("showForecastSection:", showForecastSection);
+  // console.log('showWeatherSection:', showWeatherSection);
+  // console.log('showForecastSection:', showForecastSection);
 
   // useEffect(() => {
   //   console.log('nodeRef.current WeatherSection:', nodeRef.current);
@@ -74,43 +76,44 @@ export const WeatherSection = () => {
     }, 300);
   }, [forecastSection, weatherSection]);
 
+  const content = (
+    <>
+      {showWeatherSection && Object.keys(showWeatherSection).length ? (
+        <LocationWeather weather={showWeatherSection} />
+      ) : (
+        <LocationWeather weather={locationWeather} />
+      )}
+      {showForecastSection && Object.keys(showWeatherSection).length ? (
+        <WeatherWidgets
+          weather={showWeatherSection}
+          forecast={showForecastSection}
+        />
+      ) : (
+        <WeatherWidgets weather={locationWeather} forecast={locationForecast} />
+      )}
+    </>
+  );
+
   return (
     <Section>
-      <Transition
-        nodeRef={nodeRef}
-        in={showComponent}
-        timeout={300}
-        mountOnEnter
-        unmountOnExit
-      >
-        {state => (
-          <Container
-            style={{
-              ...styles.initial,
-              ...(state === 'entered' && styles.entered),
-              ...(state === 'exited' && styles.exited),
-            }}
-            ref={nodeRef}
-          >
-            {showWeatherSection && Object.keys(showWeatherSection).length ? (
-              <LocationWeather weather={showWeatherSection} />
-            ) : (
-              <LocationWeather weather={locationWeather} />
-            )}
-            {showForecastSection && Object.keys(showWeatherSection).length ? (
-              <WeatherWidgets
-                weather={showWeatherSection}
-                forecast={showForecastSection}
-              />
-            ) : (
-              <WeatherWidgets
-                weather={locationWeather}
-                forecast={locationForecast}
-              />
-            )}
-          </Container>
-        )}
-      </Transition>
+      {withAnimation ? (
+        <Transition in={showComponent} timeout={300} mountOnEnter unmountOnExit>
+          {state => (
+            <Container
+              style={{
+                ...styles.initial,
+                ...(state === 'entered' && styles.entered),
+                ...(state === 'exited' && styles.exited),
+              }}
+              ref={nodeRef}
+            >
+              {content}
+            </Container>
+          )}
+        </Transition>
+      ) : (
+        content
+      )}
     </Section>
   );
 };
