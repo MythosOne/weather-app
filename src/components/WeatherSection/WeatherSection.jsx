@@ -42,14 +42,20 @@ export const WeatherSection = () => {
   } = useContext(HomePageContext);
 
   const [showComponent, setShowComponent] = useState(false);
-  console.log('showComponent:', showComponent);
+  // console.log('showComponent:', showComponent);
   const [showWeatherSection, setShowWeatherSection] = useState(weatherSection);
   const [showForecastSection, setShowForecastSection] =
     useState(forecastSection);
   // console.log('showWeatherSection:', showWeatherSection);
   // console.log('showForecastSection:', showForecastSection);
 
+  
+
   useEffect(() => {
+    // if(handlerSelectWeatherCity){
+    //   setShowComponent(false);
+    // }
+
     setShowComponent(false);
 
     setTimeout(() => {
@@ -78,7 +84,7 @@ export const WeatherSection = () => {
     </>
   );
 
-  console.log('withAnimationWeatherSection:', withAnimation);
+  // console.log('withAnimationWeatherSection:', withAnimation);
 
   // useLayoutEffect(() => {
   //   if (withAnimation) {

@@ -45,7 +45,7 @@ export const WeatherCity = ({
 
   const {setWithAnimation} = useContext(HomePageContext);
 
-  WeatherCity.whyDidYouRender = true;
+  //!!! // WeatherCity.whyDidYouRender = true;
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -110,8 +110,10 @@ export const WeatherCity = ({
     cityId => {
       setWeatherCities(prev => prev.filter(({ id }) => id !== cityId));
       setForecastCities(prev => prev.filter(({ city }) => city.id !== cityId));
+      setCurrentWeatherCityId(null);
+      setWeatherSections({});
     },
-    [setWeatherCities, setForecastCities]
+    [setWeatherCities, setForecastCities, setCurrentWeatherCityId, setWeatherSections]
   );
 
   const handleCloseBtn = useCallback(() => {
