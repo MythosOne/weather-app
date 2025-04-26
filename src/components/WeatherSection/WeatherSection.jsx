@@ -13,10 +13,6 @@ import { HomePageContext } from 'pages/Homepage';
 
 const styles = {
   initial: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px',
-
     opacity: 0,
     transform: 'scale(0.9)',
     transition: 'opacity 300ms, transform 300ms',
@@ -42,6 +38,7 @@ export const WeatherSection = () => {
     weatherSection,
     handlerSelectWeatherCity,
     withAnimation,
+    setWithAnimation,
   } = useContext(HomePageContext);
 
   const [showComponent, setShowComponent] = useState(false);
@@ -52,20 +49,7 @@ export const WeatherSection = () => {
   // console.log('showWeatherSection:', showWeatherSection);
   // console.log('showForecastSection:', showForecastSection);
 
-  // useEffect(() => {
-  //   console.log('nodeRef.current WeatherSection:', nodeRef.current);
-  // }, [showComponent]);
-
-  // useLayoutEffect(() => {
-  //   setShowComponent(true);
-  //   setShowWeatherSection(true);
-  //   setShowForecastSection(true);
-  // }, []);
-
   useEffect(() => {
-    // if (handlerSelectWeatherCity) {
-    //   setShowComponent(false);}
-
     setShowComponent(false);
 
     setTimeout(() => {
@@ -94,26 +78,37 @@ export const WeatherSection = () => {
     </>
   );
 
+  console.log('withAnimationWeatherSection:', withAnimation);
+
+  // useLayoutEffect(() => {
+  //   if (withAnimation) {
+  //     setShowComponent(true);
+  //   }
+  // }, [withAnimation]);
+
   return (
     <Section>
-      {withAnimation ? (
-        <Transition in={showComponent} timeout={300} mountOnEnter unmountOnExit>
-          {state => (
-            <Container
-              style={{
-                ...styles.initial,
-                ...(state === 'entered' && styles.entered),
-                ...(state === 'exited' && styles.exited),
-              }}
-              ref={nodeRef}
-            >
-              {content}
-            </Container>
-          )}
-        </Transition>
-      ) : (
-        content
-      )}
+      <Transition
+        in={withAnimation ? showComponent : true}
+        // in={showComponent}
+        timeout={300}
+        nodeRef={nodeRef}
+        mountOnEnter
+        unmountOnExit
+      >
+        {state => (
+          <Container
+            style={{
+              ...styles.initial,
+              ...(state === 'entered' && styles.entered),
+              ...(state === 'exited' && styles.exited),
+            }}
+            ref={nodeRef}
+          >
+            {content}
+          </Container>
+        )}
+      </Transition>
     </Section>
   );
 };

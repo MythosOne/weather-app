@@ -43,6 +43,8 @@ export const WeatherCity = ({
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [mobilePortal, setMobilePortal] = useState(null);
 
+  const {setWithAnimation} = useContext(HomePageContext);
+
   WeatherCity.whyDidYouRender = true;
 
   useEffect(() => {
@@ -90,6 +92,8 @@ export const WeatherCity = ({
           localStorage.setItem('forecastCities', JSON.stringify(updated));
           return updated;
         });
+
+        setWithAnimation(true);
 
         setSearchCity('');
       } catch (error) {

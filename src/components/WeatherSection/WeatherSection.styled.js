@@ -4,25 +4,22 @@ export const Section = styled.section`
   grid-area: weatherSection;
 
   /* max-width: 460px */
-  
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch; */
 
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: flex-start;
+  align-items: stretch; */
+  /* gap: 20px; */
+  padding: 0 10px;
   margin: 70px auto 20px;
 
   /* width: 75%; */
-  
+
   font-size: 16px;
   color: white;
 
-  /* gap: 20px; */
-
   @media screen and (min-width: 767px) {
+    padding: 0;
     margin: 0;
 
     min-width: 460px;
@@ -31,6 +28,7 @@ export const Section = styled.section`
   }
 
   @media screen and (min-width: 1279px) {
+    padding: 0;
     max-width: none;
 
     width: 740px;
@@ -39,4 +37,8 @@ export const Section = styled.section`
   }
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;

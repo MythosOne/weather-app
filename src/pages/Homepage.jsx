@@ -21,7 +21,7 @@ export const HomePageContext = createContext();
 const styles = {
   initial: {
     opacity: 0,
-    transform: 'scale(0.9)',
+    transform: 'scale(0.9)npmn npm ',
     transition: 'opacity 300ms, transform 300ms',
   },
   entered: {
@@ -40,7 +40,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const nodeRef = useRef(null);
   const [showHomePage, setShowHomePage] = useState(false);
   const [withAnimation, setWithAnimation] = useState(false);
-  console.log("withAnimation:", withAnimation);
+  console.log('withAnimationHomePage:', withAnimation);
   //!!!State weather cities
   const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCities')) ?? []
@@ -61,7 +61,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [weatherSection, setWeatherSection] = useState(
     JSON.parse(localStorage.getItem('weatherSection')) ?? {}
   );
-  console.log('weatherSection:', weatherSection);
+  // console.log('weatherSection:', weatherSection);
   const [forecastSection, setForecastSection] = useState(
     JSON.parse(localStorage.getItem('forecastSection')) ?? {}
   );
@@ -80,6 +80,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   // useEffect(() => {
   //   console.log("nodeRef.current App:", nodeRef.current);
   // }, [showComponent]);
+
 
   useEffect(() => {
     fetchLocationData();
@@ -217,6 +218,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       forecastSection,
       locationWeather,
       weatherSection,
+      withAnimation,
       setWithAnimation,
     }),
     [
@@ -225,6 +227,8 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       forecastSection,
       locationWeather,
       weatherSection,
+      withAnimation,
+      
     ]
   );
 
@@ -259,7 +263,6 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
                       offset={offset}
                       setOffset={setOffset}
                       setCurrentWeatherCityId={setCurrentWeatherCityId}
-                      setWeatherSections={setWeatherSection}
                     />
                   )}
                   {Object.keys(locationWeather).length &&
