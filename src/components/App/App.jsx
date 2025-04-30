@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 
 import { Header } from '../Header/Header';
 import { Homepage } from '../../pages/Homepage';
 import { Footer } from '../Footer/Footer';
-import { Container } from './App.styled';
 import { Loader } from '../Loader/Loader';
 
 function App() {
@@ -15,10 +14,7 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isHomepageLoaded, setIsHomepageLoaded] = useState(false);
-  // console.log('isHomepageLoaded:', isHomepageLoaded);
   const [isConfirmed, setIsConfirmed] = useState(false);
-  // console.log('isConfirmed:', isConfirmed);
-  // console.log('isHomepageLoaded:', isHomepageLoaded);
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,7 +40,7 @@ function App() {
     }
 
     setIsConfirmed(true);
-    // setIsLoading(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

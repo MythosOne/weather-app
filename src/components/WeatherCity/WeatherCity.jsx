@@ -27,11 +27,9 @@ import { HomePageContext } from 'pages/Homepage';
 
 export const WeatherCity = ({
   weather,
-  forecastCities,
   setForecastCities,
   setCurrentWeatherCityId,
   setWeatherSections,
-  isOpen,
   setIsOpen,
   offset,
   setOffset,
@@ -43,9 +41,9 @@ export const WeatherCity = ({
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [mobilePortal, setMobilePortal] = useState(null);
 
-  const {setWithAnimation} = useContext(HomePageContext);
+  const { setWithAnimation } = useContext(HomePageContext);
 
-  //!!! // WeatherCity.whyDidYouRender = true;
+  WeatherCity.whyDidYouRender = true;
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -57,6 +55,7 @@ export const WeatherCity = ({
     if (searchCity) {
       handleCitySearch(searchCity);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchCity]);
 
   useEffect(() => {
@@ -103,6 +102,7 @@ export const WeatherCity = ({
         setIsLoading(false);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [weatherCities, setWeatherCities, setForecastCities]
   );
 
@@ -113,7 +113,12 @@ export const WeatherCity = ({
       setCurrentWeatherCityId(null);
       setWeatherSections({});
     },
-    [setWeatherCities, setForecastCities, setCurrentWeatherCityId, setWeatherSections]
+    [
+      setWeatherCities,
+      setForecastCities,
+      setCurrentWeatherCityId,
+      setWeatherSections,
+    ]
   );
 
   const handleCloseBtn = useCallback(() => {
@@ -146,7 +151,10 @@ export const WeatherCity = ({
         </CloseBtn>
       </BlockBtn>
       <Title>Weather</Title>
-      <SearchBar setSearchCity={setSearchCity} />
+      <SearchBar
+        setSearchCity={setSearchCity}
+        setCurrentWeatherCityId={setCurrentWeatherCityId}
+      />
       <CardList>
         <ScrollableList>
           <MyLocationCard weather={weather} />

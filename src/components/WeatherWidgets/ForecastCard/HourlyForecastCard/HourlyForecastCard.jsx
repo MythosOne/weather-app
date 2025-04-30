@@ -1,8 +1,12 @@
-import React from 'react';
-import { Container, Block, BlockItem, ImgDate, BlockTemp } from './HourlyForecastCard.styled';
+import {
+  Container,
+  Block,
+  BlockItem,
+  ImgDate,
+  BlockTemp,
+} from './HourlyForecastCard.styled';
 
 export const HourlyForecastCard = ({ element }) => {
-  
   return (
     <Container>
       <Block>

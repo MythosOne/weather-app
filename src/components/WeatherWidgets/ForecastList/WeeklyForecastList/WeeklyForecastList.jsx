@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, ForecastList } from './WeeklyForecastList.styled';
 
 import { WeeklyForecastCard } from '../../ForecastCard/WeeklyForecastCard/WeeklyForecastCard';

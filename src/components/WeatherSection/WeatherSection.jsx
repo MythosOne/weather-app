@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
 import LocationWeather from '../LocationWeather/LocationWeather';
 import { WeatherWidgets } from '../WeatherWidgets/WeatherWidgets';
@@ -36,26 +30,15 @@ export const WeatherSection = () => {
     forecastSection,
     locationWeather,
     weatherSection,
-    handlerSelectWeatherCity,
     withAnimation,
-    setWithAnimation,
   } = useContext(HomePageContext);
 
   const [showComponent, setShowComponent] = useState(false);
-  // console.log('showComponent:', showComponent);
   const [showWeatherSection, setShowWeatherSection] = useState(weatherSection);
   const [showForecastSection, setShowForecastSection] =
     useState(forecastSection);
-  // console.log('showWeatherSection:', showWeatherSection);
-  // console.log('showForecastSection:', showForecastSection);
-
-  
 
   useEffect(() => {
-    // if(handlerSelectWeatherCity){
-    //   setShowComponent(false);
-    // }
-
     setShowComponent(false);
 
     setTimeout(() => {
@@ -76,7 +59,7 @@ export const WeatherSection = () => {
       {showForecastSection && Object.keys(showWeatherSection).length ? (
         <WeatherWidgets
           weather={showWeatherSection}
-          forecast={showForecastSection}
+          forecast={forecastSection}
         />
       ) : (
         <WeatherWidgets weather={locationWeather} forecast={locationForecast} />
@@ -84,19 +67,10 @@ export const WeatherSection = () => {
     </>
   );
 
-  // console.log('withAnimationWeatherSection:', withAnimation);
-
-  // useLayoutEffect(() => {
-  //   if (withAnimation) {
-  //     setShowComponent(true);
-  //   }
-  // }, [withAnimation]);
-
   return (
     <Section>
       <Transition
         in={withAnimation ? showComponent : true}
-        // in={showComponent}
         timeout={300}
         nodeRef={nodeRef}
         mountOnEnter

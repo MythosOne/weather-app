@@ -1,11 +1,9 @@
-import React from 'react';
-
 import { Text } from '../WeatherWidgets.styled';
 
 export const AverageTemp = ({ forecast }) => {
   const arrTemp = [];
 
-  forecast.list.map((element, index) => {
+  forecast.list.forEach((element, index) => {
     if (index <= 7) {
       arrTemp.push(element.main.temp);
     }

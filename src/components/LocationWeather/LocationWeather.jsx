@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { HomePageContext } from 'pages/Homepage';
 import {
   Container,
   MyLocation,
-  City,
   Temperature,
   Description,
   Location,
@@ -18,13 +17,10 @@ function LocationWeather({ weather }) {
         weather.name ? (
           <>
             <MyLocation>My Location</MyLocation>
-            {/* <City>{weather.name}</City> */}
           </>
         ) : (
           <>
             <MyLocation>Unknown location</MyLocation>
-            {/* <MyLocation>My Location</MyLocation> */}
-            {/* <City>unknown location</City> */}
           </>
         )
       ) : (

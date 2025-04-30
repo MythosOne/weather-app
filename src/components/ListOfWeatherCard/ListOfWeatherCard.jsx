@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Container, WeatherCardList } from './ListOfWeatherCard.styled';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import { HomePageContext } from 'pages/Homepage';

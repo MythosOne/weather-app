@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, ForecastList } from './HourlyForecastList.styled';
 
 import { HourlyForecastCard } from '../../ForecastCard/HourlyForecastCard/HourlyForecastCard';

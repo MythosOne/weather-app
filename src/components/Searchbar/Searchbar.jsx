@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState} from 'react';
 import { Search } from '../../icons/IconComponent';
 import {
   SearchBarForm,
@@ -7,7 +7,7 @@ import {
   Input,
 } from './SearchBar.styled';
 
-export const SearchBar = ({ setSearchCity }) => {
+export const SearchBar = ({ setSearchCity, setCurrentWeatherCityId }) => {
   const [value, setValue] = useState('');
 
   const handleSubmit = event => {
@@ -23,6 +23,8 @@ export const SearchBar = ({ setSearchCity }) => {
     setSearchCity(normalizedValue);
 
     setValue('');
+
+    setCurrentWeatherCityId(null);
   };
 
   const handleChange = event => {

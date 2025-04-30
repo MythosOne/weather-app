@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  createContext,
-  useRef,
-  useMemo,
-} from 'react';
+import { useEffect, useState, createContext, useRef, useMemo } from 'react';
 import { Transition } from 'react-transition-group';
 
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
@@ -40,7 +34,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const nodeRef = useRef(null);
   const [showHomePage, setShowHomePage] = useState(false);
   const [withAnimation, setWithAnimation] = useState(false);
-  // console.log('withAnimationHomePage:', withAnimation);
+
   //!!!State weather cities
   const [weatherCities, setWeatherCities] = useState(
     JSON.parse(localStorage.getItem('weatherCities')) ?? []
@@ -48,7 +42,6 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [forecastCities, setForecastCities] = useState(
     JSON.parse(localStorage.getItem('forecastCities')) ?? []
   );
-  // console.log("forecastCities:", forecastCities.length);
 
   //!!! state location weather
   const [locationWeather, setLocationWeather] = useState(
@@ -62,11 +55,10 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
   const [weatherSection, setWeatherSection] = useState(
     JSON.parse(localStorage.getItem('weatherSection')) ?? {}
   );
-  // console.log('weatherSection:', weatherSection);
+
   const [forecastSection, setForecastSection] = useState(
     JSON.parse(localStorage.getItem('forecastSection')) ?? {}
   );
-  // console.log('forecastSection:', forecastSection);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -78,24 +70,19 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
 
   //!!! // Homepage.whyDidYouRender = true;
 
-  // useEffect(() => {
-  //   console.log("nodeRef.current App:", nodeRef.current);
-  // }, [showComponent]);
-
-
   useEffect(() => {
     fetchLocationData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [latitude, longitude]);
 
   useEffect(() => {
     fetchCitiesData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     let selectedWeatherCity;
     let selectedForecastCity;
-
-    // console.log("currentWeatherCityId:", currentWeatherCityId);
 
     if (currentWeatherCityId !== null) {
       selectedWeatherCity = weatherCities.find(
@@ -231,7 +218,6 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       locationWeather,
       weatherSection,
       withAnimation,
-      
     ]
   );
 
