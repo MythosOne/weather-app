@@ -1,3 +1,5 @@
+import propTypes from 'prop-types';
+
 import {
   Container,
   Block,
@@ -52,4 +54,21 @@ export const WeeklyForecastCard = ({ weatherDay }) => {
       </Block>
     </Container>
   );
+};
+
+WeeklyForecastCard.propTypes = {
+  weatherDay: propTypes.arrayOf(
+    propTypes.shape({
+      dt: propTypes.number.isRequired,
+      main: propTypes.shape({
+        temp_min: propTypes.number.isRequired,
+        temp_max: propTypes.number.isRequired,
+      }).isRequired,
+      weather: propTypes.arrayOf(
+        propTypes.shape({
+          icon: propTypes.string.isRequired,
+        })
+      ).isRequired,
+    })
+  ).isRequired,
 };

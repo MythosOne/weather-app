@@ -15,13 +15,14 @@ export const HomePageContext = createContext();
 const styles = {
   initial: {
     opacity: 0,
-    transform: 'scale(0.9)npmn npm ',
+    transform: 'scale(0.9)',
     transition: 'opacity 300ms, transform 300ms',
   },
   entered: {
     opacity: 1,
     transform: 'translateX(0)',
     transition: 'opacity 300ms, transform 300ms',
+    willChange: 'opacity, transform',
   },
   exited: {
     opacity: 0,
@@ -30,7 +31,12 @@ const styles = {
   },
 };
 
-export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
+export const Homepage = ({
+  location,
+  isOpen,
+  setIsOpen,
+  setIsHomepageLoaded,
+}) => {
   const nodeRef = useRef(null);
   const [showHomePage, setShowHomePage] = useState(false);
   const [withAnimation, setWithAnimation] = useState(false);
@@ -72,12 +78,12 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
 
   useEffect(() => {
     fetchLocationData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [latitude, longitude]);
 
   useEffect(() => {
     fetchCitiesData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -136,7 +142,7 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
       localStorage.setItem('locationWeather', JSON.stringify(weather));
       localStorage.setItem('locationForecast', JSON.stringify(forecast));
 
-      onLoad();
+      // onLoad();
       // console.log('onLoad() called fetchLocationData');
     } catch (error) {
       console.error('Error fetching weather data:', error);
@@ -229,6 +235,10 @@ export const Homepage = ({ location, isOpen, setIsOpen, onLoad }) => {
             in={showHomePage}
             timeout={300}
             nodeRef={nodeRef}
+            onEntered={() => {
+              setIsHomepageLoaded(true);
+            }}
+            appear
             mountOnEnter
             unmountOnExit
           >

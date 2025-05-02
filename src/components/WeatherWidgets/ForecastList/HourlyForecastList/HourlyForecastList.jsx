@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Container, ForecastList } from './HourlyForecastList.styled';
 
 import { HourlyForecastCard } from '../../ForecastCard/HourlyForecastCard/HourlyForecastCard';
@@ -15,4 +17,10 @@ export const HourlyForecastList = ({ forecast }) => {
       </ForecastList>
     </Container>
   );
+};
+
+HourlyForecastList.propTypes = {
+  forecast: PropTypes.shape({
+    list: PropTypes.arrayOf(PropTypes.object.isRequired),
+  }).isRequired,
 };

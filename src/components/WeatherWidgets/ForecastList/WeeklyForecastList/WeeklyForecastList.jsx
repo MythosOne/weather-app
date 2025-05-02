@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Container, ForecastList } from './WeeklyForecastList.styled';
 
 import { WeeklyForecastCard } from '../../ForecastCard/WeeklyForecastCard/WeeklyForecastCard';
@@ -8,8 +10,8 @@ export const WeeklyForecastList = ({ forecast }) => {
 
   forecast.list.forEach(obj => {
     const { dt } = obj;
+
     const date = new Date(dt * 1000).getUTCDate();
-    // console.log('date:', date);
 
     if (!dateMap.has(date)) {
       dateMap.set(date, [obj]);
@@ -31,4 +33,14 @@ export const WeeklyForecastList = ({ forecast }) => {
       </ForecastList>
     </Container>
   );
+};
+
+WeeklyForecastList.propTypes = {
+  forecast: PropTypes.shape({
+    list: PropTypes.arrayOf(
+      PropTypes.shape({
+        dt: PropTypes.number.isRequired,
+      }).isRequired
+    ),
+  }).isRequired,
 };

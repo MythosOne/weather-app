@@ -1,7 +1,10 @@
 import { useContext } from 'react';
-import { Container, WeatherCardList } from './ListOfWeatherCard.styled';
+import PropTypes from 'prop-types';
+
 import WeatherCard from '../WeatherCard/WeatherCard';
 import { HomePageContext } from 'pages/Homepage';
+
+import { Container, WeatherCardList } from './ListOfWeatherCard.styled';
 
 export const ListOfWeatherCard = ({ onCloseBtn, onDeleteCard }) => {
   const { weatherCities, handlerSelectWeatherCity, setWithAnimation } =
@@ -28,4 +31,9 @@ export const ListOfWeatherCard = ({ onCloseBtn, onDeleteCard }) => {
       </WeatherCardList>
     </Container>
   );
+};
+
+ListOfWeatherCard.propTypes = {
+  onCloseBtn: PropTypes.bool.isRequired,
+  onDeleteCard: PropTypes.func.isRequired,
 };

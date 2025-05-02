@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
 import { Clock } from 'components/Clock/Clock';
@@ -42,20 +43,13 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
   const [showComponent, setShowComponent] = useState(false);
   const [currentCloseButton, setCurrentCloseButton] = useState(onCloseBtn);
 
-  // console.log('currentCloseButton:', currentCloseButton);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
-  // console.log('isButtonVisible:', isButtonVisible);
-  // console.log('onCloseBtn:', onCloseBtn);
 
   const iconUrl = `https://openweathermap.org/img/wn/${weatherCity.weather[0].icon}@2x.png`;
 
   useEffect(() => {
     setShowComponent(true);
   }, []);
-
-  // useEffect(() => {
-  //   console.log('buttonRef.current WeatherCard:', buttonRef.current);
-  // }, [showComponent]);
 
   useEffect(() => {
     setIsButtonVisible(Boolean(onCloseBtn));
@@ -129,5 +123,28 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
     </Container>
   );
 }
+
+WeatherCard.propTypes = {
+  weatherCity: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string,
+    main: PropTypes.shape({
+      temp: PropTypes.number.isRequired,
+    }).isRequired,
+    weather: PropTypes.arrayOf(
+      PropTypes.shape({
+        icon: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    coord: PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lon: PropTypes.number.isRequired,
+    }).isRequired,
+    timezone: PropTypes.number.isRequired,
+  }).isRequired,
+  onCloseBtn: PropTypes.bool.isRequired,
+  onDeleteCard: PropTypes.func.isRequired,
+};
 
 export default WeatherCard;

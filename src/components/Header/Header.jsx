@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Logo } from './Logo/Logo';
 import { Clock } from '../Clock/Clock';
 
@@ -36,4 +37,9 @@ export const Header = ({ isOpen, setIsOpen }) => {
       <Logo />
     </Section>
   );
+};
+
+Header.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  setIsOpen: PropTypes.func.isRequired,
 };

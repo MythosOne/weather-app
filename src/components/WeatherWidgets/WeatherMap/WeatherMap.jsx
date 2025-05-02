@@ -1,4 +1,5 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -30,4 +31,10 @@ export const WeatherMap = ({ lon, lat, city }) => {
       </Marker>
     </MapContainer>
   );
+};
+
+WeatherMap.propTypes = {
+  lon: PropTypes.number.isRequired,
+  lat: PropTypes.number.isRequired,
+  city: PropTypes.string.isRequired,
 };

@@ -1,9 +1,11 @@
 import { useContext, useState, useRef, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
+
 import LocationWeather from '../LocationWeather/LocationWeather';
 import { WeatherWidgets } from '../WeatherWidgets/WeatherWidgets';
-import { Section, Container } from './WeatherSection.styled';
 import { HomePageContext } from 'pages/Homepage';
+
+import { Section, Container } from './WeatherSection.styled';
 
 const styles = {
   initial: {

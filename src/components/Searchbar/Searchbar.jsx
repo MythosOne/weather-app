@@ -1,4 +1,6 @@
 import { useState} from 'react';
+import PropTypes from 'prop-types';
+
 import { Search } from '../../icons/IconComponent';
 import {
   SearchBarForm,
@@ -49,4 +51,9 @@ export const SearchBar = ({ setSearchCity, setCurrentWeatherCityId }) => {
       </SearchBarForm>
     </Container>
   );
+};
+
+SearchBar.propTypes = {
+  setSearchCity: PropTypes.func.isRequired,
+  setCurrentWeatherCityId: PropTypes.func.isRequired,
 };

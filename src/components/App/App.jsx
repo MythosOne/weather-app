@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 import { Header } from '../Header/Header';
 import { Homepage } from '../../pages/Homepage';
@@ -40,7 +40,7 @@ function App() {
     }
 
     setIsConfirmed(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -54,11 +54,7 @@ function App() {
             location={location}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            onLoad={() =>
-              setTimeout(() => {
-                setIsHomepageLoaded(true);
-              }, 300)
-            }
+            setIsHomepageLoaded={setIsHomepageLoaded}
           />
         </>
       ) : (

@@ -1,4 +1,8 @@
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
+
+import { HomePageContext } from 'pages/Homepage';
+
 import {
   Container,
   Block,
@@ -11,7 +15,6 @@ import {
   MyLocation,
   Location,
 } from './MyLocationCard.styled';
-import { HomePageContext } from 'pages/Homepage';
 
 function MyLocationCard({ weather }) {
   const { setWeatherSection, setCurrentWeatherCityId } =
@@ -48,5 +51,25 @@ function MyLocationCard({ weather }) {
     </Container>
   );
 }
+
+MyLocationCard.propTypes = {
+  weather: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string,
+    main: PropTypes.shape({
+      temp: PropTypes.number.isRequired,
+    }).isRequired,
+    weather: PropTypes.arrayOf(
+      PropTypes.shape({
+        icon: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    coord: PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lon: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default MyLocationCard;

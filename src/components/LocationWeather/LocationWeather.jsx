@@ -1,5 +1,8 @@
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import { HomePageContext } from 'pages/Homepage';
+
 import {
   Container,
   MyLocation,
@@ -34,5 +37,24 @@ function LocationWeather({ weather }) {
     </Container>
   );
 }
+
+LocationWeather.propTypes = {
+  weather: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string,
+    main: PropTypes.shape({
+      temp: PropTypes.number.isRequired,
+    }).isRequired,
+    weather: PropTypes.arrayOf(
+      PropTypes.shape({
+        description: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    coord: PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lon: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default LocationWeather;

@@ -1,5 +1,13 @@
 import { useEffect, useState, useContext, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
+
+import { HomePageContext } from 'pages/Homepage';
+import {
+  apiServiceSearchData,
+  apiServiceForecastData,
+  // apiServiceWeatherMaps,
+} from '../../Api/apiService';
 
 import { SearchBar } from '../SearchBar/SearchBar';
 import { ListOfWeatherCard } from '../ListOfWeatherCard/ListOfWeatherCard';
@@ -15,15 +23,9 @@ import {
   ScrollableList,
 } from './WeatherCity.styled';
 
-import {
-  apiServiceSearchData,
-  apiServiceForecastData,
-  // apiServiceWeatherMaps,
-} from '../../Api/apiService';
 import { Loader } from '../Loader/Loader';
 
 import { WeatherCityClose, CorrectListImg } from 'icons/IconComponent';
-import { HomePageContext } from 'pages/Homepage';
 
 export const WeatherCity = ({
   weather,
@@ -55,7 +57,7 @@ export const WeatherCity = ({
     if (searchCity) {
       handleCitySearch(searchCity);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchCity]);
 
   useEffect(() => {
@@ -129,7 +131,7 @@ export const WeatherCity = ({
     setOffset(-100);
     setIsOpen(prev => !prev);
   }, [setOffset, setIsOpen]);
-  // debugger;
+  
   const content = (
     <WeatherBar dataOffset={offset}>
       <BlockBtn>
@@ -173,4 +175,14 @@ export const WeatherCity = ({
   }
 
   return content;
+};
+
+WeatherCity.propTypes = {
+  weather: PropTypes.object.isRequired,
+  setForecastCities: PropTypes.func.isRequired,
+  setCurrentWeatherCityId: PropTypes.func.isRequired,
+  setWeatherSections: PropTypes.func.isRequired,
+  setIsOpen: PropTypes.func.isRequired,
+  offset: PropTypes.number.isRequired,
+  setOffset: PropTypes.func.isRequired,
 };

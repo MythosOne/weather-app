@@ -1,3 +1,10 @@
+import PropTypes from 'prop-types';
+
+import { HourlyForecastList } from './ForecastList/HourlyForecastList/HourlyForecastList';
+import { WeeklyForecastList } from './ForecastList/WeeklyForecastList/WeeklyForecastList';
+import { WeatherMap } from './WeatherMap/WeatherMap';
+import { AverageTemp } from './AverageTemp/AverageTemp';
+
 import {
   Container,
   Block,
@@ -31,11 +38,6 @@ import {
   PressureImg,
   VisibilityImg,
 } from 'icons/IconComponent';
-
-import { HourlyForecastList } from './ForecastList/HourlyForecastList/HourlyForecastList';
-import { WeeklyForecastList } from './ForecastList/WeeklyForecastList/WeeklyForecastList';
-import { WeatherMap } from './WeatherMap/WeatherMap';
-import { AverageTemp } from './AverageTemp/AverageTemp';
 
 export const WeatherWidgets = ({ weather, forecast }) => {
   const UTCTime = unixTime => {
@@ -109,4 +111,15 @@ export const WeatherWidgets = ({ weather, forecast }) => {
       </Pressure>
     </Container>
   );
+};
+
+WeatherWidgets.propTypes = {
+  weather: PropTypes.shape({
+    coord: PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lon: PropTypes.number.isRequired,
+    }).isRequired,
+    timezone: PropTypes.number.isRequired,
+  }).isRequired,
+  forecast: PropTypes.object.isRequired,
 };

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { CurrentTimeHeader, CurrentTimeCard } from './Clock.styled';
 export const Clock = ({ timeZoneOffset, clockHeader }) => {
@@ -43,4 +44,9 @@ export const Clock = ({ timeZoneOffset, clockHeader }) => {
       )}
     </>
   );
+};
+
+Clock.propTypes = {
+  timeZoneOffset: PropTypes.number.isRequired,
+  clockHeader: PropTypes.bool,
 };

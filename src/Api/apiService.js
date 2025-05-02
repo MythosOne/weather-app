@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_KEY = 'e59a1482d0be237c1680d29670faf7ca';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
-const BASE_URL_MAPS = 'https://tile.openweathermap.org/map';
+// const BASE_URL_MAPS = 'https://tile.openweathermap.org/map';
 
 export async function apiServiceSearchData(value) {
   const resp = await axios.get(
