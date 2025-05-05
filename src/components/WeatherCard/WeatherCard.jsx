@@ -20,21 +20,23 @@ import {
 
 import { CloseCardImg } from 'icons/IconComponent';
 
-const styles = {
+const ANIMATION_DURATION = 300;
+
+const transitionStyles = {
   initial: {
     opacity: 0,
     transform: 'scale(0.9)',
-    transition: 'opacity 300ms, transform 300ms',
+    transition: `opacity ${ANIMATION_DURATION}ms, transform ${ANIMATION_DURATION}ms`,
   },
   entered: {
     opacity: 1,
     transform: 'translateX(0)',
-    transition: 'opacity 300ms, transform 300ms',
+    transition: `opacity ${ANIMATION_DURATION}ms, transform ${ANIMATION_DURATION}0ms`,
   },
   exited: {
     opacity: 0,
     transform: 'scale(0.9)',
-    transition: 'opacity 300ms, transform 300ms',
+    transition: `opacity ${ANIMATION_DURATION}ms, transform ${ANIMATION_DURATION}ms`,
   },
 };
 
@@ -54,9 +56,11 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
   useEffect(() => {
     setIsButtonVisible(Boolean(onCloseBtn));
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setCurrentCloseButton(onCloseBtn);
-    }, 300);
+    }, ANIMATION_DURATION);
+
+    return () => clearTimeout(timer);
   }, [onCloseBtn]);
 
   return (
@@ -89,7 +93,7 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
       <Transition
         nodeRef={buttonRef}
         in={isButtonVisible}
-        timeout={300}
+        timeout={ANIMATION_DURATION}
         mountOnEnter
         unmountOnExit
       >
@@ -97,9 +101,9 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
           <BlockBtn
             ref={buttonRef}
             style={{
-              ...styles.initial,
-              ...(state === 'entered' && styles.entered),
-              ...(state === 'exited' && styles.exited),
+              ...transitionStyles.initial,
+              ...(state === 'entered' && transitionStyles.entered),
+              ...(state === 'exited' && transitionStyles.exited),
             }}
           >
             {currentCloseButton && (
@@ -111,7 +115,7 @@ function WeatherCard({ weatherCity, onCloseBtn, onDeleteCard }) {
                 onClick={() => {
                   setIsButtonVisible(false);
                   setShowComponent(false);
-                  setTimeout(() => onDeleteCard(weatherCity.id), 300);
+                  setTimeout(() => onDeleteCard(weatherCity.id), ANIMATION_DURATION);
                 }}
               >
                 <CloseCardImg />

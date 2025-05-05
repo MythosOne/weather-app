@@ -1,4 +1,4 @@
-import { useContext, useState, useRef, useEffect } from 'react';
+import { memo, useContext, useState, useRef, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
 
 import LocationWeather from '../LocationWeather/LocationWeather';
@@ -7,25 +7,27 @@ import { HomePageContext } from 'pages/Homepage';
 
 import { Section, Container } from './WeatherSection.styled';
 
-const styles = {
+const ANIMATION_DURATION = 300;
+
+const transitionStyles = {
   initial: {
     opacity: 0,
     transform: 'scale(0.9)',
-    transition: 'opacity 300ms, transform 300ms',
+    transition: `opacity ${ANIMATION_DURATION}ms, transform ${ANIMATION_DURATION}ms`,
   },
   entered: {
     opacity: 1,
     transform: 'translateX(0)',
-    transition: 'opacity 300ms, transform 300ms',
+    transition: `opacity ${ANIMATION_DURATION}ms, transform ${ANIMATION_DURATION}ms`,
   },
   exited: {
     opacity: 0,
     transform: 'scale(0.9)',
-    transition: 'opacity 300ms, transform 300ms',
+    transition: `opacity ${ANIMATION_DURATION}ms, transform ${ANIMATION_DURATION}ms`,
   },
 };
 
-export const WeatherSection = () => {
+export const WeatherSection = memo(() => {
   const nodeRef = useRef(null);
   const {
     locationForecast,
@@ -40,18 +42,22 @@ export const WeatherSection = () => {
   const [showForecastSection, setShowForecastSection] =
     useState(forecastSection);
 
+  // WeatherSection.whyDidYouRender = true;
+
   useEffect(() => {
     setShowComponent(false);
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setShowWeatherSection(weatherSection);
       setShowForecastSection(forecastSection);
 
       setShowComponent(true);
-    }, 300);
+    }, ANIMATION_DURATION);
+
+    return () => clearTimeout(timer);
   }, [forecastSection, weatherSection]);
 
-  const content = (
+  const WeatherContent = (
     <>
       {showWeatherSection && Object.keys(showWeatherSection).length ? (
         <LocationWeather weather={showWeatherSection} />
@@ -73,7 +79,7 @@ export const WeatherSection = () => {
     <Section>
       <Transition
         in={withAnimation ? showComponent : true}
-        timeout={300}
+        timeout={ANIMATION_DURATION}
         nodeRef={nodeRef}
         mountOnEnter
         unmountOnExit
@@ -81,16 +87,16 @@ export const WeatherSection = () => {
         {state => (
           <Container
             style={{
-              ...styles.initial,
-              ...(state === 'entered' && styles.entered),
-              ...(state === 'exited' && styles.exited),
+              ...transitionStyles.initial,
+              ...(state === 'entered' && transitionStyles.entered),
+              ...(state === 'exited' && transitionStyles.exited),
             }}
             ref={nodeRef}
           >
-            {content}
+            {WeatherContent}
           </Container>
         )}
       </Transition>
     </Section>
   );
-};
+});
