@@ -39,7 +39,6 @@ export const Container = styled.ul`
 
 export const HourlyForecast = styled.li`
   grid-area: hourlyForecast;
-  /* overflow: auto; */
 
   box-sizing: border-box;
   padding: 8px;
@@ -101,8 +100,6 @@ export const WeeklyForecast = styled.li`
 
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
-  /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
-  /* margin-bottom: 25px; */
 
   backdrop-filter: blur(5px);
 `;
@@ -119,7 +116,6 @@ export const PrecipitationMap = styled.li`
   height: 200px;
   border-radius: 12px;
   background-color: rgba(21, 67, 96, 0.5);
-  /* box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.5); */
 
   backdrop-filter: blur(5px);
 
@@ -193,7 +189,8 @@ export const BlockSunrise = styled.div`
   grid-area: textSunrise;
 `;
 
-export const TextSunrise = styled.p`  bottom: 8px;
+export const TextSunrise = styled.p`
+  bottom: 8px;
   right: 8px;
   font-size: 12px;
   color: #6382af;
@@ -211,7 +208,8 @@ export const TextSunset = styled.span`
 `;
 
 export const Time = styled.p`
-  font-size: 20px;`;
+  font-size: 20px;
+`;
 
 export const Wind = styled.li`
   position: relative;

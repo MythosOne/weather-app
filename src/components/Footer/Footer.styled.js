@@ -4,12 +4,6 @@ export const Section = styled.footer`
   width: 90%;
   max-width: 460px;
 
-  /* bottom: 0;
-  left: 0;
-  right: 0;
-  position: fixed;
-  z-index: 1000; */
-
   display: grid;
   grid-template-areas:
     'logo arrowUp arrowUp '
