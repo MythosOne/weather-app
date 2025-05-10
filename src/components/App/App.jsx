@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 import { Header } from '../Header/Header';
 import { Homepage } from '../../pages/Homepage';
@@ -26,8 +27,9 @@ function App() {
     };
 
     const handleError = () => {
-      alert('Please, enable geolocation in your browser');
-      console.log('Error geolocation data');
+      toast.error('Please, enable geolocation in your browser', {
+        id: 'geo-error',
+      });
 
       setLocation({ ...location, latitude: -1, longitude: -1 });
       setIsLoading(false);
@@ -36,7 +38,9 @@ function App() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
     } else {
-      alert('Geolocation is not supported by your browser');
+      toast.error('Geolocation is not supported by your browser', {
+        id: 'geo-not-supported',
+      });
     }
 
     setIsConfirmed(true);

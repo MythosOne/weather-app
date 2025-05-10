@@ -1,16 +1,5 @@
 @import-normalize;
 
-html {
-  /* background-image: url('./components/img/weather-background.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; */
-}
-
 body {
   background-color: rgb(31, 130, 187);
   background-image: url('./images/weather-background.jpg');
@@ -62,7 +51,7 @@ html {
 }
 
 div {
-  /* scroll-margin-top: 70px; */
+  scroll-margin-top: 70px;
 
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */

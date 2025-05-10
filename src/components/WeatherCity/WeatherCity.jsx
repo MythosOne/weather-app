@@ -1,6 +1,7 @@
 import { memo, useEffect, useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
+import toast from 'react-hot-toast';
 
 import { HomePageContext } from 'pages/Homepage';
 import {
@@ -75,7 +76,12 @@ export const WeatherCity = memo(
           const data = await apiServiceSearchData(searchCity);
 
           if (weatherCities.some(city => city.id === data.id)) {
-            alert(`${searchCity} is already in cities`);
+            toast.error(
+              <span>
+                <span style={{ color: 'red' }}>{searchCity}</span> is already in
+                cities
+              </span>
+            );
             setSearchCity('');
             return;
           }
@@ -99,8 +105,7 @@ export const WeatherCity = memo(
 
           setSearchCity('');
         } catch (error) {
-          alert('City not found');
-          console.error(error);
+          toast.error('City not found');
         } finally {
           setIsLoading(false);
         }

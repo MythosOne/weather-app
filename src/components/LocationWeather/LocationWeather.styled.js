@@ -6,8 +6,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  scroll-margin-top: 70px;
-
   gap: 5px;
 `;
 

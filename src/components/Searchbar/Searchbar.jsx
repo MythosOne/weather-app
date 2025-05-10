@@ -1,5 +1,6 @@
 import { useState} from 'react';
 import PropTypes from 'prop-types';
+import toast from 'react-hot-toast';
 
 import { Search } from '../../icons/IconComponent';
 import {
@@ -18,7 +19,7 @@ export const SearchBar = ({ setSearchCity, setCurrentWeatherCityId }) => {
     const normalizedValue = value.trim();
 
     if (normalizedValue.length === 0) {
-      alert('Field must be filled');
+      toast.error('Field must be filled');
       return;
     }
 
