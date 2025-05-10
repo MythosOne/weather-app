@@ -3,17 +3,8 @@ import styled from '@emotion/styled';
 export const Section = styled.section`
   grid-area: weatherSection;
 
-  /* max-width: 460px */
-
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: flex-start;
-  align-items: stretch; */
-  /* gap: 20px; */
   padding: 0 10px;
   margin: 70px auto 20px;
-
-  /* width: 75%; */
 
   font-size: 16px;
   color: white;
@@ -32,8 +23,6 @@ export const Section = styled.section`
     max-width: none;
 
     width: 740px;
-
-    /* margin:0 auto ; */
   }
 `;
 

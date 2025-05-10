@@ -94,20 +94,6 @@ export const BlockBtn = styled.div`
 `;
 
 export const CloseBtn = styled.button`
-  /* opacity: 0;
-  transform: scale(0.9); */
-
-  /* &.active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 300ms, transform 300ms;
-  }
-  &.exit-active {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 300ms, transform 300ms;
-  } */
-
   display: flex;
   padding: 0;
   align-items: center;

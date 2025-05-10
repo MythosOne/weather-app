@@ -5,10 +5,10 @@ The app shows the current temperature, as well as sunrise and sunset times accor
 
 Frontend:
 
-1. React, react-router-dom, hooks.
-2. @emotion/styled.
+1. React, react-router-dom, hooks, PropTypes, react-transition-group.
+2. Axios.
 3. Rest-API.
-4. Axios.
+4. @emotion/styled.
 5. Progressive Enhancement.
 6. Mobile(up to 480px responsive), tablet and desktop adaptive design.
 7. CSS Grid.
