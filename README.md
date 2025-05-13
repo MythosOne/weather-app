@@ -14,7 +14,8 @@ Frontend:
 7. CSS Grid.
 
 
-![progressive-design-image](./public/images/weather-app.jpg)
+![progressive-design-image](./public/images/weather_app.jpg)
+![wether-app-perfomance](./public/images/weather_app_perfomance.jpg)
 
 Backend:
 
