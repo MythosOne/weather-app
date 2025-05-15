@@ -2,6 +2,7 @@ import { memo, useEffect, useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import toast from 'react-hot-toast';
+import { errorHandler } from 'error/errorHandler';
 
 import { HomePageContext } from 'pages/Homepage';
 import {
@@ -105,7 +106,7 @@ export const WeatherCity = memo(
 
           setSearchCity('');
         } catch (error) {
-          toast.error('City not found');
+          errorHandler({ message: 'City not found' });
         } finally {
           setIsLoading(false);
         }

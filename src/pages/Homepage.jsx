@@ -7,7 +7,8 @@ import {
   useMemo,
 } from 'react';
 import { Transition } from 'react-transition-group';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
+import { errorHandler } from 'error/errorHandler';
 
 import { WeatherCity } from '../components/WeatherCity/WeatherCity';
 import { WeatherSection } from '../components/WeatherSection/WeatherSection';
@@ -148,7 +149,9 @@ export const Homepage = memo(
         localStorage.setItem('locationWeather', JSON.stringify(weather));
         localStorage.setItem('locationForecast', JSON.stringify(forecast));
       } catch (error) {
-        toast.error('Error fetching weather data:');
+        errorHandler({
+          message: 'Error fetching weather data',
+        });
       } finally {
         setIsLoading(false);
       }
@@ -196,7 +199,9 @@ export const Homepage = memo(
 
         setShowHomePage(true);
       } catch (error) {
-        toast.error('Error fetching weather data:');
+        errorHandler({
+          message: 'Error fetching weather data',
+        });
       } finally {
         setIsLoading(false);
       }
