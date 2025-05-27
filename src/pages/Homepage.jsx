@@ -5,6 +5,7 @@ import {
   createContext,
   useRef,
   useMemo,
+  useCallback,
 } from 'react';
 import { Transition } from 'react-transition-group';
 import { Toaster } from 'react-hot-toast';
@@ -235,6 +236,20 @@ export const Homepage = memo(
       ]
     );
 
+    const toasterOptions = useCallback(() => {
+      return {
+        toastOptions: {
+          duration: 3000,
+          style: {
+            background: '#c9dfed',
+            color: '#rgba(21, 67, 96, 0.5)',
+            fontSize: '16px',
+            fontWeight: '500',
+          },
+        },
+      };
+    }, []);
+
     return (
       <>
         {myLocation && (
@@ -282,17 +297,7 @@ export const Homepage = memo(
                 </Container>
               )}
             </Transition>
-            <Toaster
-              toastOptions={{
-                duration: 3000,
-                style: {
-                  background: '#c9dfed',
-                  color: '#rgba(21, 67, 96, 0.5)',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                },
-              }}
-            />
+            <Toaster toastOptions={toasterOptions} />
           </Main>
         )}
       </>

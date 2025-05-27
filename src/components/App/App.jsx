@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { errorHandler } from 'error/errorHandler';
 
 import { Header } from '../Header/Header';
@@ -17,27 +17,46 @@ function App() {
   const [isHomepageLoaded, setIsHomepageLoaded] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
 
+  const handleSuccess = useCallback(position => {
+    const { latitude, longitude } = position.coords;
+    setLocation({ latitude, longitude });
+    setIsLoading(false);
+  }, []);
+
+  const handleLocationError = useCallback(() => {
+    errorHandler({
+      id: 'geo-error',
+      message: 'Please, enable geolocation in your browser',
+    });
+
+    setLocation(prev => ({ ...prev, latitude: -1, longitude: -1 }));
+    setIsLoading(false);
+  }, []);
+
   useEffect(() => {
     setIsLoading(true);
 
-    const handleSuccess = position => {
-      const { latitude, longitude } = position.coords;
-      setLocation({ latitude, longitude });
-      setIsLoading(false);
-    };
+    // const handleSuccess = position => {
+    //   const { latitude, longitude } = position.coords;
+    //   setLocation({ latitude, longitude });
+    //   setIsLoading(false);
+    // };
 
-    const handleError = () => {
-      errorHandler({
-        id: 'geo-error',
-        message: 'Please, enable geolocation in your browser',
-      });
+    // const handleError = () => {
+    //   errorHandler({
+    //     id: 'geo-error',
+    //     message: 'Please, enable geolocation in your browser',
+    //   });
 
-      setLocation({ ...location, latitude: -1, longitude: -1 });
-      setIsLoading(false);
-    };
+    //   setLocation({ ...location, latitude: -1, longitude: -1 });
+    //   setIsLoading(false);
+    // };
 
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+      navigator.geolocation.getCurrentPosition(
+        handleSuccess,
+        handleLocationError
+      );
     } else {
       errorHandler({
         id: 'geo-not-supported',
