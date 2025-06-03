@@ -36,22 +36,6 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
 
-    // const handleSuccess = position => {
-    //   const { latitude, longitude } = position.coords;
-    //   setLocation({ latitude, longitude });
-    //   setIsLoading(false);
-    // };
-
-    // const handleError = () => {
-    //   errorHandler({
-    //     id: 'geo-error',
-    //     message: 'Please, enable geolocation in your browser',
-    //   });
-
-    //   setLocation({ ...location, latitude: -1, longitude: -1 });
-    //   setIsLoading(false);
-    // };
-
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         handleSuccess,
